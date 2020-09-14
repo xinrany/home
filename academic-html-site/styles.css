@@ -93,7 +93,7 @@ body {
 }
 
 .logo-wrapper img {       /* adjuts logo size */
-    width: 50%;
+    width: 100%;
     margin-bottom: 20px;
 }
 
@@ -118,7 +118,7 @@ body {
 /* About page styles */
 .two-column-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.7fr 1.3fr;
 }
 
 .profile-image-wrapper {
@@ -130,5 +130,35 @@ body {
 }
 
 .profile-content-wrapper h1 {
-    color: lightseagreen;
+    color: black;
+}
+
+.one-content-wrapper {
+    margin-left: 5%;       /* margin shorthand for margin-top, margin-right, margin-bottom, and margin-left. */
+    margin-right: 10%;
+    padding: 30px;
+}
+
+.teaching-content-wrapper h1 {
+    color: black;
+}
+
+
+
+/* footer */
+.footer-container {
+    background: #303036;
+    color: #d3d3d3;
+    height: 4%;
+    position:fixed;
+    bottom:0;
+    width:100%;
+}
+
+.footer-container .footer-content .footer-section p {
+    font-size: 10pt;
+    margin-top: 0;
+    padding-right: 3%;
+    padding-top: 7px;
+    text-align: right;
 }
