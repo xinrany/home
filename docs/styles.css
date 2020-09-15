@@ -97,15 +97,19 @@ body {
     margin-bottom: 20px;
 }
 
-.img-text-wrapper .subtitle {       /* title will only show once hovered */
+.img-text-wrapper .subtitle a{       /* title will only show once hovered */
     transition: 1s;
-    font-weight: 600;
+    font-size: 100px;
+    font-weight: 300;
+    text-decoration: none;       /* remove link underline */
     color: transparent;
+    padding-left: 20px;
 }
 
-.img-text-wrapper:hover .subtitle {       /* title change to light sea green */
-    font-weight: 600;
-    color: lightseagreen;
+.img-text-wrapper .subtitle:hover a {
+    color: #BDC0BA;       /* SHIRONEZUMI from nipponcolors.com */
+    text-decoration: none;       /* remove link underline */
+    transition: color 1s; 
 }
 
 .img-darken {       /* darken img when hover above */
@@ -144,6 +148,9 @@ body {
 }
 
 
+.profile-content-wrapper a {
+    text-decoration: none;
+}
 
 /* footer */
 .footer-container {
