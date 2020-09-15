@@ -1,2 +1,4 @@
 # home-v2
-This is my new version homepage.
+Sep 2020
+Teaching and About pages are updated.
+I'll still need to update the home page and add a CV.
