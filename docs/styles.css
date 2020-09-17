@@ -131,6 +131,7 @@ body {
 
 .profile-content-wrapper {
     padding: 30px;
+    margin-right: 100px;
 }
 
 .profile-content-wrapper h1 {
@@ -150,6 +151,29 @@ body {
 
 .profile-content-wrapper a {
     text-decoration: none;
+    color: #3A8FB7;
+}
+.description-list-wrapper {
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+
+dl {
+    margin: 10px 0;
+}
+
+dt {
+    margin: 0 0 4px 0;
+    float: left;
+    clear: left;
+}
+
+dd {
+    margin: 0 0 5px 60px;
+}
+dd:after {
+    clear: both;
 }
 
 /* footer */
