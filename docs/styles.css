@@ -2,6 +2,7 @@
 body {
   font-family: "Lora", serif;
   margin: 0px;
+  line-height: 1.5rem;
 }
 
 .container {
@@ -33,7 +34,7 @@ body {
 }
 
 .nav-link-wrapper a {
-  color: #8a8a8a; /* link color */
+  color: #8a8a8a; /* link color grey is #8a8a8a*/
   text-decoration: none; /* remove link underline */
   transition: color 0.5s;
 }
@@ -136,6 +137,7 @@ body {
 
 .profile-content-wrapper h1 {
   color: black;
+  line-height: 2.5rem;
 }
 
 .one-content-wrapper {
@@ -152,6 +154,8 @@ body {
   text-decoration: none;
   color: #3a8fb7;
 }
+
+/* dercription list */
 .description-list-wrapper {
   overflow: hidden;
   margin: 20px 0;
@@ -173,6 +177,73 @@ dd {
 dd:after {
   clear: both;
 }
+
+/* collapsible/accordion */
+.accordion {
+  width: 100%;
+  /* max-width: 1000px; */
+  /* margin: 2rem auto;  */
+  /* horiziontal center */
+}
+
+.accordion-item {
+  background-color: white;
+  color: black;
+  margin: 1rem 0;
+  border-radius: 0.25rem;
+  box-shadow: 0 1px 5px 0 #91989f; /* color = ginnezumi */
+}
+
+.accordion-item-header {
+  color: black; /* color = chigusa */
+  padding: 0.5rem 3rem 0.5rem 1rem;
+  min-height: 3.5rem;
+  line-height: 1.25rem;
+
+  display: flex;
+  align-items: center; /* verticel centered */
+  position: relative;
+  cursor: pointer;
+}
+
+.accordion-item-header::after {
+  content: "\002B"; /* CSS entities code, \002B is + */
+  font-size: 2rem;
+  position: absolute;
+  right: 1rem;
+  transition: transform 0.2s ease-in-out;
+}
+
+.accordion-item-header.active::after {
+  transform: rotate(45deg);
+}
+
+.accordion-item-body {
+  /* display: none; */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.accordion-item-body-content {
+  padding: 1rem;
+  /* line-height: 1.5rem; */
+  border-top: 1px solid;
+  border-image: linear-gradient(to right, transparent, #bdc0ba, transparent) 1;
+  /* color = shiroenzumi */
+}
+
+/* .accordion-item-header.active + .accordion-item-body {
+  display: block;
+  max-height: 500px;
+} */
+
+/* phone view */
+/* @media (max-width: 767px) {
+  html {
+    font-size: 20px;
+  }
+} */
 
 /* footer */
 .footer-container {

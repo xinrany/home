@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-
-<!---
-    add a comment in html like this
--->
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -13,6 +9,7 @@
     />
     <!---    font    -->
     <link rel="stylesheet" href="../styles.css" />
+    <script src="../javascript/main.js" defer></script>
   </head>
 
   <body>
@@ -59,79 +56,98 @@
           <div class="profile-content-wrapper">
             <h1>How I built this website</h1>
             <p>
-              Though this isn't a prefect website, some people with no html
-              experience might interested in how I built this. Here are some
-              useful resources, in chronological order. I'll try to update when
-              I find other useful stuff.
+              Though this isn't a prefect website, some people with no HTML
+              experience might be interested in how I built this. Here are some
+              useful resources, in chronological order. I might update other
+              useful stuff.
             </p>
 
             <ul>
               <li>
-                I watched this
+                Even for someone without any experience in HTML and CSS, this
                 <a href="https://youtu.be/5bMdjkfvONE" target="_blank"
-                  >YouTube video</a
+                  >tutorial</a
                 >
-                with no idea what an html file is.
+                is reasonably easy to follow.
               </li>
 
               <li>
-                After that I've written my homepage and I want to publish it. So
-                I go for
-                <a href="https://github.com/" target="_blank">GitHub</a>. I
-                barely used GitHub before, so I followed
+                To easily publish a website, see
+                <a href="https://github.com/" target="_blank">GitHub</a>'s
+                instruction:
                 <a
                   href="https://docs.github.com/en/github/working-with-github-pages/creating-a-github-pages-site"
                   target="_blank"
-                  >their instruction</a
-                >
-                to initialize a git page.
+                  >create a GitHub Pages site</a
+                >.
               </li>
 
               <li>
-                I've written several files and I want to
+                To commit and push with GitHub desktop, see their insturction:
                 <a
                   href="https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/committing-and-reviewing-changes-to-your-project"
                   target="_blank"
-                  >commit and push with GitHub desktop</a
-                >
-                the whole folder to github. And remember to change the directory
-                on github so that it can find your index.html
+                  >Committing and reviewing changes to your project</a
+                >.
               </li>
 
               <li>
-                Then I want a footer pinned at the bottom, so I watched this
-                video.
+                To design a footer pinned at the bottom of the page, watch:
+                <a href="https://youtu.be/jZ2XYDWKENs" target="_blank"
+                  >Design a footer that sticks to the bottom of the page</a
+                >.
+              </li>
+
+              <li>
+                To add a collapsible list, watch:
+                <a href="https://youtu.be/dr8Emho-kYo" target="_blank"
+                  >Accordion (HTML, CSS and JavaScript)</a
+                >.
               </li>
             </ul>
 
             <br />
-            <h2>Other resourse</h2>
-            <ul>
-              <li>
-                Learn HTML5 and CSS3 From Scratch Several things
-                <a href="https://youtu.be/mU6anWqZJcc" target="_blank"
-                  >Full Course</a
-                >
-                on YouTube
-              </li>
+            <!-- collapsible item -->
+            <div class="accordion">
+              <div class="accordion-item">
+                <div class="accordion-item-header">
+                  <h2>Other resources</h2>
+                </div>
 
-              <li>
-                <a href="https://unsplash.com/" target="_blank">Unsplash</a>
-                free high resolution photos
-              </li>
+                <div class="accordion-item-body">
+                  <div class="accordion-item-body-content">
+                    <ul>
+                      <li>
+                        Learn HTML5 and CSS3 From Scratch Several Things -
+                        <a href="https://youtu.be/mU6anWqZJcc" target="_blank"
+                          >Full Course</a
+                        >
+                        on YouTube
+                      </li>
 
-              <li>
-                <a href="https://nipponcolors.com/" target="_blank"
-                  >Nippon colors</a
-                >
-              </li>
+                      <li>
+                        <a href="https://unsplash.com/" target="_blank"
+                          >Unsplash</a
+                        >: free high resolution photos
+                      </li>
 
-              <li>
-                <a href="https://fonts.google.com/" target="_blank"
-                  >Google fonts</a
-                >
-              </li>
-            </ul>
+                      <li>
+                        <a href="https://nipponcolors.com/" target="_blank"
+                          >Nippon colors</a
+                        >
+                      </li>
+
+                      <li>
+                        <a href="https://fonts.google.com/" target="_blank"
+                          >Google fonts</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end of accordion -->
           </div>
         </div>
       </div>
