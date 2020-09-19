@@ -1,195 +1,193 @@
 /* Master styles */
 body {
-    font-family: "Lora", serif;
-    margin: 0px;
+  font-family: "Lora", serif;
+  margin: 0px;
 }
 
 .container {
-    display: grid;       /* css grid */
-    grid-template-columns: 1fr;       /* fr = fractional unit, 1fr = 100% */
+  display: grid; /* css grid */
+  grid-template-columns: 1fr; /* fr = fractional unit, 1fr = 100% */
 }
-
-
 
 /* Nav styles */
 .nav-wrapper {
-    display: flex;
-    justify-content: space-between;
-    padding: 38px;
+  display: flex;
+  justify-content: space-between;
+  padding: 38px;
 }
 
 .left-side {
-    display: flex;
+  display: flex;
 }
 
 .nav-wrapper > .left-side > div {
-    margin-right: 20px;
-    font-size: 0.9em;
-    text-transform: uppercase;
+  margin-right: 20px;
+  font-size: 0.9em;
+  text-transform: uppercase;
 }
 
 .nav-link-wrapper {
-    height: 22px;
-    border-bottom: 1px solid transparent;
-    transition: border-bottom 0.5s;       /* animation */
+  height: 22px;
+  border-bottom: 1px solid transparent;
+  transition: border-bottom 0.5s; /* animation */
 }
 
 .nav-link-wrapper a {
-    color: #8a8a8a;       /* link color */
-    text-decoration: none;       /* remove link underline */
-    transition: color 0.5s; 
+  color: #8a8a8a; /* link color */
+  text-decoration: none; /* remove link underline */
+  transition: color 0.5s;
 }
 
 .nav-link-wrapper:hover {
-    border-bottom: 1px solid black;       /* link gets black when hover mouse */
+  border-bottom: 1px solid black; /* link gets black when hover mouse */
 }
 
 .nav-link-wrapper a:hover {
-    color: black;
+  color: black;
 }
 
 .right-side > div {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 .active-nav-link {
-    border-bottom: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 .active-nav-link a {
-    color: black!important;
+  color: black !important;
 }
-
 
 /* Protfolio styles */
 .portfolio-items-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;       /* 2 columns each with full size */
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 columns each with full size */
 }
 
 .portfolio-item-wrapper {
-    position: relative;
+  /* Future: Might be able to change the size of background picture here */
+  position: relative;
 }
 
 .portfolio-img-background {
-    height: 350px;
-    width: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  height: 350px;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.img-text-wrapper {       /* adjust subtitle position */
-    position: absolute;
-    top: 0;       /* position at very top */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;       /* left to right */
-    align-items: center;       /* top to bottom */
-    height: 100%;
-    text-align: center;
-    padding-left: 100px;
-    padding-right: 100px;
+.img-text-wrapper {
+  /* adjust subtitle position */
+  position: absolute;
+  top: 0; /* position at very top */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* left to right */
+  align-items: center; /* top to bottom */
+  height: 100%;
+  text-align: center;
+  padding-left: 100px;
+  padding-right: 100px;
 }
 
-.logo-wrapper img {       /* adjuts logo size */
-    width: 100%;
-    margin-bottom: 20px;
+.logo-wrapper img {
+  /* adjuts logo size */
+  width: 100%;
+  margin-bottom: 20px;
 }
 
-.img-text-wrapper .subtitle a{       /* title will only show once hovered */
-    transition: 1s;
-    font-size: 100px;
-    font-weight: 300;
-    text-decoration: none;       /* remove link underline */
-    color: transparent;
-    padding-left: 20px;
+.img-text-wrapper .subtitle a {
+  /* title will only show once hovered */
+  transition: 1s;
+  font-size: 100px;
+  font-weight: 300;
+  text-decoration: none; /* remove link underline */
+  color: transparent;
+  padding-left: 20px;
 }
 
 .img-text-wrapper .subtitle:hover a {
-    color: #BDC0BA;       /* SHIRONEZUMI from nipponcolors.com */
-    text-decoration: none;       /* remove link underline */
-    transition: color 1s; 
+  color: #bdc0ba; /* SHIRONEZUMI from nipponcolors.com */
+  text-decoration: none; /* remove link underline */
+  transition: color 1s;
 }
 
-.img-darken {       /* darken img when hover above */
-    transition: 1s;
-    filter: brightness(30%);
+.img-darken {
+  /* darken img when hover above */
+  transition: 1s;
+  filter: brightness(30%);
 }
-
-
 
 /* About page styles */
 .two-column-wrapper {
-    display: grid;
-    grid-template-columns: 0.7fr 1.3fr;
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr;
 }
 
 .profile-image-wrapper {
-    width: 100%;
+  width: 100%;
 }
 
 .profile-content-wrapper {
-    padding: 30px;
-    margin-right: 100px;
+  padding: 30px;
+  margin-right: 100px;
 }
 
 .profile-content-wrapper h1 {
-    color: black;
+  color: black;
 }
 
 .one-content-wrapper {
-    margin-left: 5%;       /* margin shorthand for margin-top, margin-right, margin-bottom, and margin-left. */
-    margin-right: 10%;
-    padding: 30px;
+  margin-left: 5%; /* margin shorthand for margin-top, margin-right, margin-bottom, and margin-left. */
+  margin-right: 10%;
+  padding: 30px;
 }
 
 .teaching-content-wrapper h1 {
-    color: black;
+  color: black;
 }
-
 
 .profile-content-wrapper a {
-    text-decoration: none;
-    color: #3A8FB7;
+  text-decoration: none;
+  color: #3a8fb7;
 }
 .description-list-wrapper {
-    overflow: hidden;
-    margin: 20px 0;
+  overflow: hidden;
+  margin: 20px 0;
 }
 
-
 dl {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
 dt {
-    margin: 0 0 4px 0;
-    float: left;
-    clear: left;
+  margin: 0 0 4px 0;
+  float: left;
+  clear: left;
 }
 
 dd {
-    margin: 0 0 5px 60px;
+  margin: 0 0 5px 60px;
 }
 dd:after {
-    clear: both;
+  clear: both;
 }
 
 /* footer */
 .footer-container {
-    background: #303036;
-    color: #d3d3d3;
-    height: 4%;
-    position:fixed;
-    bottom:0;
-    width:100%;
+  background: #303036;
+  color: #d3d3d3;
+  height: 4%;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 .footer-container .footer-content .footer-section p {
-    font-size: 10pt;
-    margin-top: 0;
-    padding-right: 3%;
-    padding-top: 7px;
-    text-align: right;
+  font-size: 10pt;
+  margin-top: 0;
+  padding-right: 3%;
+  padding-top: 7px;
+  text-align: right;
 }
