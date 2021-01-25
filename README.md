@@ -1,5 +1,6 @@
-# home-v2
-Sep 2020
+# home
+
+Jan 2021
 
 Home, Teaching, CV and About pages are updated.
 
