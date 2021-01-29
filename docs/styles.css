@@ -2,7 +2,7 @@
 body {
   font-family: "Lora", serif;
   margin: 0px;
-  line-height: 1.5rem;
+  line-height: 1.6rem;
 }
 
 .container {
@@ -165,17 +165,17 @@ body {
 }
 
 dl {
-  margin: 10px 0;
+  margin: 0;
 }
 
 dt {
-  margin: 0 0 4px 0;
+  margin: 0;
   float: left;
   clear: left;
 }
 
 dd {
-  margin: 0 0 5px 60px;
+  margin: 0 0 0 60px;
 }
 dd:after {
   clear: both;
