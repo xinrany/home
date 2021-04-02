@@ -158,6 +158,10 @@ body {
   text-align: right;
 }
 
+.content-description {
+  color: #8a8a8a;
+}
+
 /* dercription list */
 .description-list-wrapper {
   overflow: hidden;
