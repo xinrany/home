@@ -10,6 +10,10 @@ body {
   grid-template-columns: 1fr; /* fr = fractional unit, 1fr = 100% */
 }
 
+/*ul li ul {
+  list-style-type: none;
+}*/
+
 /* Nav styles */
 .nav-wrapper {
   display: flex;
