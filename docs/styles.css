@@ -5,6 +5,11 @@ body {
   line-height: 1.6rem;
 }
 
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .container {
   display: grid; /* css grid */
   grid-template-columns: 1fr; /* fr = fractional unit, 1fr = 100% */
