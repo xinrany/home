@@ -153,8 +153,26 @@ body {
   padding: 30px;
 }
 
-.teaching-content-wrapper h1 {
-  color: black;
+/* teaching */
+.teaching-content-wrapper {
+  margin-top: 10px;
+  margin-bottom: 80px;
+}
+
+.teaching-content-wrapper p {
+  line-height: 30x;   /* within paragraph */
+  margin: 3px 0px; /* between paragraphs top+bottom right+left */
+}
+
+/* syllabus */
+.syllabus-content-wrapper {
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+
+.syllabus-content-wrapper p {
+  line-height: 30x;   /* within paragraph */
+  margin: 3px 20px; /* between paragraphs top+bottom right+left */
 }
 
 .profile-content-wrapper a {
