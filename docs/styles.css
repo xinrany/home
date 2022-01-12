@@ -165,7 +165,16 @@ body {
   margin: 3px 0px; /* between paragraphs top+bottom right+left */
 }
 
-/* syllabus */
+.teaching-content-wrapper li {
+  margin: 2px 0px;
+}
+
+.teaching-content-wrapper ul > li {
+  margin: 2px -20px;
+}
+
+
+/* teaching -> syllabus */
 .syllabus-content-wrapper {
   margin-top: 10px;
   margin-bottom: 40px;
