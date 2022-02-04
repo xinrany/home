@@ -173,6 +173,9 @@ body {
   margin: 2px -20px;
 }
 
+.teaching-content-wrapper ul > li > p{
+  margin-bottom: 10px;
+}
 
 /* teaching -> syllabus */
 .syllabus-content-wrapper {
