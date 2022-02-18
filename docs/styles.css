@@ -165,10 +165,6 @@ body {
   margin: 3px 0px; /* between paragraphs top+bottom right+left */
 }
 
-.teaching-content-wrapper li {
-  margin: 2px 0px;
-}
-
 .teaching-content-wrapper ul > li {
   margin: 2px -20px;
 }
