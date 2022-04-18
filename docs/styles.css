@@ -162,7 +162,7 @@ body {
 
 .teaching-content-wrapper p {
   line-height: 30x;   /* within paragraph */
-  margin: 3px 0px; /* between paragraphs top+bottom right+left */
+  margin: 3px 20px; /* between paragraphs top+bottom right+left */
 }
 
 .teaching-content-wrapper ul > li {
