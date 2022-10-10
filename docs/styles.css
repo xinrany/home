@@ -179,6 +179,12 @@ body {
   margin-bottom: 40px;
 }
 
+.syllabus-content-wrapper  h3{
+  font-weight: normal; /* not bold */
+  line-height: 30x;   /* within paragraph */
+  margin: 15px 0px -5px 0px ; /* between paragraphs top+bottom right+left */
+}
+
 .syllabus-content-wrapper p {
   line-height: 30x;   /* within paragraph */
   margin: 3px 20px; /* between paragraphs top+bottom right+left */
