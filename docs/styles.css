@@ -179,7 +179,7 @@ body {
   margin-bottom: 40px;
 }
 
-.syllabus-content-wrapper  h3{
+.syllabus-content-wrapper  h4{
   font-weight: normal; /* not bold */
   line-height: 30x;   /* within paragraph */
   margin: 15px 0px -5px 0px ; /* between paragraphs top+bottom right+left */
