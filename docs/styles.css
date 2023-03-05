@@ -4,6 +4,10 @@ body {
   margin: 0px;
   line-height: 1.6rem;
 }
+.link { 
+  color: #3a8fb7; 
+} 
+
 
 .center {
   margin-left: auto;
@@ -291,6 +295,7 @@ dd:after {
     font-size: 20px;
   }
 } */
+
 
 /* back to top button */
 html {
