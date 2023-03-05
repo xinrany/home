@@ -158,6 +158,23 @@ body {
   padding: 30px;
 }
 
+/* CV */
+.cv-link-wrapper {
+  text-align: center;
+}
+
+.cv-link-wrapper a {
+  color: #3a8fb7;
+  line-height: 2.5rem;
+}
+
+.cv-content-wrapper {
+  padding: 30px;
+  margin: 0px 5% 5%;
+}
+
+
+
 /* teaching */
 .teaching-content-wrapper {
   margin-top: 10px;
