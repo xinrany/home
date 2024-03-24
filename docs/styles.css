@@ -19,9 +19,6 @@ body {
   grid-template-columns: 1fr; /* fr = fractional unit, 1fr = 100% */
 }
 
-/*ul li ul {
-  list-style-type: none;
-}*/
 
 /* Nav styles */
 .nav-wrapper {
@@ -72,64 +69,7 @@ body {
   color: black !important;
 }
 
-/* Protfolio styles */
-.portfolio-items-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* 2 columns each with full size */
-}
 
-.portfolio-item-wrapper {
-  /* Future: Might be able to change the size of background picture here */
-  position: relative;
-}
-
-.portfolio-img-background {
-  height: 350px;
-  width: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.img-text-wrapper {
-  /* adjust subtitle position */
-  position: absolute;
-  top: 0; /* position at very top */
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* left to right */
-  align-items: center; /* top to bottom */
-  height: 100%;
-  width: 100%;
-}
-
-.logo-wrapper img {
-  /* adjuts logo size */
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.img-text-wrapper .subtitle a {
-  /* title will only show once hovered */
-  transition: 1s;
-  font-size: 100px;
-  font-weight: 300;
-  text-decoration: none; /* remove link underline */
-  color: transparent;
-  margin-left: -10px;
-}
-
-.img-text-wrapper .subtitle:hover a {
-  color: #bdc0ba; /* SHIRONEZUMI from nipponcolors.com */
-  text-decoration: none; /* remove link underline */
-  transition: color 1s;
-}
-
-.img-darken {
-  /* darken img when hover above */
-  transition: 1s;
-  filter: brightness(30%);
-}
 
 /* About page styles */
 .two-column-wrapper {
@@ -138,13 +78,21 @@ body {
 }
 
 .profile-image-wrapper {
-  width: 100%;
+  width: 400px;
+  height: 700px;
 }
+
+.profile-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 
 .profile-content-wrapper {
   padding: 30px;
-  margin-right: 100px;
-  margin-bottom: 100px;
+  margin-right: 5%;
+  margin-bottom: 10%;
 }
 
 .profile-content-wrapper h1 {
@@ -152,11 +100,6 @@ body {
   line-height: 2.5rem;
 }
 
-.one-content-wrapper {
-  margin-left: 5%; /* margin shorthand for margin-top, margin-right, margin-bottom, and margin-left. */
-  margin-right: 10%;
-  padding: 30px;
-}
 
 /* CV */
 .cv-link-wrapper {
@@ -172,7 +115,6 @@ body {
   padding: 30px;
   margin: 0px 5% 5%;
 }
-
 
 
 /* teaching */
@@ -301,18 +243,6 @@ dd:after {
   /* color = shiroenzumi */
 }
 
-/* .accordion-item-header.active + .accordion-item-body {
-  display: block;
-  max-height: 500px;
-} */
-
-/* phone view */
-/* @media (max-width: 767px) {
-  html {
-    font-size: 20px;
-  }
-} */
-
 
 /* back to top button */
 html {
@@ -325,9 +255,7 @@ html {
   bottom: 6%;
   right: 2%;
   font-size: 150%;
-  /* bottom: 50px;
-  right: 20px;
-  font-size: 26px; */
+
   /* button size */
   width: 40px;
   height: 40px;
@@ -386,50 +314,95 @@ html {
 .footer-container {
   background: #303036;
   color: #d3d3d3;
-  height: 4%;
+  height: 5%;
   position: fixed;
-  bottom: 0;
+  bottom: 0%;
   width: 100%;
 }
 
-.footer-container .footer-content .footer-section p {
-  font-size: 10pt;
-  margin-top: 0;
+.footer-content p {
+  font-size: 100%;
+  margin-top: 0%;
   padding-right: 3%;
-  padding-top: 7px;
+  padding-top: 0.5%;
   text-align: right;
 }
 
-@media (max-width: 992px) {
-  /* .container {
-    padding: 20px 100px;
-  } */
+@media (max-width: 1000px) {
+  
+  .profile-image-wrapper {
+    width: 200px;
+    height: 700px;
+  }
+  .profile-content-wrapper{
+    margin-left: -20%;
+    margin-right: 0%;
+  }
   #back-to-top-btn {
     font-size: 22px;
     width: 40px;
     height: 40px;
   }
+  .footer-container {
+    max-height: 5%;
+    max-width: 100%;
+  }
+
+  .footer-content p {
+    font-size: 40%;
+    margin-top: 0%;
+    padding-right: 2%;
+    padding-top: 0%;
+  }
 }
 
-@media (max-width: 768px) {
-  body {
-    font-size: 16px;
+
+
+/* Photo Gallery */
+.photo-gallery-wrapper {
+  margin-left: 10%;
+  margin-right: -10%;
+  margin-bottom: 10%;
+}
+.photo-gallery-row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.photo-gallery-column {
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 4px;
+}
+
+.photo-gallery-column img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+  .profile-content-wrapper{
+    margin-left: 5%;
+    margin-right: -150%;
   }
-  /* .container {
-    padding: 10px 50px;
-  } */
-  h1 {
-    font-size: 26px;
+  .photo-gallery-column {
+    flex: 50%;
+    max-width: 50%;
   }
-  h2 {
-    font-size: 22px;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .profile-content-wrapper{
+    margin-left: 5%;
+    margin-right: -50%;
   }
-  hr {
-    margin: 30px 0;
-  }
-  #back-to-top-btn {
-    font-size: 18px;
-    width: 32px;
-    height: 32px;
+  .photo-gallery-column {
+    flex: 100%;
+    max-width: 70%;
   }
 }
