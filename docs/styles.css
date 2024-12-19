@@ -123,13 +123,26 @@ body {
   margin-bottom: 80px;
 }
 
+.teaching-content-wrapper h3 {
+  margin-bottom: 0px;
+}
+
+.teaching-content-wrapper h4 {
+  font-size: 16px;
+  display: inline;
+}
+
 .teaching-content-wrapper p {
   line-height: 30x;   /* within paragraph */
   margin: 3px 0px; /* between paragraphs top+bottom right+left */
 }
 
+.teaching-content-wrapper ul {
+  margin: 0px;
+}
+
 .teaching-content-wrapper ul > li {
-  margin: 2px -20px;
+  margin: 2px -15px;
 }
 
 .teaching-content-wrapper ul > li > p{
