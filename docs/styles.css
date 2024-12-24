@@ -82,12 +82,31 @@ body {
   height: 700px;
 }
 
+
 .profile-image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
+/** Mobile **/
+@media only screen and (max-width: 767px), only screen and (max-device-width: 767px) {
+  .profile-image-wrapper {
+    display: none;
+  }
+
+  .profile-content-wrapper {
+    margin-left: auto; /* Centers the content */
+    margin-right: auto;
+    padding: 10px; /* Optional: Adds inner spacing */
+    max-width: 90%; /* Prevents it from being too wide */
+  }
+
+  .two-column-wrapper {
+    grid-template-columns: 1fr; /* Ensures a single column layout */
+    margin-left: 20%;
+  }
+}
 
 .profile-content-wrapper {
   padding: 30px;
