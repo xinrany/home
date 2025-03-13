@@ -1,120 +1,80 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Xinran-Home</title>
+<html lang="en">
 
-    <!---    Using Google font    -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lora&display=swap"
-      rel="stylesheet"
-    />
-    
-    <!-- add icon link -->
-    <link rel = "icon" href = 
-    "./images/x-icon.jpg" 
-            type = "image/x-icon">
-            
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home - Xinran Yu</title>
     <link rel="stylesheet" href="styles.css" />
-    <script src="./javascript/main.js" defer></script>
-  </head>
+    <script src="./javascript/main.js" defer></script>   
+    <link rel = "icon" href = "./images/x-icon.jpg" type = "image/x-icon">    <!-- add icon link -->
+</head>
 
 
-
-  <body>
-    <div class="container">
-
-      <!---    nav bar    -->
-      <div class="nav-wrapper">
-        
-        <div class="left-side">
-          <div class="nav-link-wrapper active-nav-link">
-            <a href="index.html">Home</a>
-          </div>
-
-          <div class="nav-link-wrapper">
-            <a href="research.html">Research</a>
-          </div>
-
-          <div class="nav-link-wrapper">
-            <a href="teaching.html">Teaching</a>
-          </div>
-
-          <div class="nav-link-wrapper">
-            <a href="cv.html">CV</a>
-          </div>
-
-          <div class="nav-link-wrapper">
-            <a href="nonmath.html">Nonmath</a>
-          </div>
-
-        </div>
-
-        <div class="right-side">
-          <div class="brand">
-            <div>Xinran Yu</div>
-          </div>
-        </div>
+<body>
+  <div id="menu">
+    <nav>
+      <div class="nav-left">
+        <a href="index.html">Home</a>
+        <a href="research.html">Research</a>
+        <a href="teaching.html">Teaching</a>
+        <a href="cv.html">CV</a>
+        <a href="nonmath.html">Nonmath</a>
       </div>
 
-      <!---    everything below the nav bar    -->
-      <div class="content-wrapper">
-        
-        <button id="back-to-top-btn"><span>&and;</span></button>
-        <div class="two-column-wrapper">
-          <div class="profile-image-wrapper">
-            <img
-              src="images/altgeld-spring.jpg"
-              alt="Profile image"
-            />
-          </div>
-
-          <div class="profile-content-wrapper">
-            <h1>About me</h1>
-            <p>
-              I'm Ph.D. candidate at the
-              <a href="https://math.illinois.edu/" target="_blank"
-                >University of Illinois at Urbana-Champaign</a>. My advisor is <a href="https://palbin.web.illinois.edu" target="_blank">Pierre Albin</a>.
-            </p>
-            <p>
-              In June 2017, I graduated from the
-              <a
-                href="https://www.liverpool.ac.uk/mathematical-sciences/"
-                target="_blank"
-                >University of Liverpool</a
-              >
-              <!---    target: open link in new window    -->
-              with honors in Mathematics.
-            </p>
-
-            <br />
-
-            <h1>Contact Info</h1>
-            <p>Email: <a href = "mailto: xinran4@illinois.edu">xinran4@illinois.edu</a></p>
-            <div class="description-list-wrapper">
-              <dl>
-                <dt>Office:</dt>
-                <dd>108 Altgeld Hall</dd>
-                <dd>1409 W. Green Street</dd>
-                <dd>Urbana, IL 61801</dd>
-              </dl>
-            </div>
-            <p>
-              GitHub:
-              <a href="https://github.com/xinrany" target="_blank">here</a>
-            </p>
-          </div>
-        </div>
+      <div class="nav-right">
+        <span>Xinran Yu</span>
       </div>
+    </nav>
+  </div>
+
+
+  <div class="container">
+    <!-- Main content of the page -->
+  <div class="container">
+    <div class="left-panel">
+        <img src="images/1.jpg" alt="Portrait Photo">
     </div>
+    <div class="right-panel">
+        <h1>About Me</h1>
 
+        <div class="section">
+            <section class="about">
+            <p>I'm Ph.D. candidate at the
+                <a href="https://math.illinois.edu/" target="_blank"
+                  >University of Illinois at Urbana-Champaign</a>. My advisor is <a href="https://palbin.web.illinois.edu" target="_blank">Pierre Albin</a>.</p>
+            <p>In June 2017, I graduated from the
+                <a
+                  href="https://www.liverpool.ac.uk/mathematical-sciences/"
+                  target="_blank"
+                  >University of Liverpool</a
+                > with honors in Mathematics.
+            </p>
+            </section>
+        </div>
+        
+        <div class="section">
+            <section class="contact">
+                <h2>Contact Info</h2>
+                <ul>
+                    <li>
+                        <strong>Email:</strong> <a href = "mailto: xinran4@illinois.edu">xinran4@illinois.edu</a>
+                    </li>
+                    <li>
+                        <strong>Office:</strong> 108 Altgeld Hall, 1409 W. Green Street, Urbana, IL 61801
+                    </li>
+                    <li>
+                        <strong>GitHub:</strong> <a href="https://github.com/xinrany" target="_blank">here</a>
+                    </li>
+                </ul>
+            </section>
+        </div>
 
-    
-    <!---    footer    -->
-    <div class="footer-container">
-      <div class="footer-content">
-        <p>xinran4@illinois.edu</p>
-      </div>
+        
     </div>
-  </body>
+</div>
+
+
+</body>
 </html>

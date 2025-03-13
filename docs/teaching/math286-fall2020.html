@@ -1,115 +1,65 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
+<html lang="en">
 
-    <!---    Title in the tab (change)    -->
-    <title>MATH286 Fall 2020</title>
-    
-    <!---    Using Google font    -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lora&display=swap"
-      rel="stylesheet"
-    />
-    
-    <!-- add icon link -->
-    <link rel = "icon" href = 
-    "../images/x-icon.jpg" 
-            type = "image/x-icon">
-            
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Teaching - Xinran Yu</title>
     <link rel="stylesheet" href="../styles.css" />
-    <script src="../javascript/main.js" defer></script>
-  </head>
+    <script src="../javascript/main.js" defer></script>   
+    <link rel = "icon" href = "./images/x-icon.jpg" type = "image/x-icon">    <!-- add icon link -->
+</head>
 
 
-  
-  <body>
-    <div class="container">
-
-      <!---    nav bar    -->
-      <div class="nav-wrapper">
-        
-        <div class="left-side">
-          <div class="nav-link-wrapper">
-            <a href="../index.html">Home</a>
-          </div>
-
-          <div class="nav-link-wrapper">
-            <a href="../research.html">Research</a>
-          </div>
-
-          <div class="nav-link-wrapper active-nav-link">
-            <a href="../teaching.html">Teaching</a>
-          </div>
-          
-          <div class="nav-link-wrapper">
-            <a href="../cv.html">CV</a>
-          </div>
-
-          <div class="nav-link-wrapper">
-            <a href="../nonmath.html">Nonmath</a>
-          </div>
-          
-        </div>
-
-        <div class="right-side">
-          <div class="brand">
-            <div>Xinran Yu</div>
-          </div>
-        </div>
-        
+<body>
+  <div id="menu">
+    <nav>
+      <div class="nav-left">
+        <a href="../index.html">Home</a>
+        <a href="../research.html">Research</a>
+        <a href="../teaching.html">Teaching</a>
+        <a href="../cv.html">CV</a>
+        <a href="../nonmath.html">Nonmath</a>
       </div>
-      
-      <!---    everything below the nav bar    -->
-      <div class="content-wrapper">
-        
-        <button id="back-to-top-btn"><span>&and;</span></button>
-        <div class="two-column-wrapper">
-          <div class="profile-image-wrapper">
-            <img src="../images/3.jpg"/>
-          </div>
 
-          <div class="profile-content-wrapper">
-            <!---    Title in the page (change)    -->
+      <div class="nav-right">
+        <span>Xinran Yu</span>
+      </div>
+    </nav>
+  </div>
+
+
+  <div class="container">
+<!-- Main content of the page -->
+<div class="left-panel">
+  <img src="../images/3.jpg" alt="Portrait Photo">
+</div>
+
+        <div class="right-panel">
             <h1>MATH286 Fall 2020: Introduction to Differential Equations Plus</h1>
-
+        <!-- Course Information Section -->
+        
+        <div class="section" id="course-info">
             <h2>Course Information</h2>
-            Instructor:
-            <a
-              href="https://math.illinois.edu/spotlight/faculty/aldo-manfrois-path-math"
-              target="_blank"
-              >Aldo J. Manfroi</a
-            >
-            <br />
-            Course Webpage: All information about the course can be found on
-            <a href="https://learn.illinois.edu/" target="_blank">Moodle</a>
-            <br />
-
-            <br />
-
-            <h2>Office Hours</h2>
-            Office hours will be hold online using
-            <a href="https://zoom.us/" target="_blank">Zoom</a>.
-            <br />
-            <dl>
-              <dt>Time:</dt>
-              <dd>Monday 4-6pm</dd>
-              <dd>Wednesday 1-5pm</dd>
-            </dl>
-            <br />
-            
-          </div>
+            <p>Instructor: <a href="https://math.illinois.edu/spotlight/faculty/aldo-manfrois-path-math" target="_blank">Aldo J. Manfroi</a></p>
+            <p>Course Webpage: All information about the course can be found on 
+                <a href="https://learn.illinois.edu/" target="_blank">Moodle</a>.
+            </p>
         </div>
-      </div>
-    </div>
 
-
-
-    <!---    footer    -->
-    <div class="footer-container">
-      <div class="footer-content">
-        <p>xinran4@illinois.edu</p>
-      </div>
-    </div>
-  </body>
+        <!-- Office Hours Section -->
+        <div class="section" id="office-hours">
+            <h2>Office Hours</h2>
+            <p>Office hours will be held online using 
+                <a href="https://zoom.us/" target="_blank">Zoom</a>.
+            </p>
+            <dl>
+                <dt>Time:</dt>
+                <dd>Monday 4-6pm</dd>
+                <dd>Wednesday 1-5pm</dd>
+            </dl>
+        </div>
+    </div> <!-- End of content-wrapper -->
+</body>
 </html>
