@@ -1,0 +1,83 @@
+\section{Calculus I Review}
+\begin{center}
+\begin{tcolorbox}
+    \begin{itemize}
+        \item Examples can be found in the assignment HW0. 
+    
+        \item Make sure you understand how to take \textit{derivatives} and compute \textit{limits} and the basic \textit{integrals}, as these concepts are essential for Calculus II.
+    \end{itemize}
+\end{tcolorbox}
+\end{center}
+
+
+\subsection{Limits, Derivatives, and Integrals}
+
+\subsubsection{Limits Laws}
+\begin{enumerate}
+    \item $\dlim_{x \to c} (f(x) + g(x)) = \dlim_{x \to c} f(x) + \dlim_{x \to c} g(x)$
+    \item $\dlim_{x \to c} (f(x) \cdot g(x)) = \dlim_{x \to c} f(x) \cdot \dlim_{x \to c} g(x)$
+    \item $\dlim_{x \to c} \frac{f(x)}{g(x)} = \frac{\dlim_{x \to c} f(x)}{\dlim_{x \to c} g(x)}$ if $\dlim_{x \to c} g(x) \neq 0$
+\end{enumerate}
+
+
+\subsubsection{L'H\^{o}pital's Rule}
+When $\dlim_{x \to c} f(x) = 0$ and $\dlim_{x \to c} g(x) = 0$, we may apply L'H\^{o}pital's Rule
+\[\lim_{x \to c} \frac{f(x)}{g(x)} = \lim_{x \to c} \frac{f'(x)}{g'(x)}.\]
+
+\begin{ex}[``Counterexample'' to L'H\^{o}pital's Rule]
+    \[\lim_{x \to 0} \frac{x + \sin x}{x} = DNE.\]
+L'H\^{o}pital's Rule does not apply because $\dlim_{x \to 0} x + \sin x = 1 \neq 0$.
+\end{ex}
+
+
+\subsubsection{Derivatives}
+\begin{defn}
+    \[f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}.\]
+\end{defn}
+
+\textbf{Derivative Rules}
+\begin{itemize}
+    \item Product Rule: $\dfrac{d}{dx} [f(x) g(x))] = f'(x) \cdot g(x) + f(x) \cdot g'(x)$,
+    \item Chain Rule: $\dfrac{d}{dx} [f(g(x))] = f'(g(x)) \cdot g'(x)$.
+\end{itemize}
+
+\textbf{Derivatives of elementary functions}
+\[
+\begin{aligned}
+    &\frac{d}{dx} e^x = e^x, \quad \frac{d}{dx} \sin x = \cos x, \quad \frac{d}{dx} \cos x = -\sin x, \\
+    &\frac{d}{dx} \ln x = \frac{1}{x}, \quad \frac{d}{dx} \tan x = \sec^2 x.
+\end{aligned}
+\]
+
+\newpage
+\subsection{Integration}
+\subsubsection{Definition}
+Reversing the process of differentiation:
+\begin{defn}
+    \[\int_a^b f(x) \dd x = \lim_{\Delta x \to 0} \sum_{i=1}^n f(a + \Delta x \cdot i) \cdot \Delta x.\]
+\end{defn}
+
+\subsubsection{Integration Laws}
+\begin{itemize}
+    \item $\dint (f(x) \pm g(x)) \dd x = \dint f(x) \dd x \pm \dint g(x) \dd x$,
+    \item $\dint c \cdot f(x) \dd x = c \cdot \dint f(x) \dd x$.
+\end{itemize}
+
+\subsubsection{Fundamental Theorem of Calculus}
+
+\begin{thm}[Fundamental Theorem of Calculus (FTC)]
+\begin{enumerate}
+    \item If $f$ is continuous on $[a,b]$, then the function $F$ defined by 
+    \[F(x) = \int_a^x f(t) \, dt \]
+    is continuous on $[a,b]$ and differentiable on $(a,b)$, and $F'(x)=f(x)$ for all $x\in(a,b)$.
+    
+    \item If $f$ is continuous on $[a,b]$ and $F$ is an antiderivative of $f$ on $[a,b]$, then
+    \[\int_a^b f(x) \, dx = F(b) - F(a).\]
+\end{enumerate}
+\end{thm}
+
+\subsubsection{Substitution Rule}
+Let $u = g(x)$, then:
+\[
+\int f(g(x)) g'(x) \dd x = \int f(u) \, du.
+\]

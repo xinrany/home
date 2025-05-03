@@ -1,0 +1,363 @@
+\documentclass[11pt,letterpaper,reqno]{amsart}
+\usepackage[margin=1in]{geometry}
+
+
+
+%------------------------------
+% title page
+%------------------------------
+\title{MATH231 Calculus II}
+\date{\today}
+\author{Xinran Yu}
+\address{University of Illinois at Urbana-Champaign}
+\email{xinran4@illinois.edu}
+
+
+
+%------------------------------
+% page setting
+%------------------------------
+\setlength{\marginparwidth}{20mm}
+% boldsymbol
+\usepackage{stmaryrd}
+\SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n}
+\pagestyle{plain}
+\usepackage[foot]{amsaddr}
+\usepackage[T1]{fontenc}
+\pagenumbering{arabic} 
+
+
+%------------------------------
+% toc indent
+%------------------------------
+\makeatletter
+\setcounter{tocdepth}{3}
+
+% Add bold to \section titles in ToC and remove . after numbers
+\renewcommand{\tocsection}[3]{%
+    \indentlabel{\@ifnotempty{#2}{\bfseries\ignorespaces#1 #2\quad}}\bfseries#3}
+% Remove . after numbers in \subsection
+\renewcommand{\tocsubsection}[3]{%
+    \indentlabel{\@ifnotempty{#2}{\ignorespaces#1 #2\quad}}#3}
+%\let\tocsubsubsection\tocsubsection% Update for \subsubsection
+%...
+\renewcommand{\tocsubsubsection}[3]{%
+    \indentlabel{\@ifnotempty{#2}{\ignorespaces#1 #2\quad}}#3}
+\newcommand\@dotsep{4.5}
+\def\@tocline#1#2#3#4#5#6#7{\relax
+    \ifnum #1>\c@tocdepth % then omit
+    \else
+        \par    \addpenalty\@secpenalty\addvspace{#2}%
+        \begingroup \hyphenpenalty\@M
+        \@ifempty{#4}{%
+        \@tempdima\csname r@tocindent\number#1\endcsname\relax
+        }{%
+            \@tempdima#4\relax
+        }%
+        \parindent\z@ \leftskip#3\relax \advance\leftskip\@tempdima\relax
+        \rightskip\@pnumwidth plus1em \parfillskip-\@pnumwidth
+        #5\leavevmode\hskip-\@tempdima{#6}\nobreak
+        \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
+        \nobreak
+        \hbox to\@pnumwidth{\@tocpagenum{\ifnum#1=1\bfseries\fi#7}}\par% <-- \bfseries for \section page
+        \nobreak
+        \endgroup
+    \fi}
+\AtBeginDocument{%
+\expandafter\renewcommand\csname r@tocindent0\endcsname{0pt}
+}
+\def\l@subsection{\@tocline{2}{0pt}{2.5pc}{5pc}{}}
+\def\l@subsubsection{\@tocline{2}{0pt}{4.5pc}{5pc}{}}
+
+\makeatother
+
+
+
+%------------------------------
+% section style
+%------------------------------
+\usepackage{etoolbox}
+\makeatletter
+\renewcommand{\thesection}{\Roman{section}} % Use Roman numerals without a dot
+\patchcmd{\section}{\@secnumfont{\csname thesection\endcsname}\quad}%
+    {\@secnumfont{\csname thesection\endcsname}\hspace{0.5em}}{}{}
+    
+\renewcommand\section{\@startsection{section}{1}{\z@}%
+    {-3.5ex \@plus -1ex \@minus -.2ex}%
+    {2.3ex \@plus.2ex}%
+    {\centering\Large\scshape}}
+
+
+\patchcmd{\subsection}{\@secnumfont{\csname thesubsection\endcsname}\quad}%
+    {\@secnumfont{\csname thesubsection\endcsname}\hspace{0.5em}}{}{}
+    
+\renewcommand\subsection{\@startsection{subsection}{1}{\z@}%
+    {-3.5ex \@plus -1ex \@minus -.2ex}%
+    {2.3ex \@plus.2ex}%
+    {\centering\large\scshape}}
+
+\patchcmd{\subsubsection}{\@secnumfont{\csname thesubsubsection\endcsname}\quad}%
+    {\@secnumfont{\csname thesubsubsection\endcsname}\hspace{0.5em}}{}{}
+
+\renewcommand\subsubsection{\@startsection{subsubsection}{2}{\z@}%
+    {1.5ex \@plus .2ex}%
+    {-1em}%
+    {\bfseries}}  % Bold and inline with no extra space above
+\makeatother
+\let\oldsection\section
+\renewcommand\section{\clearpage\oldsection}
+
+\renewcommand{\thesubsection}{\arabic{subsection}}
+
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
+
+
+
+
+%------------------------------
+% enumeration setting
+%------------------------------ 
+\usepackage[inline]{enumitem}
+\renewcommand{\theenumi}{\roman{enumi}}
+\setlist[enumerate]{leftmargin = 5ex}
+\setlist[itemize]{label = {\tiny$\bullet$}, leftmargin = 4ex}
+\usepackage{tikz}
+\protected\def\circled#1{%
+\tikz[baseline]{\node[anchor = base,inner sep = 0pt,draw,circle]{#1};}%
+}
+\usepackage{pgfplots}
+
+
+
+%------------------------------
+% general packages
+%------------------------------
+\usepackage{amsmath}
+\usepackage{amsfonts, mathrsfs} % mathbb, mathscr
+\usepackage{mathtools}
+\usepackage{tensor}
+\usepackage{slashed} % Dirac
+\usepackage{stmaryrd} % owedge
+
+
+
+
+%------------------------------
+% theorem environment
+%------------------------------
+\newcommand{\bfemph}[1]{\textbf{\textit{#1}}}
+
+
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[subsection]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{coro}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{rmk}[thm]{Remark}
+\newtheorem{qn}[thm]{Question}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+
+\newtheorem{examplex}[thm]{Example}
+\newenvironment{ex}
+  {\pushQED{\qed}\renewcommand{\qedsymbol}{$\bullet$}\examplex}
+  {\popQED\endexamplex}
+
+
+
+%------------------------------
+% color
+%------------------------------
+\usepackage{xcolor}
+\definecolor{enji}{RGB}{159, 53, 58}   % dark red
+\definecolor{akabeni}{RGB}{203, 64, 66}   % light red
+\definecolor{kohaku}{RGB}{202, 122, 44}  % orange
+\definecolor{darkgreen}{RGB}{66, 111, 83}
+\definecolor{shinbashi}{RGB}{53, 143, 183}   % blue
+\definecolor{purple}{RGB}{72, 75, 135}
+
+
+% hyper ref
+\usepackage[colorlinks = true,
+            linkcolor = shinbashi,
+            urlcolor  = shinbashi,
+            citecolor = shinbashi,
+            anchorcolor = shinbashi]{hyperref}
+
+% box
+\usepackage{tcolorbox}
+\tcbset{colframe=shinbashi!70, colback=shinbashi!5, fonttitle=\bfseries}
+
+
+% colored text
+\newcommand{\red}[1]{\textcolor{enji}{#1}}
+\newcommand{\orange}[1]{\textcolor{kohaku}{#1}}
+
+\newcommand{\green}[1]{\textcolor{darkgreen}{#1}}
+\newcommand{\blue}[1]{\textcolor{shinbashi!85!black}{#1}}
+\newcommand{\purple}[1]{\textcolor{purple}{#1}}
+\newcommand{\gray}[1]{\textcolor{gray}{#1}}
+
+%------------------------------
+% track changes
+%------------------------------
+\usepackage[commandnameprefix=always,  defaultcolor=kohaku]{changes}
+
+\definechangesauthor[name={Xinran Yu}, color=darkgreen]{XY}
+\usepackage{tcolorbox}
+\tcbset{colback=darkgreen!10,
+    colframe=darkgreen, 
+    fonttitle=\bfseries, 
+    width = \textwidth
+}
+
+%------------------------------
+% tikz picture set up
+%------------------------------
+\usepackage{tikz-cd}
+\usepackage{tikz-3dplot}
+\usepackage{tikz,bm}
+\usetikzlibrary{angles,arrows,calc,quotes}
+\usepackage[edges]{forest}
+
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage[outline]{contour} % glow around text
+% for pic
+\contourlength{1.3pt}
+%\allowdisplaybrevaks
+
+
+\tikzset{>=latex} % for LaTeX arrow head
+
+\colorlet{veccol}{darkgreen}
+\colorlet{vcol}{darkgreen}
+\colorlet{xcol}{shinbashi}
+\colorlet{projcol}{xcol!60}
+\colorlet{unitcol}{xcol!60!black!85}
+\colorlet{unitcol2}{vcol!60!black!85}
+\colorlet{myblue}{blue!70!black}
+\colorlet{myred}{red!70!black}
+\tikzstyle{vector}=[->,very thick,xcol]
+\tikzstyle{mydashed}=[dash pattern=on 2pt off 2pt]
+\def\tick#1#2{\draw[thick] (#1) ++ (#2:0.1) --++ (#2-180:0.2)} %0.03*\xmax
+
+
+%------------------------------
+% other packages
+%------------------------------
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+
+
+%------------------------------
+% new symbols
+%------------------------------
+% limit, integral, derivatives
+\renewcommand{\dd}{\;\mathrm{d}}
+\newcommand{\pd}{\partial}
+\newcommand{\dlim}{\displaystyle\lim} 
+\newcommand{\dint}{\displaystyle\int} 
+\newcommand{\dsum}{\displaystyle\sum} 
+
+% norm, inner product
+\newcommand\inner[2]{\langle #1, #2 \rangle}
+
+%%%%%%%%%% operatorname %%%%%%%%%%
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\im}{\operatorname{im}}
+
+%%%%%%%%%% bb, cal, scr %%%%%%%%%%
+% bb
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+% cal
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% scr
+\newcommand{\sA}{\mathscr{A}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sG}{\mathscr{G}}
+\newcommand{\sH}{\mathscr{H}}
+\newcommand{\sO}{\mathscr{O}}
+\newcommand{\sP}{\mathscr{P}}
+\newcommand{\sS}{\mathscr{S}}
+\newcommand{\sV}{\mathscr{V}}
+
+
+
+%------------------------------
+% document begins
+%------------------------------
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\textbf{NB:}
+\begin{itemize}
+    \item \S[number] in the margin refers to the section covered in the book 
+    \begin{center}
+        James Stewart, \textit{Calculus: Early Transcendentals}, 8th edition, 2016.
+    \end{center}
+    \item "Typo22" means there is a typo in the handwritten notes from Spring 2022.
+\end{itemize}
+
+
+\clearpage
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.5ex}
+
+
+%------------------------------
+% body
+%------------------------------
+\section*{An overview of Calculus II}
+\vspace{1cm}
+\begin{figure}[H]
+    \centering
+    \resizebox{\textwidth}{!}{\input{images/mindmap.tikz}} % Include your TikZ file
+    \label{fig:mindmap}
+\end{figure}
+
+\input{sections/review}
+\input{sections/ch7}
+\input{sections/ch8}
+\input{sections/ch10}
+\input{sections/ch11}
+
+\end{document}

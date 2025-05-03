@@ -1,0 +1,26 @@
+\begin{tikzpicture}[scale=1.2]
+    % Axes
+    \draw[thick, ->] (-0.5,0) -- (6.5,0) node[right] {\small $n$};
+    \draw[thick, ->] (0,-0.5) -- (0,3.5) node[above] {\small Sequence values};
+
+    % Dashed horizontal line for L
+    \draw[thick, dashed] (-0.3,2) -- (6.5,2);
+    \node[left] at (-0.3,2) {\small $L$};
+
+    % Points for sequences
+    \foreach \x/\yb/\ya/\yc in {1/1.2/1.6/2.5, 2/1.5/1.8/2.4, 3/1.7/1.9/2.2, 4/1.85/1.95/2.1, 5/1.95/1.99/2.02, 6/1.99/2/2.01} {
+        \fill[shinbashi] (\x,\yb) circle (2pt); % b_n (lower bound)
+        \fill[kohaku] (\x,\ya) circle (2pt); % a_n (middle sequence)
+        \fill[enji] (\x,\yc) circle (2pt); % c_n (upper bound)
+    }
+
+    % Labels for sequences
+    \node[left, shinbashi] at (1,1.2) {\small $b_n$};
+    \node[left, enji] at (1,2.5) {\small $c_n$};
+    \node[left, kohaku] at (1,1.6) {\small $a_n$};
+
+    % Annotations
+    %\draw[->, thick] (3,2.5) -- (6,2);
+    \node[right] at (3.2,2.5) {\small $b_n, c_n \to L$};
+
+\end{tikzpicture}

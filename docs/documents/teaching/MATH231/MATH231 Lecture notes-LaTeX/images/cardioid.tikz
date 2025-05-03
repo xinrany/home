@@ -1,0 +1,116 @@
+\begin{tikzpicture}[>=latex]
+    % Draw the cardioid
+    \draw[thick, color=enji, domain=0:2*pi, samples=200, smooth] 
+        plot (xy polar cs:angle=\x r, radius={1+0.5*sin(\x r)});
+    
+    % Label the equation
+    %\node at (3,2.5) {$r=1+\sin\theta$};
+    
+    % Draw axes
+    \draw[->] (-2,0) -- (2,0) node[right] {\small $x$};
+    \draw[->] (0,-1) -- (0,2.5) node[above] {\small $y$};
+
+    % Add sample points at specified angles and connect to the origin
+    \foreach \angle/\label in {
+        30/$\theta=\frac{\pi}{6}$, 
+        60/$\theta=\frac{\pi}{3}$, 
+        90/$\theta=\frac{\pi}{2}$, 
+        135/$\theta=\frac{3\pi}{4}$
+    } {
+        \pgfmathsetmacro{\r}{1 + 0.5*sin(\angle)} % Calculate r for each angle
+        % Draw the point
+        \fill[shinbashi] (xy polar cs:angle=\angle, radius=\r) circle (2pt);
+        % Add label
+        \node[anchor=west] at (xy polar cs:angle=\angle, radius=\r) {\small \label};
+        % Draw solid line to the origin
+        \draw[shinbashi] (0,0) -- (xy polar cs:angle=\angle, radius=\r);
+    }
+\end{tikzpicture}
+
+
+\begin{tikzpicture}[>=latex]
+    % Draw the cardioid
+    \draw[thick, color=enji, domain=0:2*pi, samples=200, smooth] 
+        plot (xy polar cs:angle=\x r, radius={1+0.75*sin(\x r)});
+    
+    % Label the equation
+    %\node at (3,2.5) {$r=1+\sin\theta$};
+    
+    % Draw axes
+    \draw[->] (-2,0) -- (2,0) node[right] {\small $x$};
+    \draw[->] (0,-1) -- (0,2.5) node[above] {\small $y$};
+
+    % Add sample points at specified angles and connect to the origin
+    \foreach \angle/\label in {
+        30/$\theta=\frac{\pi}{6}$, 
+        60/$\theta=\frac{\pi}{3}$, 
+        90/$\theta=\frac{\pi}{2}$, 
+        135/$\theta=\frac{3\pi}{4}$
+    } {
+        \pgfmathsetmacro{\r}{1 + 0.75*sin(\angle)} % Calculate r for each angle
+        % Draw the point
+        \fill[shinbashi] (xy polar cs:angle=\angle, radius=\r) circle (2pt);
+        % Add label
+        \node[anchor=west] at (xy polar cs:angle=\angle, radius=\r) {\small \label};
+        % Draw solid line to the origin
+        \draw[shinbashi] (0,0) -- (xy polar cs:angle=\angle, radius=\r);
+    }
+\end{tikzpicture}
+
+\begin{tikzpicture}[>=latex]
+    % Draw the cardioid
+    \draw[thick, color=enji, domain=0:2*pi, samples=200, smooth] 
+        plot (xy polar cs:angle=\x r, radius={1+sin(\x r)});
+    
+    % Label the equation
+    %\node at (3,2.5) {$r=1+\sin\theta$};
+    
+    % Draw axes
+    \draw[->] (-2,0) -- (2,0) node[right] {\small $x$};
+    \draw[->] (0,-1) -- (0,2.5) node[above] {\small $y$};
+
+    % Add sample points at specified angles and connect to the origin
+    \foreach \angle/\label in {
+        30/$\theta=\frac{\pi}{6}$, 
+        60/$\theta=\frac{\pi}{3}$, 
+        90/$\theta=\frac{\pi}{2}$, 
+        135/$\theta=\frac{3\pi}{4}$
+    } {
+        \pgfmathsetmacro{\r}{1 + sin(\angle)} % Calculate r for each angle
+        % Draw the point
+        \fill[shinbashi] (xy polar cs:angle=\angle, radius=\r) circle (2pt);
+        % Add label
+        \node[anchor=west] at (xy polar cs:angle=\angle, radius=\r) {\small \label};
+        % Draw solid line to the origin
+        \draw[shinbashi] (0,0) -- (xy polar cs:angle=\angle, radius=\r);
+    }
+\end{tikzpicture}
+
+\begin{tikzpicture}[>=latex]
+    % Draw the cardioid
+    \draw[thick, color=enji, domain=0:2*pi, samples=200, smooth] 
+        plot (xy polar cs:angle=\x r, radius={1+2*sin(\x r)});
+    
+    % Label the equation
+    %\node at (3,2.5) {$r=1+\sin\theta$};
+    
+    % Draw axes
+    \draw[->] (-2,0) -- (2,0) node[right] {\small $x$};
+    \draw[->] (0,-1) -- (0,2.5) node[above] {\small $y$};
+
+    % Add sample points at specified angles and connect to the origin
+    \foreach \angle/\label in {
+        30/$\theta=\frac{\pi}{6}$, 
+        60/$\theta=\frac{\pi}{3}$, 
+        90/$\theta=\frac{\pi}{2}$, 
+        135/$\theta=\frac{3\pi}{4}$
+    } {
+        \pgfmathsetmacro{\r}{1 + 2*sin(\angle)} % Calculate r for each angle
+        % Draw the point
+        \fill[shinbashi] (xy polar cs:angle=\angle, radius=\r) circle (2pt);
+        % Add label
+        \node[anchor=west] at (xy polar cs:angle=\angle, radius=\r) {\small \label};
+        % Draw solid line to the origin
+        \draw[shinbashi] (0,0) -- (xy polar cs:angle=\angle, radius=\r);
+    }
+\end{tikzpicture}

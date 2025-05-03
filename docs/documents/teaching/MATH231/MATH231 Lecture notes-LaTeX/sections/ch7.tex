@@ -1,0 +1,850 @@
+\section{Chapter 7}
+\subsection{Integration by Parts} \chcomment{\S7.1} \chcomment{Week 1}
+\begin{center}
+\begin{tcolorbox}
+    \begin{itemize}
+        \item \textbf{New method for integrals}: Integration by parts provides a technique to evaluate integrals of \textit{products} of functions.
+        \item \textbf{Inverse of the product rule}: If $ \dfrac{d}{\dd x}(uv) = u \dfrac{dv}{\dd x} + v \dfrac{\dd u}{\dd x} $, then
+        \begin{equation}
+            \int u \dd v = uv - \int v \dd u \tag{IBP}
+        \end{equation}
+    \end{itemize}
+\end{tcolorbox}
+\end{center}
+
+\subsubsection{Motivation}
+Using the \textit{Fundamental Theorem of Calculus}, we know the antiderivative of basic functions such as $x$ and $e^x$:
+\begin{align*}
+\int x \dd x &= \dfrac{x^2}{2} + C, \\
+\int e^x \dd x &= e^x + C.
+\end{align*}
+However, for functions like $\ln x$ or $\tan x$, a new tool is required: \textbf{Integration by Parts}. 
+
+\subsubsection{Formula Derivation}
+\textbf{Key idea: product rule for differentiation}
+
+\begin{proof}
+    Let $u,v$ be functions of $x$. Recall that the product rule for differentiation formula says
+    \[(uv)' = u'v + uv'. \]
+    Integrating both sides with respect to $x$ gives
+    \[\int uv' \dd x = uv - \int u'v \dd x.\]
+    Rearranging gives the formula for integration by parts:
+    \[ \int u \dd v = uv - \int v \dd u. \]
+\end{proof}
+
+
+\subsubsection{Example} \chcomment{There were typo in the statement of this question before.}
+\begin{ex}[Evaluate $\dint \ln x \dd x$]
+    Take $u = \ln x$ and $dv = \dd x$. Then:
+    \begin{align*}
+        \int \ln x \dd x &= x \ln x - \int x \cdot \dfrac{1}{x} \dd x \\
+        &= x \ln x - \int 1 \dd x \\
+        &= x \ln x - x + C.
+    \end{align*}
+\end{ex}
+
+\begin{ex}[Evaluate $\dint x \ln x \dd x$] \chcomment{Here's how to solve $\dint x \ln x \dd x$}
+    Take $u = \ln x$ and $dv = x \dd x$. Then $\dd u = \dfrac{1}{x} \dd x $ and $v = \dfrac{1}{2} x^2$:
+    \begin{align*}
+        \int \ln x \dd x &= \dfrac{1}{2}x^2 \ln x - \int \dfrac{1}{2}x^2 \cdot \dfrac{1}{x} \dd x \\
+        &= \dfrac{1}{2}x^2 \ln x - \int \dfrac{1}{2} x \dd x \\
+        &= \dfrac{1}{2}x^2 \ln x - \dfrac{1}{4}x^2 + C.
+    \end{align*}
+\end{ex}
+
+
+\subsubsection{Steps to Apply IBP}
+\begin{enumerate}
+    \item Identify $u$ and $\dd v$(the LIATE rule can be used, see below).
+    \item Compute $\dd u$ and $v$.
+    \item Substitute the above expressions into the IBP formula and evaluate.
+\end{enumerate}
+
+\textbf{Choosing $u$ and $v$ (LIATE Rule)}:
+When applying integration by parts, the choice of $u$ and$\dd v$ can be guided by the LIATE rule. Take $u$ to be the function that appears earlier in the list.
+\begin{itemize}
+    \item \textbf{L}ogarithmic functions $\ln x, \log_a x$
+    \item \textbf{I}nverse trigonometric functions $\arcsin x, \arctan x$ etc.
+    \item \textbf{A}lgebraic functions $x^a$
+    \item \textbf{T}rigonometric functions $\sin x, \cos x$ etc.
+    \item \textbf{E}xponential functions $e^x, a^x$
+\end{itemize}
+
+However, in general, there is no easy way to immediately determine which function to choose as $u$. In practice, you won't need to remember this rule, as the computation becomes second nature.
+
+
+
+\subsubsection{More Examples}
+\begin{ex}[Evaluate  $\dint \arctan x \dd x$]
+    Let $ u = \arctan x $ and $ dv = \dd x $. Then:
+\[
+\dd u = \dfrac{1}{1+x^2} \dd x, \quad v = x
+\]
+
+Substitute into the integration by parts formula:
+\begin{align*}
+    \int \arctan x \dd x &= x \arctan x - \blue{\int x \cdot \dfrac{1}{1+x^2} \dd x} \\
+    &= x \arctan x - \blue{\dfrac{1}{2} \ln(1+x^2)} + C.
+\end{align*}
+
+\blue{The last step is done by substituting $w = 1+x^2$:
+\[
+\int x \cdot \dfrac{1}{1+x^2} \dd x = \dfrac{1}{2} \int \dfrac{\dd w}{w} = \ln w+ C.
+\]}
+\end{ex}
+
+\textbf{As in the example above, there are situations where both \textit{integration by parts} and \textit{substitution} are needed.}
+
+\begin{comment}
+    \begin{ex}[Evaluate  $\dint x e^x \dd x$]
+    Take $u = x$ and $dv = e^x \dd x$. Then:
+    \begin{align*}
+        \int x e^x \dd x &= x e^x - \int e^x \dd x \\
+        &= x e^x - e^x + C \\
+        &= e^x (x - 1) + C.
+    \end{align*}
+\end{ex}
+\end{comment}
+Here's another example.
+
+\begin{ex}[Evaluate $\dint \dfrac{x^3}{\sqrt{1+x^2}} \dd x$]
+Take $ u = x^2 $ and $ dv = \dfrac{x}{\sqrt{1+x^2}} \dd x $, so:
+\[
+\dd u = 2x \dd x, \quad v = \sqrt{1+x^2}.
+\]
+
+Substitute into the integration by parts formula:
+\begin{align*}
+    \int \dfrac{x^3}{\sqrt{1+x^2}} \dd x &= \int x^2 \cdot \dfrac{x}{\sqrt{1+x^2}} \dd x = x^2 \sqrt{1+x^2} - \blue{\int 2x \sqrt{1+x^2} \dd x}.
+\end{align*}
+
+\blue{To compute $\dint 2x \sqrt{1+x^2} \dd x$: Using substitution, let $ w = 1+x^2 $, then $ \dd w = 2x \dd x $. We have
+\begin{align*}
+    \int 2x \sqrt{1+x^2} \dd x &= \int \sqrt{w} \dd w = \dfrac{2}{3} w^{3/2} + C = \dfrac{2}{3} (1+x^2)^{3/2} + C.
+\end{align*}}
+So the original integral is:
+\begin{align*}
+    \int \dfrac{x^3}{\sqrt{1+x^2}} \dd x &= x^2 \sqrt{1+x^2} - \dfrac{2}{3} (1+x^2)^{3/2} + C.
+\end{align*}
+\end{ex}
+You may notices that there is no need to apply the IBP at all. Here's another way to solve the same problem.
+\begin{ex}[The same problem with substitution]
+    Using substitution rule, we let $u = 1 + x^2 $ so that $\dd u = 2x \dd x$. Then
+\begin{align*}
+    \int \dfrac{x^3}{\sqrt{1+x^2}} \dd x &= \int \dfrac{x^2 \cdot x}{\sqrt{u}} \dd x = \dfrac{1}{2} \int \dfrac{u-1}{\sqrt{u}} \dd u \\
+    &= \dfrac{1}{2} \int u^{1/2} \dd u - \dfrac{1}{2} \int u^{-1/2} \dd u \\
+    &= \dfrac{1}{3} u^{3/2} - u^{1/2} + C \\
+    &= \dfrac{1}{3} (1 + x^2)^{3/2} - \sqrt{1 + x^2} + C.
+\end{align*}
+\end{ex}
+
+\newpage
+\subsection{Trigonometric Integrals} \chcomment{\S7.2}
+\begin{center}
+\begin{tcolorbox}
+    \begin{itemize}
+        \item \textbf{Particular type of integral}: \[\int \sin^n x \cos^m x \dd x.\]
+        \item \textbf{Tools to use}: 
+        \begin{itemize}
+            \item Trig formulae and identities (to reduce the powers of $\sin x$ or $\cos x$)
+            \item Substitution rule
+            \item Integration by parts
+        \end{itemize}
+        \item \textbf{To memorize}:
+        \begin{align*}
+            &\sin^2 x + \cos^2 x = 1, \\
+            &\sin(2x) = 2\sin x \cos x,  \qquad \cos(2x) = \cos^2 x - \sin^2 x
+        \end{align*}
+        The other formulae can be derived from the above.
+    \end{itemize}
+\end{tcolorbox}
+\end{center}
+
+In this section, we are interested in solving integrals of the form: 
+\[\int \sin^n x \cos^m x \dd x\]
+where $n, m$ are integers. (You will see in the homework that $n$ and $m$ could be noninteger).
+
+We first recall the trigonometric formulae and identities. 
+\begin{center}
+    \renewcommand{\arraystretch}{2.5}
+    \begin{tabular}{  p{0.35\textwidth} p{0.35\textwidth}  }
+        $\red{\sin^2 x + \cos^2 x = 1}$ & $\tan^2 x + 1 = \sec^2 x$ \\
+        $ \red{\sin(2x) = 2\sin x \cos x} $ & $ \red{\cos(2x) = \cos^2 x - \sin^2 x} $ \\
+        $\displaystyle \sin x = \pm\sqrt{\dfrac{1 - \cos (2x)}{2}} $ & $\displaystyle \cos x = \pm\sqrt{\dfrac{1 + \cos (2x)}{2}} $
+    \end{tabular}
+\end{center}
+It suffices to remember the equations in red; the rest can be derived from them. (Try it).
+
+
+\subsubsection{First Example of Trigonometric Integral}
+Before discussing the general approach, let's first look at an example to motivate the method and the overall strategy.
+\begin{ex}[Evaluate $\dint \sin^3 x \cos^2 x \dd x$] \leavevmode
+    Apply the substitution rule. Let $u = \cos x$, then $\dd u = -\sin x \dd x$. We get
+    \begin{align*}
+        \int \sin^3 x \cos^2 x \dd x &= \int \sin^2 x \cos^2 x \cdot \sin x \dd x  \tag{substitution $u = \cos x$}\\
+        &= \int (1 - u^2) u^2 (-\dd u) \\
+        &= -\int (u^4 - u^2) \dd u \\
+        &= -\left(\dfrac{u^5}{5} - \dfrac{u^3}{3}\right) + C \tag{Constant $C$ indefinite integral} \\
+        &= -\left(\dfrac{\cos^5 x}{5} - \dfrac{\cos^3 x}{3}\right) + C.
+    \end{align*}
+\end{ex}
+
+\subsubsection{Steps to Evaluate Trig Integrals}
+\begin{enumerate}
+    \item Identify the type of the integrand 
+    \begin{itemize}
+        \item If $n$ or $m$ is odd, substitution rule is needed. \gray{E.g. $n$ is odd, rewrite
+        \[\int \sin^n x \cos^m x \dd x = \int \sin^{n-1} x \cos^m x ~~\red{\sin x\dd x}.\]
+    Then take $u = \cos x$ so that $\dd u = -\red{\sin x\dd x}$.}
+        \item If both of the powers are even, use trig formulae to reduce the powers of $\sin x$ and $\cos x$'s.
+    
+    \end{itemize}
+    
+    
+    \item \red{Be careful with the sign!}
+\end{enumerate}
+
+
+\subsubsection{More Examples}
+In the next example, you will see that the half-angle formulae are particularly useful when dealing with even powers of sine and cosine.
+\begin{ex}
+    [Evaluate $\dint \cos^4 \dd x$] \leavevmode
+    Use $\cos^2 x = \dfrac{1 + \cos (2x)}{2}$ to lower the order of $\cos x$'s, we get: 
+    \begin{align*}
+        \int \cos^4 x \dd x &= \int \Big(\dfrac{1 + \cos (2x)}{2}\Big)^2 \dd x \\
+        & =  \int \dfrac{1 + 2\cos(2x) + (\cos^2 (2x))^2}{4} \dd x \tag{pull the constant $1/4$ out}\\
+        &= \dfrac{1}{4} \int 1 + 2\cos(2x) +  \dfrac{1+\cos(4x)}{2} \dd x \\
+        &= \dfrac{3}{8} x + \dfrac{\sin(2x)}{4} + \dfrac{1}{32} \sin(4x) + C.
+    \end{align*}
+\end{ex}
+\chcomment{Week 2}
+
+Similarly we can compute  
+\[\int \tan^n x \sec^m x \dd x.\]
+Recall that $(\tan x)' = \sec^2 x$ and $(\sec x)' = \sec x \tan x$.
+
+\begin{ex}[Evaluate $\dint \tan x \sec^4 x \dd x$] \leavevmode
+    \begin{align*}
+        \int \tan x \sec^4 x \dd x &= \int \tan x \sec^2 x \sec^2 x \dd x = \int \tan x (1+\tan^2 x) \cdot \sec^2 x \dd x \tag{substitution $u = \tan x$}\\
+        &= \int u(1 + u^2)\dd u\\
+        &= \dfrac{u^2}{2} + \dfrac{u^4}{4} + C \tag{Constant $C$ due to indefinite integral} \\
+        &= \red{\dfrac{\tan^2 x}{2} + \dfrac{\tan^4 x}{4}} + C.
+    \end{align*}
+\end{ex}
+
+
+
+\begin{ex}[Another way to compute $\dint \tan x \sec^4 x \dd x$] \leavevmode Take $u = \sec x$ then $\dd u = 2 \sec^2 x \tan x \dd x$. We have
+    \begin{align*}
+        \int \tan x \sec^4 x \dd x &= \int \tan x \sec^2 x \sec^2 x \dd x = \int \dfrac{1}{2} \dd u =  \dfrac{u^2}{4} + C' = \dfrac{\sec^4 x}{4} + C'.
+    \end{align*}
+\end{ex}
+
+\blue{Note that the two method gives the SAME answer. Here's why
+\[\dfrac{\sec^4 x}{4} + C'= \dfrac{(1+\tan x)^2}{4} + C' = \red{\dfrac{\tan^2 x}{2} + \dfrac{\tan^4 x}{4}} + \dfrac{1}{4} + C'.\]
+The constant $C$ and $C'$ satisfies the relation: $C = \dfrac{1}{4} + C'$. }
+
+
+\subsubsection{Beyond Calculus II}
+Why do we study $\dint \sin^n x \cos^m x \dd x$?
+
+Integrals of the this form are studied for their broad applications in mathematics, physics, and engineering. These integrals appear in Fourier analysis, wave mechanics, and signal processing, where sine and cosine functions serve as fundamental building blocks. 
+
+
+
+\subsection{Trigonometric substitution} \chcomment{\S7.3}
+\begin{center}
+\begin{tcolorbox}
+    \begin{itemize}
+        \item \textbf{Particular type of integral}: integral involving square root of quadric polynomials.
+        \item \textbf{Tools to use}: Trig substitutions (the idea comes from the trig identities)
+    \end{itemize}
+    \begin{center}
+    \renewcommand{\arraystretch}{2.5}
+    \begin{tabular}{|c|c|c|c|c|} 
+        \hline
+         & $ x $ & Range of $ \theta $ & $ \dd x $ & $ \sqrt{\cdots} $ becomes \\ 
+        \hline
+        $ \sqrt{a^2-x^2} $ & $ a \sin(\theta) $ & $ -\dfrac{\pi}{2} \leq \theta \leq \dfrac{\pi}{2} $ & $ a \cos(\theta) \dd \theta $ & $ a \cos(\theta) $ \\
+        \hline
+        $ \sqrt{x^2+a^2} $ & $ a \tan(\theta) $ & $ -\dfrac{\pi}{2} < \theta < \dfrac{\pi}{2} $ & $ a \sec^2(\theta) \dd \theta $ & $ a \sec(\theta) $ \\
+        \hline
+        $ \sqrt{x^2-a^2} $ & $ a \sec(\theta) $ & $ 0 \leq \theta \leq \dfrac{\pi}{2} \text{ or } \dfrac{\pi}{2}< \theta \leq \pi $ & $ a \sec(\theta) \tan(\theta) \dd \theta $ & $ a \tan(\theta) $ \\
+        \hline
+    \end{tabular}
+    \end{center}
+\end{tcolorbox}
+\end{center}
+
+
+\subsubsection{Trig Substitution Rule}
+In this section, we consider integrals containing square roots of the form 
+\[\sqrt{a^2 - x^2} \qquad \sqrt{x^2 + a^2} \qquad \sqrt{x^2 - a^2}.\]
+We use trigonometric substitutions:
+\begin{center}
+    \renewcommand{\arraystretch}{2.5}
+    \begin{tabular}{|c|c|c|c|c|} 
+        \hline
+         & $ x $ & Range of $ \theta $ & $ \dd x $ & $ \sqrt{\cdots} $ becomes \\ 
+        \hline
+        $ \sqrt{a^2-x^2} $ & $ a \sin(\theta) $ & $ -\dfrac{\pi}{2} \leq \theta \leq \dfrac{\pi}{2} $ & $ a \cos(\theta) \dd \theta $ & $ a \cos(\theta) $ \\
+        \hline
+        $ \sqrt{x^2+a^2} $ & $ a \tan(\theta) $ & $ -\dfrac{\pi}{2} < \theta < \dfrac{\pi}{2} $ & $ a \sec^2(\theta) \dd \theta $ & $ a \sec(\theta) $ \\
+        \hline
+        $ \sqrt{x^2-a^2} $ & $ a \sec(\theta) $ & $ 0 \leq \theta \leq \dfrac{\pi}{2} \text{ or } \dfrac{\pi}{2}< \theta \leq \pi $ & $ a \sec(\theta) \tan(\theta) \dd \theta $ & $ a \tan(\theta) $ \\
+        \hline
+    \end{tabular}
+\end{center}
+Note that we use trigonometric identities to simplify the square root expressions.
+
+For example:
+\begin{align*}
+    x = a \sin \theta     \implies \sqrt{a^2 - x^2} &= \sqrt{a^2 - a^2 \sin^2 \theta}\\
+    &= \sqrt{a^2 \cos^2 \theta} = |a \cos \theta|.
+\end{align*}
+\textbf{Warning: We have to specify the range of $\theta$ so that we can get rid of $|~~|$.}
+
+
+\subsubsection{Steps to Apply Trig Substitutions}
+\begin{enumerate}
+    \item \textbf{Identify the integrand type}: there are three types 
+    \[\sqrt{a^2 - x^2} \qquad \sqrt{x^2 + a^2} \qquad \sqrt{x^2 - a^2}.\]
+    \item \textbf{Choose an appropriate substitution}: Use the table or trigonometric identities to eliminate the square root by substituting $x$ with a trigonometric function.  
+    \item \red{Always \textbf{specify the range of $\boldsymbol{\theta}$} to ensure $x$ is the positive root $\boldsymbol{+}\sqrt{\cdots}$.}
+    \item \textbf{Back-substitution}: Express the trig functions $\sin \theta, \tan \theta \cdots$ in terms of $x$ (trig identities and Calculus I knowledge are needed, and rewrite $\theta$ using inverse trig functions.
+\end{enumerate}
+
+
+\subsubsection{Examples}
+\begin{ex}[Evaluate $\dint \sqrt{9 - x^2} \dd x $] Take $x=3\sin \theta$, with $\blue{-\dfrac{\pi}{2} \leq \theta \leq \dfrac{\pi}{2}}$, then 
+    \begin{align*}
+    \int \sqrt{9 - x^2} \dd x &= \int \sqrt{9 - (3\sin \theta)^2} \cdot 3 \cos \theta \dd \theta = \int \blue{|3 \cos \theta|} \cdot 3 \cos \theta \dd \theta \tag{\blue{Need $-\dfrac{\pi}{2}\leq \theta \leq \dfrac{\pi}{2}$ so that $\cos \theta \geq 0$}}\\
+    &= \int 9 \cos^2 \theta \dd \theta = \int 9 \dfrac{1+\cos \theta}{2} \dd \theta =  \dfrac{9}{2} \theta + \dfrac{9}{4} \sin (2\theta) + C\\
+    &= \dfrac{9}{2} \theta + \dfrac{9}{2} \sin \theta \cos \theta + C = \dfrac{9}{2} \arcsin \dfrac{x}{3} + \dfrac{9}{2} \dfrac{x}{3}\sqrt{1-\dfrac{x^2}{3^2}} + C \tag{Back-substitution}\\
+    &= \dfrac{9}{2} \arcsin \dfrac{x}{3} + \dfrac{x\sqrt{9-x^2}}{2} + C.
+\end{align*}
+\blue{For the back-substitution step: note that $\sin \theta = \dfrac{x}{3}, \cos \theta = \sqrt{1-\sin^2 \theta} \text{ (by trig identity) } = \sqrt{1-\dfrac{x^3}{9}} = \dfrac{\sqrt{9-x^2}}{3}$, and $\theta = \arcsin\dfrac{x}{3}$.}
+\end{ex}
+
+\begin{ex}[Evaluate $\dint \dfrac{1}{x^2 \sqrt{x^2 + 4}} \dd x $] Take $x=2\tan \theta$, with $\blue{-\dfrac{\pi}{2} < \theta < \dfrac{\pi}{2}}$, then 
+    \begin{align*}
+    \int \dfrac{1}{x^2 \sqrt{x^2 + 4}} \dd x &\quad = \int \dfrac{1}{(2 \tan \theta)^2 \sqrt{4 \tan^2 \theta + 4}} (2 \sec^2 \theta) \dd \theta \\
+    &= \int \dfrac{2 \sec^2 \theta}{4 \tan^2 \theta \cdot \blue{|2 \sec \theta|}} \dd \theta = \int \dfrac{\sec \theta}{4 \tan^2 \theta} \dd \theta \tag{\blue{Need $-\dfrac{\pi}{2}<\theta <\dfrac{\pi}{2}$ so that $\sec \theta > 0$}}\\
+    &= \int \dfrac{\cos \theta}{4 \sin^2 \theta} \dd \theta \tag{Using substitution: $u = \sin \theta, \dd u = \cos \theta \dd \theta$} \\
+    &= \int \dfrac{1}{4 u^2} \dd u = -\dfrac{1}{4u} + C
+    \tag{Back-substitution}\\
+    &= -\dfrac{1}{4 \sin \theta} + C = -\dfrac{\sqrt{4+x^2}}{x} + C.
+\end{align*}
+\blue{For the back-substitution step: Note that $\tan \theta = \dfrac{x}{2}$, so $\theta = \arctan \dfrac{x}{2}$. To rewrite $\sin \theta$, observe that $\tan \theta = \dfrac{Y}{X}$ and $\sin \theta = \dfrac{Y}{R}$. Solving for $R$, we get $R = \sqrt{X^2 + Y^2} = \sqrt{4 + x^2}$, which implies $\sin \theta = \dfrac{x}{\sqrt{4 + x^2}}$.}
+\end{ex}
+
+\begin{ex}[Evaluate $\dint \dfrac{x}{\sqrt{3 - 2x - x^2}} \dd x$]
+Complete the square: $3 - 2x - x^2 = -(x^2+2x+1-1)+3 = -(x+1)^2+4$. Take $u = x+1$
+    \begin{align*}
+    \int \dfrac{x}{\sqrt{3 - 2x - x^2}} \dd x &= \int \dfrac{u-1}{\sqrt{4-u^2}} \dd u = \int \dfrac{2\sin \theta - 1}{\sqrt{4 - 4 \sin^2 \theta}}  2\cos \theta \dd \theta \\
+    &= \int \dfrac{2\sin \theta - 1}{\blue{|2\cos \theta|}}  2\cos \theta \dd \theta \tag{\blue{Need $-\dfrac{\pi}{2} < \theta < \dfrac{\pi}{2}$. Note that $\cos \theta$ is strictly positive.}} \\
+    &= \int 2\sin \theta -1 \dd\theta = -2\cos \theta -\theta + C. \\
+    &= -\sqrt{4-u^2} - \arcsin\dfrac{u}{2} + C \tag{Back-substitution}\\
+    &= -\sqrt{3-2x-x^2} - \arcsin\dfrac{x+1}{2} + C.
+\end{align*}
+\end{ex}
+
+\subsubsection{Motivation} Why do we study these types of integrals? 
+
+Because they frequently arise in problems related to \textit{arc length} and \textit{surface area} calculations. These integrals help us model and solve real-world geometric problems, such as determining the length of a curve or the area of a surface of revolution. Their importance will become evident as we explore further in Chapter 8.
+
+
+\subsection{Integration of Rational Functions} \chcomment{\S7.4}
+\begin{center}
+\begin{tcolorbox}
+    \begin{itemize}
+        \item \textbf{Particular type of integral}: integral involving rational functions.
+        \item \textbf{Tools to use}: partial fraction decomposition
+        \begin{itemize}
+        \item A \textit{proper} rational function $R(x) = \dfrac{P(x)}{Q(x)}$ satisfies $\deg P(x) < \deg Q(x)$.
+        \item An \textit{improper} rational function satisfies $\deg P(x) \geq \deg Q(x) $.
+        \item Improper rational functions are converted into proper ones via polynomial long division:
+        \[
+        \frac{P(x)}{Q(x)} = F(x) + \frac{\tilde{P}(x)}{Q(x)}.
+        \]
+    \end{itemize}
+    
+    \begin{center}
+    \renewcommand{\arraystretch}{2.5}
+    \begin{tabular}{|c|c|} 
+        \hline
+        Factor in denominator & Terms in the decomposition of a \textit{proper rational function}\\
+        \hline
+        $ax+b$ & $\dfrac{A}{ax+b}$\\
+        \hline
+        $(ax+b)^k$ & $\dfrac{A_1}{ax+b}+\dfrac{A_2}{(ax+b)^2}+\cdots+\dfrac{A_k}{(ax+b)^k}$\\
+        \hline
+        $ax^2+bx+c$ & $\dfrac{Ax+B}{ax^2+bx+c}$\\
+        \hline
+        $(ax^2+bx+c)^k$ & $\dfrac{A_1x+B_1}{ax^2+bx+c}+\dfrac{A_2x+B_2}{(ax^2+bx+c)^2}+\cdots+\dfrac{A_kx+B_k}{(ax^2+bx+c)^k}$\\
+        \hline
+    \end{tabular}
+    \end{center}
+    \end{itemize}
+\end{tcolorbox}
+\end{center}
+
+
+
+\subsubsection{Rational Functions}
+\begin{defn}
+    A \bfemph{rational function} is a function of the form $\displaystyle R(x) = \dfrac{P(x)}{Q(x)}$, where $P(x)$ and $Q(x)$ are polynomials. 
+    
+    If $\deg P < \deg Q$, it is \bfemph{proper}; otherwise, it is \bfemph{improper}.
+\end{defn}
+
+\begin{ex}
+    \[R_1(x) = \dfrac{1}{x+1}, \qquad R_2(x) = \dfrac{2x+1}{(x+1)^2}, \qquad R_3(x) = \dfrac{x^3-3}{(x-7)(x+5)}. \]
+    The first two are proper; whereas the last one is improper.
+\end{ex}
+
+
+In this section we solve the integral of the type $\dint R(x) \dd x$.
+The strategy is to rewrite $R(x)$ as a sum of simpler rational functions (using long division and partial fraction decomposition). Then use the substitution rule to solve the integral.
+
+\newpage
+\subsubsection{Partial Fraction Decomposition}
+We start with proper rational functions. The following table lists the terms that appear in the decomposition of a proper rational function. \chcomment{Note that "proper" is necessary, otherwise, there will be a polynomial term appear in the decomposition. See Example \ref{ex: an improper rational funciton}.}
+\begin{center}
+    \renewcommand{\arraystretch}{2.5}
+    \begin{tabular}{|c|c|} 
+        \hline
+        Factor in denominator & Terms in the decomposition of a \textit{proper rational function} \\
+        \hline
+        $ax+b$ & $\dfrac{A}{ax+b}$\\
+        \hline
+        $(ax+b)^k$ & $\dfrac{A_1}{ax+b}+\dfrac{A_2}{(ax+b)^2}+\cdots+\dfrac{A_k}{(ax+b)^k}$\\
+        \hline
+        $ax^2+bx+c$ & $\dfrac{Ax+B}{ax^2+bx+c}$\\
+        \hline
+        $(ax^2+bx+c)^k$ & $\dfrac{A_1x+B_1}{ax^2+bx+c}+\dfrac{A_2x+B_2}{(ax^2+bx+c)^2}+\cdots+\dfrac{A_kx+B_k}{(ax^2+bx+c)^k}$\\
+        \hline
+    \end{tabular}
+    \end{center}
+   Improper rational functions are converted into proper ones via polynomial long division:
+        \[ R(x) = \dfrac{P(x)}{Q(x)} = F(x) + \frac{\tilde{P}(x)}{Q(x)},
+        \]
+        where $F(x)$ is a polynomial. Then we can apply partial fraction decomposition to $\frac{\tilde{P}(x)}{Q(x)}$.
+\begin{ex}
+    $R_2$ is proper, so we set \[R_2(x) = \dfrac{2x+1}{(x+1)^2} = \frac{A}{x+1} + \dfrac{B}{(x+1)^2}.\]
+    Compare: $R_3$ is improper
+    \[R_3(x) = \dfrac{x^3-3}{(x-7)(x+5)} = \dfrac{x(x-7)(x+5) + 2x^2 +35x - 3}{(x-7)(x+5)} = x + \dfrac{2x^2 +35x - 3}{(x-7)(x+5)}. \]
+    Then decompose to the second term $\dfrac{2x^2 +35x - 3}{(x-7)(x+5)}$ using the table, we set 
+    \[\dfrac{2x^2 +35x - 3}{(x-7)(x+5)} = \frac{A}{x-7} + \frac{B}{x+5}.\]
+\end{ex}
+\subsubsection{Examples of integrals of rational functions}
+
+\begin{ex}[Evaluate $\dint \dfrac{x}{x+4} \dd x$] \label{ex: an improper rational funciton}
+    The integrand is improper, so we first apply long division:
+    \[\dfrac{x}{x+4} = \dfrac{x+4-4}{x+4} = 1-\dfrac{4}{x+4}.\]
+    So 
+    \begin{align*}
+    \int \dfrac{x}{x+4} \dd x &= \int 1-\dfrac{4}{x+4} \dd x = (x+4) - 4 \ln|x+4| + C.
+\end{align*}
+\end{ex}
+
+
+\begin{tcolorbox}
+    If $Q$ is a product of distinct linear factors, 
+    \[Q = (a_1x+b_1)(a_2x+b_2) \cdots (a_nx+b_n),\]
+    we take 
+    \[R = \dfrac{A_1}{a_1x+b_1} + \dfrac{A_2}{a_2x+b_2} + \cdots + \dfrac{A_n}{a_nx+b_n}.\]
+\end{tcolorbox}
+\begin{ex}[Evaluate $\dint \dfrac{1}{x^2-4} \dd x$]
+    The integrand is proper and the denominator factors as $x^2 - 4 = (x-2)(x+2)$. Using partial fraction decomposition:
+    \[\dfrac{1}{x^2-4} = \dfrac{A}{x-2} + \dfrac{B}{x+2}, \quad \text{where } A, B \text{ are constants.} \]
+    The numerator gives 
+    \[(A+B)x + 2(A-B) = 1 \implies A = -B = \dfrac{1}{4}.\]
+    Plug this back into the integral, we have
+    \begin{align*}
+        \int \dfrac{1}{x^2-4} \dd x &= \int \left(\dfrac{1}{4(x-2)} - \dfrac{1}{4(x+2)}\right) \dd x \\
+        &= \dfrac{1}{4} \ln|x-2| - \dfrac{1}{4} \ln|x+2| + C \\
+        &= \dfrac{1}{4} \ln\left|\dfrac{x-2}{x+2}\right| + C.
+    \end{align*}
+\end{ex}
+
+\begin{tcolorbox}
+    If $Q$ contains distinct irreducible quadratic factors, take the corresponding quadratic form 
+    \[R = (\text{fraction with linear terms}) + \cdots + \dfrac{Ax+B}{ax^2+bx+c}.\]
+\end{tcolorbox}
+\begin{ex}[Evaluate $\dint \dfrac{5x^2+2}{x(x^2+2x+2)} \dd x$]
+    The integrand is proper. To decomposition the fraction, we set
+    \[\dfrac{5x^2+2}{x(x^2+2x+2)} = \dfrac{A}{x} + \dfrac{Bx + C}{x^2 + 2x + 2}, \quad \text{where } A, B, C \text{ are constants.} \]
+    The numerator gives 
+    \[Ax^2 +2ax+2a+Bx^2+Cx = 5x^2 + 1 \implies \begin{cases}
+        A+B = 5\\
+        2A+C = 0\\
+        2A = 2
+    \end{cases} \implies \begin{cases}
+        A=1\\
+        B=4\\
+        C=-2
+    \end{cases}.\]
+    Plug this back into the integral, we have
+    \begin{align*}
+        \int \dfrac{5x^2+2}{x(x^2+2x+2)} \dd x &= \int \dfrac{1}{x} \dd x + \int \dfrac{4x - 2}{x^2 + 2x + 2} \dd x \\
+        &= \ln|x| + \int \dfrac{4x-2}{x^2+2x+2} \dd x = \ln|x| + \int \dfrac{4x-2}{(x+1)^2+1} \dd x \tag{Substitution: $u=x+1$}\\
+        &= \ln|x| + \int \dfrac{4u-6}{u^2+1} \dd u = \ln|x| + \int \dfrac{4u}{u^2+1} \dd u - \int \dfrac{6}{u^2+1} \dd u + C\\
+        &= \ln|x| + 2\int \dfrac{1}{w+1} \dd w - 6\arctan u + C \\
+        &=\ln|x| + 2 \ln|w| - 6\arctan u + C \\
+        &=\ln|x| + 2 \ln|u^2+1| - 6\arctan (x+1) + C \\
+        &=\ln|x| + 2 \ln|x^2+2x+2| - 6\arctan (x+1) + C.
+    \end{align*}
+\end{ex} \chcomment{Typo22}
+
+
+\begin{tcolorbox}
+    If $Q$ contains a repeated linear factor, say $(ax+b)^r$, include terms of the form:
+    \begin{align*}
+        \dfrac{A_1}{ax+b} + \dfrac{A_2}{(ax+b)^2} + \cdots + \dfrac{A_r}{(ax+b)^r}.
+    \end{align*}
+    
+    Similarly, for a repeated quadratic factor, say $(ax^2+bx+c)^r$, include terms of the form:
+    \begin{align*}
+        \dfrac{A_1x+B_1}{ax^2+bx+c} + \dfrac{A_2x+B_2}{(ax^2+bx+c)^2} + \cdots + \dfrac{A_rx+B_r}{(ax^2+bx+c)^r}.
+    \end{align*}
+\end{tcolorbox}
+
+
+\begin{ex}[Evaluate $\dint \dfrac{4x}{x^3 - x^2 - x + 1} \dd x$]
+   The integrand is proper and the denominator factors as :
+    \begin{align*}
+        x^3 - x^2 - x + 1 &= (x-1)^2(x+1).
+    \end{align*}
+    Using partial fraction decomposition, we set
+    \[\dfrac{4x}{x^3 - x^2 - x + 1} = \dfrac{4x}{(x-1)^2(x+1)} = \dfrac{A}{x-1} + \dfrac{B}{(x-1)^2}+ \dfrac{C}{x+1}, \quad \text{where } A, B, C \text{ are constants.} \]
+    The numerator gives 
+    \[A(x+1)(x-1)+B(x-1)+C(x-1)^2 = (A+C)x^2+(B-2C)x+(-A+B+C) = 4x,\]
+    so \[ A=1, B=2, C=-1.\]
+    Thus, the integral becomes:
+    \begin{align*}
+        \int \dfrac{4x}{x^3 - x^2 - x + 1} \dd x &= \int \dfrac{1}{x-1} + \dfrac{2}{(x-1)^2} - \dfrac{1}{x+1} \dd x\\
+        &= \ln\Big|\dfrac{x-1}{x+1}\Big| - \dfrac{2}{x-1} + C.
+    \end{align*}
+\end{ex}
+
+\subsubsection{Steps to Evaluate Integrals of Rational Function} 
+\begin{enumerate} 
+    \item Apply \textbf{long division} to improper rational functions.
+    \item \textbf{Factorize} the denominator of the proper rational functions.
+    \item Set up the terms that appear (see the table above) in the \textbf{partial fraction decomposition} and solve for the constants.
+    \item Apply the \textbf{integration} techniques learned in the preceding sections.
+\end{enumerate}
+
+
+
+\subsection{Approximate Integration} \chcomment{\S7.7}
+\begin{center}
+\begin{tcolorbox}
+    \begin{itemize}
+        \item \textbf{Approximating integral}
+
+        \item \textbf{Tools to use}: Midpoint Rule, Trapezoidal Rule, and Simpson's Rule.
+        \item No need to memorize the statements. Know how to use them.
+    \end{itemize}
+\end{tcolorbox}
+\end{center}
+
+\subsubsection{Motivation}
+In general, it is difficult to compute the antiderivative of a function and apply the Fundamental Theorem of Calculus, even with techniques we have learned so far. Therefore, we seek an \textit{approximate} value of the integral.
+
+Recall from Calculus I, the integral is defined as the limit of Riemann sums:
+\begin{defn}
+\begin{align*}
+    \int_a^b f(x) \dd x &= \lim_{n \to \infty} \sum_{i=1}^n f(\xi_i) \Delta x.
+\end{align*}
+\end{defn}
+
+Since we are interested in an approximate value of the integral, instead of taking $n \to \infty$, we sum over a finite number of intervals:
+\begin{align*}
+    \int_a^b f(x) \dd x \approx \sum_{i=1}^n f(\xi_i) \Delta x.
+\end{align*}
+
+For the finite sum above:
+\begin{itemize}
+    \item If $\xi_i = a + \Delta x \cdot (i-1)$, it is a \textit{left} endpoint approximation.
+    \item If $\xi_i = a + \Delta x \cdot i$, it is a \textit{right} endpoint approximation.
+    \item If $\xi_i = = a + \Delta x \cdot \dfrac{2i-1}{2}$ is the \textit{midpoint}, it is a midpoint approximation.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \resizebox{0.5\textwidth}{!}{\input{images/Riemann sum.tikz}} % Include your TikZ file
+    \caption{Riemann sum}
+    \label{fig:Riemann sum}
+\end{figure}
+
+
+\subsubsection{The Midpoint, Trapezoidal and Simpson's Rules}
+We usually use the midpoint approximation. The formula is explicitly written as:
+\begin{tcolorbox}[colframe=shinbashi!90, colback=shinbashi!5]
+\begin{thm}[Midpoint rule]
+    \begin{align*}
+        \int_a^b f(x) \dd x \approx M_n  &= \left(f(\overline{x_1}) + f(\overline{x_2}) + \cdots + f(\overline{x_n})\right) \Delta x \\
+        &= \sum_{i=1}^n f\Big(a + \Delta x \cdot \dfrac{2i-1}{2}\Big) \cdot \Delta x,
+    \end{align*}
+where $\overline{x_i}$ are the midpoints and $\Delta x$ is the width of each subinterval.
+\end{thm}
+\end{tcolorbox}
+
+
+Another way to approximate the integral is the trapezoidal rule:
+\begin{tcolorbox}
+\begin{thm}[Trapezoidal rule]
+    \begin{align*}
+        \int_a^b f(x) \dd x \approx T_n &= \dfrac{\Delta x}{2} \left[f(a) + 2\sum_{i=1}^{n-1} f(x_i) + f(b)\right]\\
+        &= \dfrac{\Delta x}{2} \left(f(a) + 2f(x_1) + 2f(x_2) + \cdots + 2f(x_{n-1}) + f(b)\right).
+    \end{align*}
+\end{thm}
+\end{tcolorbox}
+
+Note that 
+\[T_n = \Bigg( \dfrac{f(x_0)+f(x_1)}{2} + \dfrac{f(x_1)+f(x_2)}{2} + \cdots + \dfrac{f(x_{n-1})+f(x_n)}{2} \Bigg) \Delta x.\]
+Each term $\dfrac{f(x_{i-1})+f(x_i)}{2} \Delta x$ is the area of one trapezoid.
+
+Similar to trapezoidal rule, another rule to approxiamte the integral is 
+\begin{tcolorbox}[colframe=enji!80, colback=enji!5]
+\begin{thm}[Simpson's Rule]
+    \begin{align*}
+        \int_a^b f(x) \dd x \approx S_n &= \dfrac{\Delta x}{3} \left[f(a) + 4f(x_1) + 2f(x_2) + \cdots + 4f(x_{n-1}) + f(b)\right].
+    \end{align*}
+\end{thm}
+\end{tcolorbox}
+
+
+\subsubsection{Error of Approximation}
+\begin{align*}
+    \blue{E_M = \dint_a^b f(x) \dd x - M_n}, \qquad
+    \green{E_T = \dint_a^b f(x) \dd x - T_n} \qquad
+    \red{E_S = \dint_a^b f(x) \dd x - S_n}.
+\end{align*}
+\textbf{Error bounds}: For $a \leq x \leq b$, \green{suppose $|f''(x)| \leq K$ for the trapezoidal rule} and \red{suppose $|f^{(4)}(x)| \leq K$ for Simpson's rule}, then:
+\begin{align*}
+    \blue{|E_M| \leq \dfrac{K (b-a)^3}{24n^2}}, \qquad
+    \green{|E_T| \leq \dfrac{K (b-a)^3}{12n^2}} \qquad \red{|E_S| \leq \dfrac{K (b-a)^5}{180n^4}}.
+\end{align*}
+
+
+\subsubsection{Example}
+\begin{ex}
+    Let $f(x) = x^2$ on the interval $[1,4]$. Determine the number of subintervals $n$ required such that the error $E_M$ in the Midpoint Rule approximation satisfies 
+    \[|E_M| < 0.1.\] 
+    
+    \textit{Solution}. The error bound for the Midpoint Rule is given by:
+    \[|E_M| \leq \dfrac{K(b-a)^3}{24n^2} \]
+    where $a=1, b=4$ and $K = \max_{c \in [1, 4]} |f''(c)| = 2$.
+    
+    Substitute into the error formula we have:
+    \[|E_M| \leq \dfrac{2 \cdot (4-1)^3}{24n^2} = \dfrac{9}{4n^2} < 0.1 \implies n \geq \sqrt{\dfrac{9}{0.4}} \approx 4.74.\]
+    Since $n$ must be an integer to ensure $|E_M| < 0.1$, the smallest number $n$ is 5.
+\end{ex}
+
+\newpage
+
+\subsection{Improper Integrals} 
+\chcomment{\S7.8}
+\chcomment{Week 4}
+
+\begin{tcolorbox}
+    \begin{itemize}
+        \item \textbf{Improper integrals}: deal with unbounded intervals or functions.
+        \item \textbf{Tools to use}: taking limit of a proper integral. E.g.
+        \begin{itemize}
+            \item Type I: $\dint_a^\infty f(x) \dd x = \lim_{t \to \infty} \int_a^t f(x) \dd x$
+            \item Type II: $\dint_a^c f(x) \dd x = \lim_{t \to c} \int_a^t f(x) \dd x$
+        \end{itemize}
+        \item \textbf{Comparison test}: \begin{enumerate*}[label = \circled{\arabic*}]
+            \item $f,g$ continuous, \item $0 \leq f(x) \leq g(x)$
+            \item for $x \geq a$.
+        \end{enumerate*} 
+        Then 
+        \begin{align*}
+        \int_a^\infty f(x) \dd x \text{ converges } \quad \boldsymbol{\implies} \quad \int_a^\infty g(x) \dd x \text{ converges } \\
+        \int_a^\infty f(x) \dd x \text{ diverges } \quad \boldsymbol{\impliedby} \quad \int_a^\infty g(x) \dd x \text{ diverges } 
+    \end{align*}
+    \item \textbf{To memorize}: \begin{align*}
+        \int_a^\infty \dfrac{1}{x^p} \dd x \qquad \begin{cases}
+            \text{ converges} & \text p > 1\\
+            \text{ diverges} & \text p \leq 1
+        \end{cases}
+    \end{align*}
+    \end{itemize}
+\end{tcolorbox}
+
+
+In Chapter 5 (Calculus I), we studied definite integrals of the form $\dint_a^b f(x) \dd x$, where:
+
+\begin{itemize}
+    \item $f(x)$ is piecewise continuous, and
+    \item $a,b$ are real numbers.
+\end{itemize}
+
+Such integrals are known as \textbf{proper integrals} (note that this has nothing to do with proper fractional functions $R(x) = \dfrac{P(x)}{Q(x)}$).
+
+
+\subsubsection{Definition of Improper Integrals}
+
+In this section, we extend our discussion to \textbf{improper integrals}, which arises in two main cases: when the limits of integration are infinite or when the function being integrated has discontinuities.
+We define two types of improper integrals.
+
+\begin{defn}[Type I improper integral]
+    \begin{align*}
+        \int_a^\infty f(x) \dd x &:= \lim_{t \to \infty} \int_a^t f(x) \dd x, \\
+        \int_{-\infty}^b f(x) \dd x &:= \lim_{t \to -\infty} \int_t^b f(x) \dd x,\\
+        \int_{-\infty}^\infty f(x) \dd x &:= \int_{-\infty}^a f(x) \dd x + \int_a^\infty f(x) \dd x = \lim_{t \to -\infty} \int_t^a f(x) \dd x + \lim_{t \to \infty} \int_a^t f(x) \dd x.
+    \end{align*}
+\end{defn}
+
+\begin{defn}
+    An improper integral is \bfemph{convergent} if the above limit exists; otherwise, it is \bfemph{divergent}.
+\end{defn}
+
+\begin{defn}[Type II improper integral]
+If $f(x)$ has a discontinuity at some point $c \in [a,b]$, we define
+    \begin{align*}
+        \int_a^c f(x) \dd x &:= \lim_{t \to c} \int_a^t f(x) \dd x, \\
+        \int_{c}^b f(x) \dd x &:= \lim_{t \to c} \int_t^b f(x) \dd x,\\
+        \int_a^b f(x) \dd x &:= \int_a^c f(x) \dd x + \int_c^b f(x) \dd x = \lim_{t \to c} \int_a^t f(x) \dd x + \lim_{t \to c} \int_t^b f(x) \dd x.
+    \end{align*}
+\end{defn}
+
+\begin{figure}[H]
+    \centering
+    \resizebox{0.4\textwidth}{!}{\input{images/type ii indefinite integral.tikz}} % Include your TikZ file
+    \caption{Type II indefinite integral}
+    \label{fig:type ii indefinite integral}
+\end{figure}
+
+\begin{tcolorbox}
+    It is important to review the techniques for taking limits from Calculus I. For reference, see Chapter 2: Limits and Derivatives of the textbook.
+\end{tcolorbox}
+
+
+
+\subsubsection{Steps to Evaluate Improper Integrals}
+\begin{enumerate}
+    \item \textbf{Identify all points} where the integral is improper, including points at infinity and discontinuities.
+    \item \textbf{Decompose the integral} into subintervals such that each integral is proper.
+    \item \textbf{Express the improper integral} as a limit of proper integrals.
+    \item \textbf{Evaluate} the proper integrals and take the limit.
+\end{enumerate}
+
+
+\subsubsection{Examples}
+\begin{ex}[Evaluate $\dint_0^\infty e^{-x} \dd x$]
+    \[\int_0^\infty e^{-x} \dd x = \lim_{t \to \infty} \int_0^t e^{-x} \dd x = \lim_{t \to \infty} \left[-e^{-x}\right]_0^t = \lim_{t \to \infty} \left(-e^{-t} + e^0\right) = 1.\]
+\end{ex}
+
+\begin{ex}[Evaluate $\dint_1^\infty \dfrac{1}{x^p} \dd x, p < 1$]
+    \[\int_1^\infty \dfrac{1}{x^p} \dd x = \lim_{t \to \infty} \int_1^t \dfrac{1}{x^p} \dd x = \lim_{t \to \infty} \left[\dfrac{x^{-p+1}}{-p+1}\right]_1^t = \lim_{t \to \infty} \dfrac{1}{p-1}\left(\dfrac{1}{t^{p-1}} - 1\right) = \dfrac{1}{p-1}.\]
+Note that this integral diverges if $p > 1$. 
+\end{ex}
+
+\begin{ex}[Evaluate $\dint_0^1 \dfrac{1}{x-1} \dd x$]
+    \begin{align*}
+    \int_0^1 \dfrac{1}{x-1} \dd x &= \lim_{t \to 1^-} \int_0^t \dfrac{1}{x-1} \dd x = \lim_{t \to 1^-} \big[\ln|x-1|\big]_0^t = \lim_{t \to 1^-} \ln|t-1| = -\infty.
+\end{align*}
+\end{ex}
+
+\subsubsection{Comparison Test for Improper Integrals}
+\chcomment{Week 5}
+
+Comparison tests can establish the convergence or divergence of improper integrals.
+Suppose \begin{enumerate*}[label = \circled{\arabic*}]
+    \item $f(x)$ and $g(x)$ are \textbf{continuous} functions and \item $0 \leq f(x) \leq g(x)$ 
+    \item for $x \geq a$.
+\end{enumerate*}
+Then
+\begin{align*}
+    \int_a^\infty g(x) \dd x \text{ converges } \quad \boldsymbol{\implies} \quad \int_a^\infty f(x) \dd x \text{ converges } \\
+    \int_a^\infty g(x) \dd x \text{ diverges } \quad \boldsymbol{\impliedby} \quad \int_a^\infty f(x) \dd x \text{ diverges } 
+\end{align*}
+
+\begin{ex}[Example to remember] \label{p-test for improper integral}
+    \begin{align*}
+        \int_a^\infty \dfrac{1}{x^p} \dd x \qquad \begin{cases}
+            \text{ converges} & \text p > 1\\
+            \text{ diverges} & \text p \leq 1
+        \end{cases}
+    \end{align*}
+\end{ex}
+
+
+
+\subsubsection{Steps for Applying the Comparison Test}
+\begin{enumerate}
+    \item \textbf{Determine the dominant term} of the integrand as $x$ approaches infinity or a discontinuity, typically a power function.  
+    \item \textbf{Identify the exponent $p$} in the power function and use Example \ref{p-test for improper integral} to make an initial guess.  
+    \item \textbf{Find suitable $\circled{1}$ continuous functions} $f(x)$ and $g(x)$ for the comparison test.  
+    \item \textbf{Justify the inequality} $\circled{2}~0 \leq f(x) \leq g(x)$ for $\circled{3}~x \geq a$. 
+    \item \textbf{Apply the comparison test} to confirm the guess.  
+\end{enumerate}
+
+
+
+\subsubsection{Examples}
+\begin{ex}[Show that $I = \dint_1^\infty \dfrac{1+e^{-x}}{x} \dd x$ diverges] 
+
+    \textit{Step 1}. Note that the integrand is dominated by $ \dfrac{1}{x} $ as $ x \to \infty $. 
+    
+    \textit{Step 2}. This corresponds to the case $ p = 1 $, and we aim to justify divergence.
+    
+    \textit{Step 3}. We set $ f(x) = \dfrac{1 + e^{-x}}{x} $ and $ g(x) = \dfrac{1}{x} $. 
+    \textit{Step 4}. Note that $ 0 \leq f(x) \leq g(x) $ for all $ x \geq 1 $. 
+    \textit{Step 5}. Moreover, $p = 1$ so the integral 
+    \begin{align*}
+    \int_1^\infty g(x) \dd x &= \int_1^\infty \dfrac{1}{x} \dd x = \lim_{t \to \infty} \int_1^t \dfrac{1}{x} \dd x \\
+    &= \lim_{t \to \infty} \left[\ln x\right]_1^t = \lim_{t \to \infty} (\ln t - \ln 1) = \infty \tag{The same computation as Example 6.5}.
+    \end{align*}
+    By the comparison test, $\displaystyle I = \int_1^\infty \dfrac{1 + e^{-x}}{x} \dd x$ also diverges.
+
+\end{ex}
+
+
+\begin{ex}[Apply the comparison test to $I = \dint_1^\infty \dfrac{1}{\sqrt{x^6 + 1}} \dd x$]
+
+    \textit{Step 1}. Note that the integrand is dominated by $\dfrac{1}{\sqrt{x^6}} = \dfrac{1}{x^3}$ as $x \to \infty$. 
+    
+    \textit{Step 2}. This corresponds to the case $ p = 3 $, and we aim to justify convergence.
+    
+    \textit{Step 3}. We set $g(x) = \dfrac{1}{\sqrt{x^6 + 1}}$ and compare it to $f(x) = \dfrac{1}{\sqrt{x^6}}$.
+
+    \textit{Step 4}. Note that for $x \geq 1$,
+    \[
+    0 \leq \sqrt{x^6} \leq \sqrt{x^6 + 1} \quad \implies \quad  0 \leq \dfrac{1}{\sqrt{x^6 + 1}} \leq \dfrac{1}{\sqrt{x^6}}.\]
+    \textit{Step 5}. Moreover, $p = 3 > 1$ so the integral $\dint_1^\infty \dfrac{1}{\sqrt{x^6}} \dd x = \dint_1^\infty x^{-3} \dd x$ converges. 
+
+    By the comparison test, the integral $I$ also converges. 
+\end{ex}
+
+\begin{ex}[Apply the comparison test to $I = \dint_2^\infty \dfrac{\cos^2 x}{x^2}\dd x$] \chcomment{Read the remaining examples we haven't discussed in class.}
+
+    \textit{Step 1}. Note that the integrand is dominated by $\dfrac{1}{x^2}$ as $x \to \infty$. 
+    
+    \textit{Step 2}. This corresponds to the case $ p = 2 $, and we aim to justify convergence.
+    
+    \textit{Step 3}. We set $g(x) = \dfrac{\cos^2 x}{x^2}$ and compare it to $f(x) = \dfrac{1}{x^2}$.
+
+    \textit{Step 4}. Note that for $0 \leq \cos^2 x \leq 1$ for all $x$, so 
+    \[0 \leq \dfrac{\cos^2 x}{x^2} \leq \dfrac{1}{x^2}.\]
+    \textit{Step 5}. Moreover, $p = 2 > 1$ so the integral $\dint_2^\infty \dfrac{1}{\sqrt{x^2}}$ converges. By the comparison test, the integral $I$ also converges. 
+\end{ex}
+
+
+\begin{ex}[Apply the comparison test to $I = \dint_3^\infty \dfrac{1}{x - e^{-x}}\dd x$]
+    
+    \textit{Step 1}. Note that the integrand is dominated by $\dfrac{1}{x}$ as $x \to \infty$. 
+    
+    \textit{Step 2}. This corresponds to the case $ p = 1 $, and we aim to justify divergence.
+    
+    \textit{Step 3}. We set $f(x) = \dfrac{1}{x - e^{-x}}$ and compare it to $g(x) = \dfrac{1}{x}$.
+
+    \textit{Step 4}. Note that for $0 < e^{-x} < x$ with $x>3$, so 
+    \[0 < x- e^{-x} \leq x < \infty \quad \implies \quad 0 < \dfrac{1}{x} < \dfrac{1}{x - e^{-x}}.\]
+    \textit{Step 5}. Moreover, $p = 1$ so the integral $\dint_3^\infty \dfrac{1}{x}$ diverges. By the comparison test, the integral $I$ also diverges. 
+\end{ex}

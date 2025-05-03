@@ -1,0 +1,210 @@
+\section{Chapter 8}
+In this chapter, we will explore the applications of the techniques we have learned so far. We will apply integration methods to problems involving arc length, surface area, and other geometric quantities. 
+
+
+\subsection{Arc Length}  \chcomment{\S8.1}
+
+\begin{center}
+\begin{tcolorbox}
+    \begin{itemize}
+        \item \textbf{Infinitesimal line element}:
+        \begin{align*}
+            \dd s &= \sqrt{(\dd x)^2 +  (\dd y)^2} = \sqrt{1 + \left(f'(x)\right)^2} \dd x = \sqrt{1 + \left(g'(y)\right)^2} \dd y.
+        \end{align*}
+        \item \textbf{Arc length}:
+            \[L = \int_A^B \dd s = \int_a^b \sqrt{1 + \left(f'(x)\right)^2} \dd x = \int_c^d \sqrt{1 + \left(g'(y)\right)^2} \dd y.\]
+    \end{itemize}
+\end{tcolorbox}
+\end{center}
+Let’s first consider how to compute arc length
+\subsubsection{Derivation of the Arc Length Formula}
+\begin{align*}
+    L = \lim_{n\to \infty} \sum_{i=1}^n |P_{i-1}P_i|, \text{ where } |P_{i-1}P_i| &= \sqrt{(\Delta x_i)^2 +  (\Delta y_i)^2} = \sqrt{1+\left(\dfrac{\Delta y_i}{\Delta x_i}\right)^2} \Delta x_i.
+\end{align*}
+
+\begin{figure}[ht]
+    \centering
+    \resizebox{0.5\textwidth}{!}{\input{images/arc length.tikz}} % Include your TikZ file
+    \caption{Arc length}
+    \label{fig:arc length}
+\end{figure}
+Suppose the curve is given by the graph of some differentiable function $y = f(x)$. Then, when taking the limit $\Delta x \to 0$, the expression $\dfrac{\Delta y}{\Delta x} \to f'$. This suggests 
+\begin{align*}
+    L = \lim_{n\to \infty} \sum_{i=1}^n \sqrt{1+\left(\dfrac{\Delta y}{\Delta x}\right)^2} \Delta x = \int_a^b \sqrt{1+\left(f'(x)\right)^2} \dd x .
+\end{align*}
+
+\begin{defn}
+    We define the \bfemph{infinitesimal line element} 
+    \[
+    \dd s = \sqrt{(\dd x)^2 + (\dd y)^2} = \sqrt{1 + \left(f'(x)\right)^2} \, \dd x = \sqrt{1 + \left(g'(y)\right)^2} \, \dd y.
+    \]
+    Then the \bfemph{arc length} $L$ of a curve is given by 
+    \[L = \int_A^B \dd s. \]
+    In particular, if the curve is given by $y = f(x)$ for $x \in [a, b]$, where $f$ is continuous and differentiable, then 
+    \begin{equation*}
+        L = \int_a^b \sqrt{1 + \left(f'(x)\right)^2} \, dx.
+    \end{equation*}
+    Similarly, if the curve is given by $x = g(y)$ for $y \in [c, d]$, where $g$ is continuous and differentiable, then:
+    \begin{equation*}
+        L = \int_c^d \sqrt{1 + \left(g'(y)\right)^2} \, dy.
+    \end{equation*}
+
+\end{defn}
+
+\subsubsection{Examples}
+\begin{ex} Let $y = e^x$ for $x \in [0, 2]$:
+    \begin{align*}
+        L &= \int_0^2 \sqrt{1 + \left(e^x\right)^2} \dd x.
+    \end{align*}
+    Alternatively, using $x = \ln y$, we rewrite the integral:
+    \begin{equation*}
+        L = \int_1^{e^2} \sqrt{1 + \dfrac{1}{y^2}} \dd y.
+    \end{equation*}
+\end{ex}
+
+\begin{ex} Let $y^2 + x^2 = 1$ (Unit Circle).
+
+    We first compute the arc length of the upper half circle and then use symmetry to get the arc length of the full circle. The upper half of the circle ($y \geq 0$) is given by
+    \[y = \sqrt{1-x^2}, \quad -1 \leq x \leq 1. \] 
+    Therefore, 
+    \begin{equation*}
+    L = \int_{-1}^1 \sqrt{1 + \left(-\dfrac{x}{\sqrt{1 - x^2}}\right)^2} \dd x = \int_{-1}^1 \dfrac{1}{\sqrt{1 - x^2}} \dd x = \cdots = \pi.
+    \end{equation*}
+    The arc length of the full circle is given by $2L = 2\pi$.
+\end{ex}
+
+
+
+\subsubsection{Arc Length Function}
+Given a curve $y = f(x)$, the arc length function $s(x)$ from $x = a$ to $x = b$ is:
+\begin{equation*}
+    s(x) = \int_a^x \sqrt{1 + \left(f'(t)\right)^2} \dd t.
+\end{equation*}
+
+
+\begin{ex} Let $f(x) = x^2 - \dfrac{\ln x}{8}$ for $x \in [1,\infty)$. Then
+    \begin{align*}
+    s(x) &= \int_1^x \sqrt{1 + \left(2t -\dfrac{1}{8t}\right)^2} \dd x = \int_1^x \sqrt{1 + 4t^2 - \dfrac{1}{2} + \dfrac{1}{64t^2} } \dd t\\
+    &= \int_1^x 2t + \dfrac{1}{8t} \dd t = t^2 + \dfrac{\ln t}{8} \Big|_1^x = x^2 + \dfrac{\ln x}{8} - 1.
+    \end{align*}
+\end{ex}
+\chcomment{Typo22}
+
+\subsubsection{Steps to Compute Arc Length}
+\begin{enumerate}
+    \item Check if the function is \textbf{differentiable} and determine which variable to use.
+    \item Write down the corresponding \textbf{infinitesimal line element} $\dd s$.
+    \item Set up the arc length integral. Be careful with the limits of integration.
+\end{enumerate}
+
+
+\subsection{Area of a Surface of Revolution} \chcomment{8.2}
+\subsubsection{Derivation of the Surface Area of Revolution formula}
+\begin{center}
+\begin{tcolorbox}
+    \begin{itemize}
+        \item \textbf{Infinitesimal area element}:
+        \begin{align*}
+            \dd A &= 2\pi R \dd s. 
+        \end{align*}
+        \item \textbf{Surface area}:
+            \[A = \int \dd A.\]
+    \end{itemize}
+\end{tcolorbox}
+\end{center}
+A surface of revolution is formed by rotating a curve about a line (e.g. the $x$- or $y$-axis). 
+
+To derive the area, recall the surface area of a cylinder is $2\pi R l$.
+
+If we take infinitesimal line segments $\dd s$, the small piece is approximately a cylinder.
+\[A = \lim_{n\to \infty} \sum_{i=1}^n 2 \pi f(x) \dd s= \int_a^b 2 \pi f(x) \dd s.\]
+This expression needs to be rewritten in terms of $x$ to make it computable.
+
+Recall from last section $s(x) = \dint_a^x \sqrt{1 + \left(f'(t)\right)^2} \dd t$. This tells us
+\[\dd s = \sqrt{1 + \left(f'(t)\right)^2} \dd x.\]
+We can rewrite the surface areas as follows.
+
+\begin{tcolorbox}
+    For a curve $y = f(x)$ rotated about the $x$-axis, the surface area $A = \int \dd A$ is:
+    \begin{align*}
+        A &= \int_{x_1}^{x_2}  2\pi f(x) \sqrt{1 + \left(f'(x)\right)^2} \dd x\\
+        &= \int_{y_1}^{y_2} 2\pi y \sqrt{1+\Big(\frac{\dd x}{\dd y}\Big)^2} \dd y. \tag{$\dfrac{\dd x}{\dd y}$ is given by implicit differentiation}
+    \end{align*}
+    If the curve $x = g(y)$ is rotated about the $y$-axis, then:
+    \begin{align*}
+        A &= \int_{y_1}^{y_2} 2\pi g(y) \sqrt{1 + \left(g'(y)\right)^2} \dd y\\
+        &= \int_{x_1}^{x_2} 2\pi x \sqrt{1+\Big(\frac{\dd y}{\dd x}\Big)^2} \dd x. \tag{$\dfrac{\dd y}{\dd x}$ is given by implicit differentiation}
+    \end{align*}
+\end{tcolorbox}
+
+
+\subsubsection{Examples}
+\begin{ex} Let $y = \sqrt{9 - x^2}$ for $x \in [-2, 2]$.
+    Rotating about the $x$-axis, compute the surface area:
+    \begin{align*}
+        \dd s &= \sqrt{1 + \left(y'\right)^2} \dd x = \sqrt{1 + \left(-\dfrac{x}{\sqrt{9 - x^2}}\right)^2} \dd x  = \sqrt{1 + \dfrac{x^2}{9 - x^2}} \dd x \\
+        &= \sqrt{\dfrac{9 - x^2 + x^2}{9 - x^2}} \dd x  = \dfrac{3}{\sqrt{9 - x^2}} \dd x.
+    \end{align*}
+    \begin{align*}
+        A &= \int_{-2}^2 2\pi f(x) \dd s = \int_{-2}^2 2\pi \sqrt{9 - x^2} \cdot \dfrac{3}{\sqrt{9 - x^2}} \dd x \\
+        &= \int_{-2}^2 6\pi \dd x = 6\pi (2 - (-2)) = 24\pi.
+    \end{align*}
+\end{ex}
+
+Note that if the axis is shifted by $1$, (that is, rotated about the $y = -1$ axis), then $R = f(x) + 1$.
+
+\begin{ex} Let $y = e^x$ for $x \in [0, 2]$. Rotating about the $y$-axis, set up the surface area of revolution.
+    The radius is given by $R(y) = \ln(y)$. So 
+    \[\dd s = \sqrt{1+\frac{1}{y^2}} \dd y,\] \chcomment{Typo25}
+    and the surface area is given by
+    \begin{align*}
+        A = \int \dd A &= \int_1^{e^2} 2\pi \ln(y) \sqrt{1+\frac{1}{y^2}} \dd y.
+    \end{align*}
+\end{ex}
+\subsubsection{Steps to Compute Surface Area}
+\begin{enumerate}
+    \item Determine whether $R$ is a function of $x$ or $y$; this will determine the variable used in the integration.
+    \item Once you select the variable (either $x$ or $y$), write down the corresponding \textbf{infinitesimal line element} $\dd s$.
+    \item Set up the \textbf{infinitesimal area element} $\dd A$ and the surface area integral. Be careful with the limits of integration.
+\end{enumerate}
+
+\subsection{Applications to physics and engineering} \chcomment{8.3}
+
+\begin{tcolorbox}
+    We likely won’t have time to cover this in class, but you’re welcome to read it if you're interested in the applications of the integral techniques we've learned. I'm happy to discuss any questions during discussion, office hours, or whenever we meet.
+\end{tcolorbox}
+
+
+\subsubsection{Hydrostatic Pressure and Force}
+The force $F$ exerted by a fluid on a submerged plate is given by
+\begin{equation*}
+F = m g = \rho g A d 
+\end{equation*}
+where $\rho$ is the fluid density, $g$ is gravitational acceleration, $A$ is the surface area and $d$ is the depth/width.
+
+\begin{ex} Compute the force on one end of a submerged cylinder with radius 3 and depth 10.
+    Here we have $\rho = \rho(y)$ and $d = 7-y$ is a constant. Since the infinitesimal area $\Delta A$ is given by 
+    \[\Delta A = 2 \sqrt{9-y_i^2} \Delta y,\]
+    taking limits as $\Delta y \to 0$, we have $d$
+    \[\dd A = 2 \sqrt{9-y^2} \dd y. \]
+    Substitute into the force, we have
+    \[F = \int_{-3}^3 \rho g (7-y)  \dd A = \int_{-3}^3 (7-y) \rho g \sqrt{9-y^2} \dd y.\]
+\end{ex}
+
+
+\subsubsection{Moments and Center of Mass}
+For a lamina with density $\rho$, the total mass of the lamina is:
+\[M = \int \rho(x, y) \dd A.\]
+The moment about the $x$-axis is:
+\[M_x = \rho \int_a^b f(x) \cdot \dfrac{f(x)}{2} \dd x.\]
+The moment about the $y$-axis is:
+\[M_y = \rho \int_a^b x f(x) \dd x.\]
+The center of mass $(\overline{x}, \overline{y}) = (\dfrac{M_y}{M}, \dfrac{M_x}{M})$. (Notice the swap in $x$ and $y$).
+
+\begin{ex}
+    Find the center of mass of a semicircular plate, suppose $\rho$ is a constant:
+    \begin{align*}
+        \overline{y} &= \dfrac{1}{\rho A} \cdot \rho \int_{-r}^r \dfrac{1}{2} f(x)^2 \dd x = \dfrac{1}{\dfrac{1}{2}\pi r^2} \int_{-r}^r \dfrac{1}{2} (r^2 - x^2) \dd x \tag{Use symmetry}\\
+        &= \dfrac{2}{\pi r^2} \int_{0}^r r^2 - x^2 \dd x = \dfrac{2}{\pi r^2} \left[ r^2 x - \dfrac{x^3}{3} \right]_0^r = \dfrac{4r}{3\pi}.
+    \end{align*}
+\end{ex}

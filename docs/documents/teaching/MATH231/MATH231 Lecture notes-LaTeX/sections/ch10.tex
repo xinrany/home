@@ -1,0 +1,469 @@
+\section{Chapter 10}
+In this chapter, we introduce an alternative method for representing curves on the 2D plane. Within this framework, we will also explore the reformulated expressions for arc length and the surface area of a revolution. 
+
+\subsection{Curves Defined by Parametric Equations} \chcomment{\S10.1} \chcomment{Week 6}
+\begin{center}
+\begin{tcolorbox}
+    \begin{itemize}
+        \item \textbf{New Concept}: Parametrization 
+    \end{itemize}
+\end{tcolorbox}
+\end{center}
+
+\subsubsection{Parametrization}
+Consider a particle moving along a curve as follows:
+\begin{figure}[ht]
+    \centering
+    \resizebox{0.5\textwidth}{!}{\input{images/golden spiral.tikz}} % Include your TikZ file
+    \caption{A plot of the Golden Spiral.}
+    \label{fig:golden-spiral}
+\end{figure}
+The curve cannot be expressed as $y = f(x)$ because it fails the vertical line test. However, by introducing a parameter $t$, representing the angle, the golden spiral can be represented as a parametric curve:
+\[
+\begin{aligned}
+    x(t) &= a e^{b t} \cos(t), \quad t \geq 0, \\
+    y(t) &= a e^{b t} \sin(t).
+\end{aligned}
+\]
+(It can also be represented in polar coordinates (see \S10.3) as $r(\theta) = a e^{b \theta}$.)
+
+\begin{defn}
+    The system of equations 
+    \begin{align*}
+        x &= f(t), \\
+        y &= g(t).
+    \end{align*}
+    is called a \bfemph{parametric equation/parametrization}, and the resulting curve $\sC$ is called a \bfemph{parametric curve}. We call $t$ a \bfemph{parameter}.  
+\end{defn}
+
+
+
+
+
+\begin{ex}[Unit Circle]
+    \begin{align*}
+        x &= \cos t, 0\leq t < 2\pi \\
+        y &= \sin t.
+    \end{align*}
+    Note that $\cos^2 t + \sin^2 t = 1$, which implies $x^2 + y^2 = 1$. Thus, these equations parametrize a unit circle.
+\end{ex}
+
+Note that parameterizations are \textbf{not unique}.
+\begin{ex}[Circle with Opposite Orientation]
+    \begin{align*}
+        x &= \sin 2t, , 0\leq t < \pi \\
+        y &= \cos 2t.
+    \end{align*}
+    These parametrize the same circle as in Example 1.1, but with opposite orientation.
+\end{ex}
+
+
+\begin{ex}[Circle of Radius $r$ Centered at $(a, b)$]
+    The equation of the circle is 
+    \[(x - a)^2 + (y - b)^2 = r^2.\]
+    The corresponding parametrization is given by:
+    \begin{align*}
+        x &= a + r \cos t, 0\leq t < 2\pi\\
+        y &= b + r \sin t.
+    \end{align*}
+    Here $r$ represents the scaling and $a,b$ represents the translation.
+\end{ex}
+
+\begin{ex}[Parabola]
+    The curve $x = 6 - 4y^2$ can be parametrized directly as:
+    \begin{align*}
+        x &= 6 - 4t^2, t \in \R \\
+        y &= t.
+    \end{align*}
+\end{ex}
+
+
+We can compute the $x$- and $y$-intercepts, critical points, and tangent lines (recall this is $y-y_0 = y'(x_0) (x-x_0)$) just as we do in rectangular coordinates. There will be examples in the discussion worksheet.
+
+
+
+\subsection{Calculus with Parametric Curves} \chcomment{\S10.2}
+\begin{center}
+\begin{tcolorbox}
+    \begin{itemize}
+        \item \textbf{Calculus of Parametric Curves}:
+        \begin{align*}
+        \dd s &=  \sqrt{\left(\dfrac{\dd x}{\dd t}\right)^2 + \left(\dfrac{\dd y}{\dd t}\right)^2} \dd t. \\
+        L &= \int_{t_1}^{t_2}  \dd s,\\
+        S &= \int_{t_1}^{t_2} \dd A = \int_{t_1}^{t_2} 2\pi R \dd s.
+    \end{align*}
+    \end{itemize}
+\end{tcolorbox}
+\end{center}
+
+Calculus techniques can be applied to analyze parametrized curves. 
+    For a curve parametrized as $x = f(t)$ and $y = g(t)$, we can compute the following.
+\begin{itemize}
+    \item \textbf{Tangent slope:} when $\dfrac{\dd x}{\dd t} \neq 0$, the chain rule says $\dfrac{\dd y}{\dd t} = \dfrac{\dd y}{\dd x}\cdot \dfrac{\dd x}{\dd t}$. Hence,
+    \[ \dfrac{\dd y}{\dd x} = \dfrac{\dfrac{\dd y}{\dd t}}{\dfrac{\dd x}{\dd t}}.\]
+\begin{rmk}
+    \begin{enumerate}
+        \item $\dfrac{\dd x}{\dd t} \neq 0$ is required to take the quotient.
+        
+        \item $\dfrac{\dd x}{\dd t} = 0, \dfrac{\dd y}{\dd t} \neq 0$ corresponds to the vertical line $y = ct$.
+
+        \item $\dfrac{\dd x}{\dd t} \neq 0, \dfrac{\dd y}{\dd t} = 0$ corresponds to the horizontal line $x = ct$.
+    \end{enumerate}
+\end{rmk}
+
+We now introduce the substitution $x = x(t), \dd x = \dfrac{\dd x}{\dd t} \dd t$: 
+    \item \textbf{Infinitesimal line element}
+    \begin{align*}
+        \dd s &= \sqrt{(1+ \left(\dfrac{\dd y}{\dd x}\right)^2} \dd x = \sqrt{(1+ \left(\dfrac{\dd y/\dd t}{\dd x/\dd t}\right)^2} \dfrac{\dd x}{\dd t} \dd t = \sqrt{\left(\dfrac{\dd x}{\dd t}\right)^2 + \left(\dfrac{\dd y}{\dd t}\right)^2} \dd t. 
+    \end{align*}
+
+    
+    \item \textbf{Arc length:}
+    \begin{align*}
+        L &= \int_a^b \sqrt{(1+ \left(\dfrac{\dd y}{\dd x}\right)^2} \dd x = \int_{t_1}^{t_2} \sqrt{\left(\dfrac{\dd x}{\dd t}\right)^2 + \left(\dfrac{\dd y}{\dd t}\right)^2} \dd t. 
+    \end{align*}
+    
+    
+    \item \textbf{Surface area (for revolution):}
+    \[ S = \int_a^b 2\pi R \dd s, \quad \text{where } \dd s = \sqrt{\left(\dfrac{\dd x}{\dd t}\right)^2 + \left(\dfrac{\dd y}{\dd t}\right)^2} \dd t. \]
+\end{itemize}
+
+
+\subsubsection{Example}
+\begin{ex}
+Consider the parametrization \begin{align*}
+    x &= \cos^2 t, 0 \leq t \leq \dfrac{\pi}{4}.\\
+    y &= \sin^2 t.
+\end{align*}
+The \textit{infinitesimal line element} is given by
+\begin{align*}
+    \dd s &= \sqrt{\left(\dfrac{dx}{dt}\right)^2 + \left(\dfrac{dy}{dt}\right)^2} \dd t = \sqrt{\left(-2\cos t \sin t\right)^2 + \left(2\sin t \cos t\right)^2} \dd t \\
+    &= \sqrt{4\cos^2 t \sin^2 t + 4\sin^2 t \cos^2 t} \dd t  = \sqrt{8 \sin^2 t \cos^2 t } \dd t \\
+   &= \sqrt{2} \sin(2t) \dd t.
+\end{align*}
+
+Hence the \textit{arc length} is given by
+\begin{align*}
+    L = \int \dd s = \int_0^{\dfrac{\pi}{4}} \sqrt{2} \sin(2t) \dd t = -\dfrac{\sqrt{2}}{2} \cos(2t) \Big|_0^{\dfrac{\pi}{4}} = \dfrac{\sqrt{2}}{2}.
+\end{align*}
+Rotated about the $x$-axis, the \textit{surface area} is given by
+\begin{align*}
+    A &= \int_0^{\dfrac{\pi}{4}} 2\pi \cdot \sin^2(t) \cdot \sqrt{2} \sin(2t) \dd t = 2 \sqrt{2} \pi \int_0^{\dfrac{\pi}{4}} \sin^2(t) \cdot \sin(2t) \dd t \\
+    &= 2 \sqrt{2} \pi \int_0^{\dfrac{\pi}{4}} \dfrac{1-\cos(2t)}{2} \cdot \sin(2t) \dd t \\
+    &= \sqrt{2} \pi \int_0^{\dfrac{\pi}{4}} \sin(2t) \dd t + \sqrt{2} \pi \int_0^{\pi/4} \dfrac{1}{2} \sin(4t) \dd t \\
+    %
+    &= \sqrt{2} \pi  \left[ -\dfrac{\cos(2t)}{2} \right]_0^{\pi/4} -  \sqrt{2} \pi \left[ -\dfrac{\cos(4t)}{8} \right]_0^{\dfrac{\pi}{4}} \\
+    &= \sqrt{2} \pi \left(\dfrac{1}{2} - \left(\dfrac{1}{8} + \dfrac{1}{8}\right)\right)  = \sqrt{2} \pi \left(\dfrac{1}{2} - \dfrac{1}{4} \right) = \dfrac{\pi \sqrt{2}}{4}.
+\end{align*}
+\end{ex}
+
+So far, our examples involve parametric curves easily expressed as the graph of a differentiable function. The next example shows that parametric curves are more general than those defined by a differentiable function, as seen in Chapter 8.
+\begin{ex}
+    Consider the parametrization \begin{align*}
+    x &= 3\cos(\pi t), 0 \leq t \leq \dfrac{1}{2}.\\
+    y &= 5t+2.
+\end{align*}
+Note that as $t$ increases, the $x$-coordinate oscillates, while the $y$-coordinate increases. You can use an online plotter, such as \href{https://www.geogebra.org/m/cAsHbXEU}{GeoGebra}, to view the graph in the 2D plane.
+
+The \textit{infinitesimal line element} is given by
+\begin{align*}
+    \dd s &= \sqrt{\left(\dfrac{dx}{dt}\right)^2 + \left(\dfrac{dy}{dt}\right)^2} \dd t = \sqrt{\left(-3\pi \sin(\pi t)\right)^2 + 5^2} \dd t = \sqrt{9\pi^2 \sin^2 (\pi t) + 25} \dd t.
+\end{align*}
+
+Hence the \textit{arc length} is given by
+\begin{align*}
+    L = \int \dd s = \int_0^{1/2} \sqrt{9\pi^2 \sin^2 (\pi t) + 25} \dd t.
+\end{align*}
+
+Rotated about the $y$-axis the \textit{surface area} is given by
+\begin{align*}
+    A &= \int_0^{1/2} 2\pi \cdot 3\cos(\pi t) \cdot \sqrt{9\pi^2 \sin^2 (\pi t) + 25} \dd t \tag{Substitution $u = \sin(\pi t), \dd u = \pi \cos(\pi t)$}\\
+    &= \int_0^{1/2} 6 \cdot \sqrt{9\pi^2 u^2 + 25} \dd u \tag{Trig integral $u = \dfrac{5}{3\pi} \tan \theta, \dd u = \dfrac{5}{3\pi} \sec^2 \theta \dd \theta$}\\
+    &= \int_0^{\arctan{(3\pi/5)}}  6\cdot \sqrt{25\tan^2 \theta + 25} \dfrac{5}{3\pi} \cdot \sec^2 \theta \dd \theta = \int_0^{\arctan{(3\pi/5)}} 6\cdot 5 \sec\theta \cdot \dfrac{5}{3\pi} \sec^2 \theta \dd \theta\\
+    &= \frac{25}{\pi} \int_0^{\arctan{(3\pi/5)}} \sec^3 \theta \dd \theta \\
+    &= \frac{25}{\pi} \Big(\sec\theta \tan \theta + \ln|\sec \theta + \tan \theta| \Big) \bigg|_0^{\arctan{(3\pi/5)}} \approx 43.0705.
+\end{align*}
+To evaluate the last quantity, use $\sec \theta = \sqrt{1+\tan^2 \theta} = \dfrac{\sqrt{25+9\pi^2}}{5}$.
+\end{ex}
+
+
+
+\subsection{Polar Coordinates} \chcomment{\S10.3}
+\begin{center}
+\begin{tcolorbox}
+    \begin{itemize}
+        \item \textbf{New Concept}: Polar Coordinates 
+        \[\begin{cases}
+                x = r \cos \theta, \\
+                y = r \sin \theta.
+            \end{cases} \quad  \iff \quad \begin{cases}
+                r = \sqrt{x^2 + y^2},  \\
+                \theta = \tan^{-1}\left(\dfrac{y}{x}\right).
+            \end{cases}\] 
+            \item \textbf{Examples}:
+            \begin{itemize}
+                \item Circles $r=R$ or $r=a\cos\theta+ b\sin\theta$.
+                \item Cardioids $r=a\pm a\cos\theta$ or $r=a\pm a\sin\theta$.
+                \item Lima\c{c}ons $r=a\pm b\cos\theta$ or $r=a\pm b\sin\theta$, $a\neq b$.
+            \end{itemize}
+    \end{itemize}
+\end{tcolorbox}
+\end{center}
+
+
+In this section, we will explore an alternative method for representing points on the Euclidean plane.
+\subsubsection{Curves in Polar Coordinates}
+In polar coordinates, a point $(r, \theta)$ is represented as:
+\begin{align*}
+    x &= r \cos \theta, \\
+    y &= r \sin \theta.
+\end{align*}
+Conversely:
+\begin{align*}
+    r &= \sqrt{x^2 + y^2}, \text{ if } r>0 \\
+    \theta &= \arctan\left(\dfrac{y}{x}\right).
+\end{align*}
+When $r<0$, the angle $\theta$ get added by $\pi$. See Example 3.2.
+
+\begin{ex} Converting $(x,y) = (1, 1)$ to polar coordinates
+    Given $(x, y) = (1, 1)$:
+    \begin{align*}
+        r &= \sqrt{1^2 + 1^2} = \sqrt{2}, \\
+        \theta &= \tan^{-1}\left(\dfrac{1}{1}\right) = \dfrac{\pi}{4}.
+    \end{align*}
+    Thus, the polar coordinates are $(\sqrt{2}, \pi/4)$. 
+
+    Note that the polar coordinate for this point is \textbf{not unique}. We can also pick $(\sqrt{2},2\pi+\dfrac{\pi}{4})$.
+\end{ex}
+\begin{ex}
+    Convert $(r,\theta) = (-\sqrt{2},\dfrac{\pi}{4})$ to rectangular coordinates:
+    We know 
+    \begin{align*}
+        x=r\cos\theta = -\sqrt{2} \cdot \frac{1}{\sqrt{2}} = -1,\\
+        y=r\sin\theta = -\sqrt{2} \cdot \frac{1}{\sqrt{2}} = -1.
+    \end{align*}
+The point is symmetric to $(1,1)$ with respect to the origin, as shown in the previous example. You can check that $(r,\theta) = (-\sqrt{2},\pi+\dfrac{\pi}{4})$ corresponds to $(x,y) = (1,1)$.
+\end{ex}
+
+Some curves, such as circles or spirals, can be expressed as simple functions in terms of polar coordinates
+\[F(r,\theta) = 0.\]
+We will explore how to compute arc length and surface area using polar coordinates.
+
+
+\subsubsection{Examples}
+\begin{ex}[circle centered at the origin]
+    In rectangular coordinates, a circle of radius $R$ centered at the origin is given by $x^2+y^2 = R^2$. In polar coordinates, this is given by $r = R, \theta \in [0, 2\pi]$.
+    \begin{figure}[H]
+        \centering
+        \resizebox{0.3\textwidth}{!}{\input{images/circle.tikz}} % Include your TikZ file
+        \caption{Circle of radius $r$}
+        \label{fig:circle}
+    \end{figure}
+\end{ex}
+
+\begin{ex}
+    Consider a circle centered at $(0, \dfrac{1}{2})$ with radius $\dfrac{1}{2}$, then $x^2+(y-\dfrac{1}{2})^2 = \dfrac{1}{4}$.
+    We convert this into polar coordinates by plug in $x = r \cos\theta, y = r \sin\theta$:
+    \begin{align*}
+        x^2+(y-\dfrac{1}{2})^2 = \dfrac{1}{4} &\iff r^2 \cos^2\theta +(r \sin \theta-\dfrac{1}{2})^2 = \dfrac{1}{4}\\
+        &\iff r^2 \cos^2\theta + r^2 \sin^2 \theta - r \sin \theta + \dfrac{1}{4} = \dfrac{1}{4}\\
+        &\iff r^2 - r \sin \theta = 0.
+    \end{align*}
+    Since $r > 0$, this equation is equivalent to $r = \sin \theta$.
+
+    \begin{figure}[H]
+        \centering
+        \resizebox{0.6\textwidth}{!}{\input{images/circle shifted.tikz}} % Include your TikZ file
+        \caption{Circle of radius $\dfrac{1}{2}$ centered at $(0,\dfrac{1}{2})$}
+        \label{fig:circle shifted}
+    \end{figure}
+
+    Note that with the points winding around the \textit{full} circle once when $\theta \in [0,\pi]$.
+\end{ex}
+
+In general, in polar coordinates, the equations $r=R$ or $r=a\cos\theta+b\sin\theta$ represent circles.
+
+\begin{ex}[$r=a+b\sin \theta$]
+    The polar curve $r = a+b\sin \theta$ gives a cardioid.
+    \begin{figure}[H]
+        \centering
+        \resizebox{\textwidth}{!}{\input{images/cardioid.tikz}} % Include your TikZ file
+        \caption{Convex lima\c{c}on $r=1+\dfrac{1}{2}\sin\theta$, dimpled lima\c{c}on $r=1+\dfrac{3}{4}\sin\theta$, cardioid $r=1+\sin\theta$ and lima\c{c}on with inner loop $r=1+2\sin\theta$.}
+        \label{fig:cardioid}
+    \end{figure}
+\end{ex}
+Note that as $b\to 0$, the polar curve converges to a circle centered at the origin.
+
+In general, in polar coordinates, the equations $r=a\pm b\cos\theta$ or $r=a\pm b\sin\theta$ represent 
+\begin{itemize}
+    \item Cardioids: if $a=b$.
+    \item Lima\c{c}ons with an inner loop: if $a<b$.
+    \item Lima\c{c}ons without an inner loop: if $a>b$.
+\end{itemize}
+
+
+\newpage
+
+\subsection{Areas and Lengths in Polar Coordinates} \chcomment{\S10.4} \chcomment{Week 7}
+\begin{center}
+\begin{tcolorbox}
+    \begin{itemize}
+        \item \textbf{Calculus with Polar Coordinates}:
+        \begin{align*}
+        A &= \int_{\theta_1}^{\theta_2} \frac{1}{2}r^2 \dd \theta \tag{area enclosed by $r=f(\theta)$}\\
+        \dd s &=  \sqrt{\left(\dfrac{\dd x}{\dd \theta}\right)^2 + \left(\dfrac{\dd y}{\dd \theta}\right)^2} \dd \theta = \sqrt{r^2 + \left(\dfrac{\dd r}{\dd \theta}\right)^2} \dd \theta. \\
+        L &= \int_{\theta_1}^{\theta_2} \dd s,\\
+        S &= \int_{\theta_1}^{\theta_2} \dd A = \int_{\theta_1}^{\theta_2} 2\pi R \dd s.\tag{surface area of revolution of a polar curve}
+    \end{align*}
+    \end{itemize}
+\end{tcolorbox}
+\end{center}
+
+
+\subsubsection{Tangent}
+Now consider a polar curve of the form $r = f(\theta)$. Then,
+\[x = f(\theta) \cos \theta, \quad y = f(\theta) \sin \theta.\]
+The derivative of the parametrization with respect to $\theta$ is given by
+\[\dfrac{dx}{d\theta} = f'\cos \theta - f\sin \theta, \quad \dfrac{dy}{d\theta} = f'\sin \theta + f\cos \theta.\]
+We can compute its tangent by the chain rule:
+\[
+    \dfrac{dy}{dx} = \dfrac{\dfrac{dy}{d\theta}}{\dfrac{dx}{d\theta}}=\dfrac{f'\cos \theta + f\sin \theta}{f'\sin \theta - f\cos \theta}
+\]
+\begin{ex}
+    Let $r = 1 + \sin \theta$. Compute $\dfrac{dy}{dx}$.
+    \[x = (1 + \sin \theta) \cos \theta, \quad y = (1 + \sin \theta) \sin \theta. \]
+    
+    Differentiating,
+    \[ \dfrac{dx}{d\theta} = \cos \theta \cdot \sin \theta - (1+\sin \theta) \cos \theta, \quad \dfrac{dy}{d\theta} = \cos \theta \cdot \cos \theta - (1+\sin \theta) \sin \theta.\]
+    
+    Thus,
+    \[\dfrac{dy}{dx} = \dfrac{\cos \theta + 2\cos \theta \sin \theta}{\cos^2 \theta - \sin^2 \theta - \sin \theta} = \dfrac{\cos \theta + \sin (2\theta)}{\cos (2\theta) - \sin \theta}.\]
+    
+    Note that:
+    \begin{equation*}
+        \lim_{\theta \to \frac{3\pi}{2}^-} \dfrac{dy}{dx} = \lim_{\theta \to \frac{3\pi}{2}^-} \dfrac{\cos \theta + \sin (2\theta)}{\cos (2\theta) - \sin \theta} = \lim_{\theta \to \frac{3\pi}{2}^-} \dfrac{-\cos \theta +2 \cos (2\theta)}{-2\sin (2\theta) - \cos \theta} = -\infty. \tag{L'H}
+    \end{equation*}
+    This means the tangent blows up at $\dfrac{3\pi}{2}$.
+\end{ex}
+
+\subsubsection{Area Enclosed by Polar Curves}
+
+For $r = f(\theta)$, the area of a sector is approximately
+\[\Delta A \approx \dfrac{1}{2} r^2 \Delta \theta.\]
+
+Using a Riemann sum,
+\[ A \approx \sum_{i=1}^n \frac{1}{2} \left[f(\xi_i)\right]^2 \Delta \theta \quad \implies \quad A = \int_{\theta_1}^{\theta_2} \dfrac{1}{2} \left[f(\xi)\right]^2 \dd \theta = \int_{\theta_1}^{\theta_2} \dfrac{1}{2} r^2 \dd \theta. \]
+
+\begin{ex}
+    Find the area enclosed by one loop of the four-leaved rose $r = \cos(2\theta)$.
+    \begin{align*}
+        A &= \dfrac{1}{2} \int_{-\pi/4}^{\pi/4} r^2 \dd \theta = \dfrac{1}{2} \int_{0}^{\pi/4} \cos^2(2\theta) \dd \theta \tag{Integrand is an even function}\\
+        &= \int_{0}^{\pi/4} \dfrac{1 + \cos(4\theta)}{2} \dd \theta = \dfrac{1}{2} \left[\theta + \dfrac{1}{4}\sin(4\theta)\right]_{-\pi/4}^{\pi/4} = \frac{\pi}{4}.
+    \end{align*}
+    \chcomment{Typo22}
+
+    \begin{figure}[H]
+        \centering
+        \resizebox{0.5\textwidth}{!}{\input{images/four-leaf.tikz}} % Include your TikZ file
+        \caption{Four-leaf $r=\cos (2\theta)$}
+        \label{fig:four-leaf}
+    \end{figure}
+\end{ex}
+
+
+\subsubsection{Arc Length}
+We compute the infinitesimal line element $\dd s$ as follows:
+\begin{align*}
+    \dd s = \sqrt{1 + \left(\dfrac{\dd y}{\dd x}\right)^2} \dd x &= \sqrt{\left(\dfrac{\dd x}{\dd \theta}\right)^2 + \left(\dfrac{\dd y}{\dd \theta}\right)^2} \dd \theta.
+\end{align*}
+Note that 
+\begin{align*}
+    \left(\dfrac{\dd x}{\dd \theta}\right)^2 + \left(\dfrac{\dd y}{\dd \theta}\right)^2 &= (r')^2 \cos^2\theta - 2rr'\cos\theta \sin\theta + r^2 \sin^2\theta \\
+    &+ (r')^2 \sin^2\theta + 2rr'\sin\theta \cos\theta + r^2 \cos^2\theta\\
+    &= (r')^2 + r^2, \qquad \text{ where } r' = f'(\theta).
+\end{align*}
+
+So 
+\[\dd s = \sqrt{r^2 + \left(\dfrac{\dd r}{\dd \theta}\right)^2} \dd \theta = \sqrt{\Big(f(\theta)\Big)^2 + \Big(f'(\theta)\Big)^2} \dd \theta.\]
+The arc length of a polar curve is given by:
+\begin{align*}
+    L &= \int \dd s= \int_{\theta_1}^{\theta_2} \sqrt{\Big(f(\theta)\Big)^2 + \Big(f'(\theta)\Big)^2} \dd \theta.
+\end{align*}
+
+
+\begin{ex}
+    Find the arc length of $r = \theta$, $0 \leq \theta \leq 1$.
+    \[
+        L = \int_0^1 \sqrt{\theta^2 + 1} \dd \theta.
+    \]
+    
+    We have seen this integral in \S7. Using the substitution $\theta = \tan x$, $d\theta = \sec^2 x \dd x$, we have
+    \begin{align*}
+        L &= \int_0^{\pi/4} \sec x \sec^2 x \dd x \tag{IBP with $u = \sec x$, $v = \tan x$}\\
+        &= \sec x \tan x - \int_0^{\pi/4} \tan x \cdot \tan x \sec x \dd x = \sec x \tan x - \int_0^{\pi/4} \tan^2 x \sec x \dd x\\
+        &= \sec x \tan x - \int_0^{\pi/4} (\sec^2 x - 1) \sec x \dd x = \sec x \tan x - L + \int_0^{\pi/4} \sec x \dd x
+    \end{align*}
+    This implies 
+    \begin{align*}
+        2L &= \sec x \tan x + \int_0^{\pi/4} \sec x \dd x\\
+        &=\sec x \tan x + \ln|\sec x + \tan x| \Big|_0^{\pi/4} = \frac{1}{2}\Big(\sqrt{2}+ \ln(1+\sqrt{2})\Big). 
+    \end{align*}
+\end{ex}
+
+\newpage
+\subsection{Summary of Arc Length and Area Integrals}
+Here is a summary of the integrals we learned in Chapters 8 and 10. In practice, you only need to remember the formulae in bold text; the others can be derived from them using the chain rule (for differentiation) and the substitution rule (for integration). 
+
+\begin{center}
+\begin{tcolorbox}
+    \begin{center}
+    \renewcommand{\arraystretch}{6}
+    \begin{tabular}{|p{2cm}|p{4.5cm}|p{3.5cm}|p{3.5cm}|} 
+        \hline
+         & $ \dd s $ & surface area of revolution $ \dd A $ & surface area enclosed by curve\\ 
+        \hline
+        $ (x,y) $ & \begin{minipage}{4.5cm}
+            $\boldsymbol{\sqrt{(\dd x)^2 + (\dd y)^2}}$ \\
+            \\
+            $= \sqrt{1 + \left(\dfrac{\dd y}{\dd x}\right)^2} \dd x$ \\ 
+            $= \sqrt{\left(\dfrac{\dd x}{\dd y}\right)^2 + 1} \dd y$
+        \end{minipage} & \begin{minipage}{3.5cm}
+            $ \boldsymbol{2\pi R \dd s} $, \\
+            $R$ is a function of $x$ or $y$
+        \end{minipage}
+        & \begin{minipage}{4cm}
+            $\dint_{x_1}^{x_2} f(x) \dd x$ \\
+            or $\dint_{y_1}^{y_2} g(y) \dd y$
+        \end{minipage}\\
+        \hline
+        \begin{minipage}{2cm}
+            $ \big( x(t), y(t) \big) $ \\
+            $x' = \dfrac{\dd x}{\dd t}$\\
+            $y' = \dfrac{\dd y}{\dd t}$
+        \end{minipage}
+        & $ \sqrt{(x')^2 + (y')^2} \dd t $ & \begin{minipage}{3.5cm}
+            $ 2\pi R \dd s $, \\
+            $R$ is a function of $t$
+        \end{minipage} & \begin{minipage}{4cm}
+            $\dint_{t_1}^{t_2} f(x(t)) \; x'\dd t$ \\
+            or $\dint_{t_1}^{t_2} g(y(t)) \; y'\dd y$
+        \end{minipage} \\
+        \hline
+        \begin{minipage}{2cm}
+            $ (r,\theta)$, \\
+            $r = r(\theta) $,\\
+            $r' = \dfrac{\dd r}{\dd \theta} $
+        \end{minipage} & \begin{minipage}{4.5cm}
+            $ \sqrt{\left(\dfrac{\dd x}{\dd \theta}\right)^2 + \left(\dfrac{\dd y}{\dd \theta}\right)^2} \dd \theta $ \\
+            \\
+            $= \boldsymbol{\sqrt{r^2 + (r')^2} \dd \theta} $
+        \end{minipage} & \begin{minipage}{3.5cm}
+            $ 2\pi R \dd s $, \\
+            $R$ is a function of $\theta$
+        \end{minipage} & $ \boldsymbol{\dint_{\theta_1}^{\theta_2} \frac{1}{2} \; r^2 \dd \theta} $ \\
+        \hline
+    \end{tabular}
+    \end{center}
+\end{tcolorbox}
+\end{center}
+Note that the last row can also be derived from the second row, but it is convenient to remember them.

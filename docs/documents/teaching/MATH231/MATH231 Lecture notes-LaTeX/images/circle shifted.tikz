@@ -1,0 +1,47 @@
+\begin{tikzpicture}
+    \def\xmax{2.4}
+    \def\R{2}
+    \def\ang{55}
+    \coordinate (O) at (0,0);
+    \coordinate (A) at (0,2);
+    \coordinate (X) at (\R,0);
+    \coordinate (R) at (1.7,3.1);
+%2d plane and cicle    
+    \draw[thick] (A) circle (\R);
+    \draw[->,line width=0.9] (-\xmax,0) -- (1.08*\xmax,0) node[right] {$x$};
+    \draw[->,line width=0.9] (0,-0.5) -- (0,4.5) node[left] {$y$};
+% center and radius
+    \draw[<->,enji, thick] (A) -- (R) node[midway,right=4,above left=0] {$\frac{1}{2}$};
+    \fill[shinbashi] (xy polar cs:angle=90, radius=2) circle (2pt);
+    \node[below left] at (0,2) {\(O\)};
+
+\end{tikzpicture}
+
+\begin{tikzpicture}[>=latex]
+    % Draw the curve for r = 2*sin(theta)
+    \draw[thick, domain=0:2*pi, samples=200, smooth] 
+        plot (xy polar cs:angle=\x r, radius={4*sin(\x r)});
+    
+    % Label the equation
+    %\node at (3,2.5) {$r=2\sin\theta$};
+    
+    % Draw axes
+    \draw[->] (-2.5,0) -- (2.5,0) node[right] {\small $x$};
+    \draw[->] (0,-0.5) -- (0,4.5) node[above] {\small $y$};
+
+    % Add sample points at specified angles and connect to the origin
+    \foreach \angle/\label in {
+        30/$\theta=\frac{\pi}{6}$, 
+        60/$\theta=\frac{\pi}{3}$, 
+        90/$\theta=\frac{\pi}{2}$, 
+        135/$\theta=\frac{3\pi}{4}$
+    } {
+        \pgfmathsetmacro{\r}{4*sin(\angle)} % Calculate r for each angle
+        % Draw the point
+        \fill[shinbashi] (xy polar cs:angle=\angle, radius=\r) circle (2pt);
+        % Add label
+        \node[anchor=west] at (xy polar cs:angle=\angle, radius=\r) {\small \label};
+        % Draw solid line to the origin
+        \draw[shinbashi] (0,0) -- (xy polar cs:angle=\angle, radius=\r);
+    }
+\end{tikzpicture}

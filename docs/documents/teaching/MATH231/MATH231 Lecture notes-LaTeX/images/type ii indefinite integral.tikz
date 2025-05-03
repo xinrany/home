@@ -1,0 +1,20 @@
+\begin{tikzpicture}
+    % Axes
+    \draw[->] (-1,0) -- (5,0) node[right] {\(x\)};
+    \draw[->] (0,-1) -- (0,4) node[above] {\(y\)};
+    
+    % Vertical asymptote at x=3
+    \draw[dashed, shinbashi, thick] (1.6,0.6) -- (1.6,-0.1) node[below] {$a$};
+    \draw[dashed, shinbashi, thick] (4.7,0.5) -- (4.7,-0.1) node[below] {$b$};
+    
+    \draw[dashed, enji, thick] (3,4) -- (3,-0.1) node[below] {$c$};
+    
+    % Function graph
+    \draw[domain=0.2:2.75,smooth,variable=\x,thick] 
+        plot ({\x},{-1/(\x-3)});
+    \draw[domain=3.25:5,smooth,variable=\x,thick] 
+        plot ({\x},{1/(\x-3)});
+    
+    % Labels
+    \node[below left] at (0,0) {\(0\)};
+\end{tikzpicture}

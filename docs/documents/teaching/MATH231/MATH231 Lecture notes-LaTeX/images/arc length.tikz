@@ -1,0 +1,36 @@
+\begin{tikzpicture}
+    % Define the curve f(x)
+    \draw[domain=0:6,samples=100] plot (\x,{sin(\x r)}) node[right] {$y = f(x)$};
+
+    % Draw the points on the curve
+    \fill (1, {sin(1 r)}) circle (2pt) node[above] {$P_0$};
+    \fill (1.5, {sin(1.5 r)}) circle (2pt) node[above] {$P_1$};
+    \fill (2, {sin(2 r)}) circle (2pt) node[above] {$P_2$};
+    
+    \fill (3.5, {sin(3.5 r)}) circle (2pt) node[below left] {$P_{n-1}$};
+    \fill (4, {sin(4 r)}) circle (2pt) node[below] {$P_{n}$};
+
+    % Draw the segments representing sublengths
+    \draw[thick, enji] (1, {sin(1 r)}) -- (1.5, {sin(1.5 r)});
+    \draw[thick, enji] (1.5, {sin(1.5 r)}) -- (2, {sin(2 r)});
+    \draw[thick, enji] (3.5, {sin(3.5 r)}) -- (4, {sin(4 r)});
+
+    % Draw the dashed lines for the height differences
+    \draw[dashed] (1, 0) -- (1, {sin(1 r)});
+    \draw[dashed] (1.5, 0) -- (1.5, {sin(1.5 r)});
+    \draw[dashed] (2, 0) -- (2, {sin(2 r)});
+    \draw[dashed] (2.5, 0) -- (2.5, {sin(2.5 r)});
+    \draw[dashed] (3.5, 0) -- (3.5, {sin(3.5 r)});
+    \draw[dashed] (4, 0) -- (4, {sin(4 r)});
+    % Label the segments
+    %\node at (2, -0.5) {\huge Sublengths approximation};
+
+    % Draw the x-axis and y-axis
+    \draw[->] (-0.5,0) -- (6.5,0) node[right] {$x$};
+    \draw[->] (0,-1.5) -- (0,1.5) node[above] {$y$};
+
+    % Label the arc length integral
+    %\node at (2, -2) {Arc length approximation: $L \approx \sum_{i=1}^{n} \sqrt{(x_{i+1} - x_i)^2 + (f(x_{i+1}) - f(x_i))^2}$};
+
+\end{tikzpicture}
+

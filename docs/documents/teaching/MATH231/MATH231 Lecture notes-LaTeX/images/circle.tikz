@@ -1,0 +1,20 @@
+% CIRCLE arc segment
+\begin{tikzpicture}
+    \def\xmax{2.4}
+    \def\R{2}
+    \def\ang{55}
+    \coordinate (O) at (0,0);
+    \coordinate (X) at (\R,0);
+    \coordinate (R) at (\ang:\R);
+%2d plane and cicle    
+    \draw (O) circle (\R);
+    \draw[->,line width=0.9] (-\xmax,0) -- (1.08*\xmax,0) node[right] {$x$};
+    \draw[->,line width=0.9] (0,-\xmax) -- (0,1.08*\xmax) node[left] {$y$};
+%polar
+    \draw pic[->,"$\Delta\theta$",draw=black,angle radius=20,angle eccentricity=1.5] {angle=X--O--R};
+    \draw[->,enji, very thick] (O) -- (R) node[midway,right=4,above left=0] {$r$};
+    \draw[enji,very thick,line cap=round] (X) arc (0:\ang:\R) ;
+%rectangular
+    \draw[dashed, shinbashi] (R) -- ({\R*cos(\ang)},0) node[below] {$x$};
+    \draw[dashed, shinbashi] (R) -- (0,{\R*sin(\ang)}) node[left] {$y$};
+\end{tikzpicture}

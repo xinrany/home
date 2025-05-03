@@ -1,0 +1,1409 @@
+\section{Chapter 11: Infinite Sequences and Series} \chcomment{Week 8}
+In this chapter, we introduce sequences and series. We will focus on how to test for convergence using tools like the Integral Test, the Comparison Tests, and the Ratio and Root Tests. We will also discuss alternating and absolutely convergent series, along with strategies for analyzing them. Finally, we will explore power series and Taylor and Maclaurin series, and how to use them to approximate functions.
+
+\subsection{Sequences} \chcomment{\S11.1}
+\begin{center}
+\begin{tcolorbox}
+    \begin{itemize}
+        \item \textbf{New Concept}: Sequence, limit of sequence, sequence converges/diverges 
+        \item \textbf{Example to memorize}:
+        \begin{itemize}
+        \item \begin{align*}
+            \dlim_{n \to \infty} \dfrac{1}{n^p} = \begin{cases} 
+            0 & \text{if } p > 0 \\
+            1 & \text{if } p = 0 \\
+            \infty & \text{if } p < 0
+        \end{cases}
+        \end{align*}
+        
+        \item \begin{align*}
+                \dlim_{n \to \infty} r^n = \begin{cases} 
+            0 & \text{if } -1 < r < 1 \\
+            1 & \text{if } r = 1 \\
+            \infty & \text{if } r > 1 \\
+            \text{DNE} & \text{if } r < -1
+            \end{cases}
+        \end{align*}
+        \end{itemize}
+    \end{itemize}
+\end{tcolorbox}
+\end{center}
+
+
+\begin{defn}
+     A \bfemph{sequence} is an infinite list of members written with an order. We denote the sequence as $\{a_1, a_2, \ldots, a_n, \ldots\}$, $\{a_n\}$ or $\{a_n\}_{n=1}^\infty$.
+\end{defn}
+
+\begin{ex}[sequences]\leavevmode
+\begin{enumerate}
+    \item $\{1, 2, 3, 9, \ldots\}$.
+    \item $\{7, 1, 8, 2, 8, \ldots\}$.
+\end{enumerate}
+\end{ex}
+
+Some sequences can be defined by giving a formula for the $n$-th term $a_n$.
+
+\begin{ex}[sequences given by formulae]\leavevmode
+\begin{enumerate}
+    \item $a_n = \dfrac{1}{n}$, $\{a_n\} = \{1, \dfrac{1}{2}, \dfrac{1}{3}, \ldots\}$.
+    \item $a_n = (-1)^{n-1}$, $\{a_n\} = \{-1, 1, -1, 1, \ldots\}$.
+    \item $a_n = \dfrac{1}{3^n}$, $\{a_n\} = \{\dfrac{1}{3}, \dfrac{1}{9}, \dfrac{1}{27}, \ldots\}$.
+\end{enumerate}
+\end{ex}
+
+
+Some sequences may not have a simple/explicit defining equation.
+
+\begin{ex}[sequences without explicit formulae] \leavevmode
+\begin{enumerate}
+    \item $a_n = $ the digit in the $n$-th decimal place of $\pi$.
+    \item The Fibonacci sequence: $a_1 = 1, a_2 = 1, a_n = a_{n-1} + a_{n-2}$ \\
+    $\{a_n\} = \{1, 1, 2, 3, 5, 8, 13, 21, \ldots\}$. 
+\end{enumerate}
+\end{ex}
+
+
+\begin{rmk}
+    A sequence can be thought of as a function $f$ defined only on the natural numbers. Therefore, we can examine properties such as the graph and convergence. For example, \[ \lim_{n \to \infty} a_n = 0. \]
+\end{rmk}
+
+\begin{defn}
+    A sequence has \bfemph{limit} $L$ if for any $\epsilon > 0$, there is an $N$ such that if $n > N$, then $|a_n - L| < \epsilon$. (We write this as 
+    \[\forall \epsilon > 0, \exists N \text{ s.t. if } n > N, \text{ then } |a_n - L| < \epsilon.\]
+    
+    We say $a_n$ \bfemph{converges} to $L$ and denote it as $\dlim_{n\to \infty} a_n = L$.
+\end{defn}
+
+
+\begin{rmk}[Intuition]
+    $\dlim_{n \to \infty} a_n = \infty$ means that for every positive number $M$, there is an integer $N$ such that if $n > N$, then $a_n > M$.
+\end{rmk}
+\begin{figure}[ht]
+    \centering
+    \resizebox{0.6\textwidth}{!}{\input{images/sequence.tikz}} % Include your TikZ file
+    \label{fig:sequence}
+    \caption{Illustration of the definition of $\lim_{n \to \infty} a_n = \infty$. Beyond some $N$, all $a_n$ exceed $M$.}
+\end{figure}
+\begin{ex}[limit of a sequence] \leavevmode
+\begin{enumerate}
+    \item $\dlim_{n \to \infty} \dfrac{n}{n+1} = 0 = \dlim_{n \to \infty} \dfrac{1}{1+1/n} = 1$.
+
+    \begin{align*}
+        \dlim_{n \to \infty} \dfrac{1}{n^p} = \begin{cases} 
+        0 & \text{if } p > 0 \\
+        1 & \text{if } p = 1 \\
+        \infty & \text{if } p < 0
+        \end{cases}
+    \end{align*}
+    
+    \item 
+    \begin{align*}
+            \dlim_{n \to \infty} r^n = \begin{cases} 
+        0 & \text{if } -1 < r < 1 \\
+        1 & \text{if } r = 1 \\
+        \infty & \text{if } r > 1 \\
+        \text{DNE} & \text{if } r < -1
+        \end{cases}
+    \end{align*}
+\end{enumerate}
+\end{ex}
+
+
+\subsubsection{Limit Laws for Sequences}
+
+\begin{center}
+\begin{tcolorbox}
+     \begin{itemize}
+         \item \textbf{Tools for evaluate limits}: limit law, squeeze theorem, 
+         \item \textbf{Continuous function commutes with limit}: 
+         \[f \text{ continuous } \implies \dlim_{n \to \infty} f(a_n) = f\Big(\dlim_{n \to \infty} a_n \Big).\]
+     \end{itemize}   
+\end{tcolorbox}
+\end{center}
+
+
+If $\{a_n\}$ and $\{b_n\}$ are convergent sequences, then
+\begin{enumerate}
+    \item $\dlim_{n \to \infty} (a_n \pm b_n) = \dlim_{n \to \infty} a_n \pm \dlim_{n \to \infty} b_n$.
+    
+    \item $\dlim_{n \to \infty} (c a_n) = c \dlim_{n \to \infty} a_n$, $c$ constant.
+    
+    \item $\dlim_{n \to \infty} (a_n b_n) = \dlim_{n \to \infty} a_n \cdot \lim_{n \to \infty} b_n$.
+    
+    \item $\dlim_{n \to \infty} \dfrac{a_n}{b_n} = \dfrac{\dlim_{n \to \infty} a_n}{\dlim_{n \to \infty} b_n}$, provided $\dlim_{n \to \infty} b_n \neq 0$.
+    
+    \item $\dlim_{n \to \infty} (a_n)^p = \left(\dlim_{n \to \infty} a_n \right)^p$.
+\end{enumerate}
+
+Note that if the convergent condition fails, the equality could also fail. For example, if $a_n = (-1)^n$ and $b_n = \dfrac{1}{n}$. $\dlim_{n \to \infty} a_n = \mathrm{DNE}$, but $\dlim_{n \to \infty} a_n b_n = 0$.
+
+\begin{thm}[Squeeze Theorem]
+    If $b_n \leq a_n \leq c_n$ holds for every $n \geq N$ ($N$ is some natural number) and $\dlim_{n \to \infty} b_n = \lim_{n \to \infty} c_n = L$, then $\dlim_{n \to \infty} a_n = L$.
+\end{thm}
+\begin{figure}[h]
+    \centering
+    \resizebox{0.6\textwidth}{!}{\input{images/squeeze thm.tikz}} % Include your TikZ file
+    \label{fig:squeeze thm}
+    \caption{Visualization of the Squeeze Theorem: if $b_n \leq a_n \leq c_n$ and both $b_n$ and $c_n$ converge to $L$, then $a_n$ also converges to $L$.}
+\end{figure}
+
+\begin{ex}
+    If $a_n = (-1)^n \dfrac{1}{n}$, $b_n = -\dfrac{1}{n}$ and $c_n = \dfrac{1}{n}$. Then $b_n \leq a_n \leq c_n$ and $\dlim_{n \to \infty} b_n = \dlim_{n \to \infty} c_n = 0$ implies $\dlim_{n \to \infty} a_n = 0$ by the Squeeze Theorem.
+\end{ex}
+\begin{thm}\leavevmode
+    \begin{enumerate}
+        \item If $\dlim_{n \to \infty} |a_n| = 0$ then $\dlim_{n \to \infty} a_n =0$.
+
+        \item \textit{Continuous function commutes with limit}. If $f$ is \textbf{continuous}, then  $\dlim_{n \to \infty} a_n = L$ implies $\dlim_{n \to \infty} f(a_n) = f \left(\dlim_{n \to \infty} a_n\right)= f(L)$.
+    \end{enumerate}
+\end{thm}
+
+\begin{ex}
+    \begin{enumerate}
+        \item $\dlim_{n \to \infty} \sin\left(\dfrac{1}{n}\right) = \sin\left(\lim_{n \to \infty} \dfrac{1}{n}\right) = \sin(0) = 0$.
+
+        \item $\dlim_{n \to \infty} \dfrac{\ln(n+2)}{\ln(1+4n)}$. Note that this is same as  
+        \begin{align*}
+            \dlim_{x \to \infty} \dfrac{\ln(x+2)}{\ln(1+4x)} = \dlim_{x \to \infty} \dfrac{\dfrac{1}{x+2}}{\dfrac{4}{1+4x}} = \dlim_{x \to \infty} \dfrac{1+4x}{4(x+2)} = 1.  \tag{L'H\^opital's rule}
+        \end{align*}
+
+        \item \begin{align*}
+            \dlim_{x \to \infty} \left(1 + \dfrac{1}{n}\right)^n = \dlim_{x \to \infty} e^{\left(1 + \dfrac{1}{n}\right)^n} = e^{\dlim_{x \to \infty} \left(1 + \dfrac{1}{n}\right)^n} = e.  \tag{Can apply L'H\^opital's rule to compute the limit}
+        \end{align*}
+    \end{enumerate}
+\end{ex}
+
+
+\subsection{Series} \chcomment{\S11.2}
+\begin{center}
+\begin{tcolorbox}
+     \begin{itemize}
+         \item \textbf{New concept}: series, partial sum, converges/diverges
+         \item \textbf{Examples to memorize}: \begin{itemize}
+             \item Geometric series
+                 \begin{align*}
+                \sum_{n=0}^\infty r^n &= \begin{cases} 
+                    \dfrac{1}{1 - r} & \text{if } |r| < 1, \\
+                    \infty & \text{if } r \geq 1\\
+                    \text{DNE} & \text{if } r \leq -1.
+                \end{cases}
+            \end{align*}
+            \item Harmonic series $\dsum_{n=1}^\infty \dfrac{1}{n}$ diverges.
+         \end{itemize}
+         \item \textbf{Tools to study series}: Series laws, $\dsum a_n \text{ converges } \implies a_n \to 0$.
+     \end{itemize}   
+\end{tcolorbox}
+\end{center}
+
+\begin{defn}
+    We call $\dsum_{n=1}^\infty a_n$ or $\dsum a_n$ a \bfemph{series}, and 
+    \[S_N = \sum_{n=1}^N a_n = a_1 + a_2 + \ldots + a_N\]
+    the \bfemph{partial sum}. 
+\end{defn}
+
+\begin{rmk}
+    Note that $S_N$ is itself a sequence. So it makes sense to talk about whether $S_N$ converges or not.
+\end{rmk}
+
+\begin{defn}
+    The series $\dsum a_n$ is called \bfemph{convergent} if its partial sum is convergent. Otherwise, $\dsum a_n$ is called \bfemph{divergent}.
+\end{defn}
+
+\begin{ex}[Geometric Series]
+    Consider $a_n = r^n$, where $r$ is the common ratio.
+    \begin{align*}
+        a_0 &= 1,  &&S_0 = a_0 = 1, \\
+        a_1 &= r,  &&S_1 = a_0 + a_1 = 1 + r, \\
+        a_2 &= r^2,  &&S_2 = a_0 + a_1 + a_2 = 1 + r + r^2.\\
+        & && \vdots\\
+        & && S_N = 1 + r + r^2 + \ldots + r^N.
+    \end{align*}
+    
+    Let $R_N = \dsum_{\red{n=0}}^N r^n = 1 + r + r^2 + \ldots + r^N$, then
+    \begin{align*}
+        r R_N &= r + r^2 + \ldots + r^{N+1}, \\
+        R_N - r R_N &= 1 - r^{N+1}, \\
+        R_N &= \dfrac{1 - r^{N+1}}{1 - r}, \quad \text{for } r \neq 1.
+    \end{align*}
+    Thus,
+    \begin{align*}
+        \sum_{n=0}^\infty r^n &= \begin{cases} 
+            \dfrac{1}{1 - r} & \text{if } |r| < 1, \\
+            \infty & \text{if } r \geq 1\\
+            \text{DNE} & \text{if } r \leq -1.
+        \end{cases}
+    \end{align*}
+    
+    Also, note that $\dsum_{n=1}^\infty r^n = \dfrac{r}{1-r}$ because $\dsum_{n=0}^\infty r^n = 1 + \dsum_{n=1}^\infty r^n$. Thus, the starting point matters.
+\end{ex}
+
+\begin{ex}
+    Compute $\dsum_{n=1}^\infty 2^{2n} \cdot 6^{1-n}$ using the formula from the previous example. \chcomment{Typo22}
+    \begin{align*}
+        \sum_{n=1}^\infty 2^{2} \cdot 6^{1-n} &= \sum_{n=1}^\infty 4^n \cdot 6 \cdot \left(\dfrac{1}{6}\right)^n = 6 \cdot \sum_{n=1}^\infty \left(\dfrac{4}{6}\right)^n = 6 \cdot \sum_{n=1}^\infty \left(\dfrac{2}{3}\right)^n \tag{Here $r = \dfrac{2}{3}$}\\
+        &= 6 \cdot \dfrac{\dfrac{2}{3}}{1-\dfrac{2}{3}} = 6\cdot 2 = 12.
+    \end{align*}
+\end{ex}
+
+\begin{ex}[Harmonic Series]
+    $\dsum_{n=1}^\infty \dfrac{1}{n} = 1 + \dfrac{1}{2} + \dfrac{1}{3} + \dfrac{1}{4} + \ldots$ \\
+    Partial sums:
+    \begin{align*}
+        S_2 &= 1 + \dfrac{1}{2}, \\
+        S_4 &= 1 + \dfrac{1}{2} + \blue{\dfrac{1}{3} + \dfrac{1}{4}} \\
+        &> 1 + \dfrac{1}{2} + \blue{\dfrac{1}{4} + \dfrac{1}{4}} = 1+\dfrac{2}{2}, \\
+        S_8 &= 1 + \dfrac{1}{2} + \blue{\dfrac{1}{3} + \dfrac{1}{4}} + \red{\dfrac{1}{5} + \dfrac{1}{6} + \dfrac{1}{7} + \dfrac{1}{8}}\\
+        &> 1 + \dfrac{1}{2} + \blue{\dfrac{1}{4} + \dfrac{1}{4}} + \red{\dfrac{1}{8} + \dfrac{1}{8} + \dfrac{1}{8} + \dfrac{1}{8}} = 1+\dfrac{3}{2}, \\
+        S_{2^n} &= 1 + \dfrac{1}{2} + \dfrac{1}{3} + \ldots + \dfrac{1}{2^n} > 1+\dfrac{n}{2} \xrightarrow{n \to \infty} \infty.
+    \end{align*}
+    Hence, $\dsum_{n=1}^\infty \dfrac{1}{n}$ diverges.    
+\end{ex}
+
+\begin{ex}[Telescope series]
+    Check that $\dsum_{n=1}^\infty \dfrac{1}{n(n+1)} = 1$.
+
+    We note that:
+    \begin{align*}
+        \dfrac{1}{n(n+1)} &= \dfrac{1}{n} - \dfrac{1}{n+1}, \\
+        S_N &= \left(1 - \blue{\dfrac{1}{2}}\right) + \left(\blue{\dfrac{1}{2}} - \red{\dfrac{1}{3}}\right) + \left(\red{\dfrac{1}{3}} - \gray{\dfrac{1}{4}}\right) + \cdots + \left(\gray{\dfrac{1}{n-1}} - \blue{\dfrac{1}{n}}\right) + \left(\blue{\dfrac{1}{n}} - \dfrac{1}{n+1}\right)\\
+        &= 1 - \dfrac{1}{n+1} \xrightarrow{n \to \infty} 1.
+    \end{align*}
+    
+    Hence, $\dsum_{n=1}^\infty \dfrac{1}{n(n+1)}$ converges to 1.
+\end{ex}
+
+
+
+\begin{thm}
+    If $\dsum_{n=1}^\infty a_n$ and $\dsum_{n=1}^\infty b_n$ converge, and $c$ is a constant, then 
+\begin{enumerate}
+    \item $\dsum_{n=1}^\infty a_n \pm b_n = \dsum_{n=1}^\infty a_n \pm \dsum_{n=1}^\infty b_n$.
+    
+    \item $\dsum_{n=1}^\infty c a_n = c \dsum_{n=1}^\infty a_n$.
+\end{enumerate}
+\end{thm}
+
+\begin{ex}
+    Evaluate $\dsum_{n=1}^\infty \dfrac{3}{n(n+1)} + \dfrac{1}{2^n}$.
+    
+    We have 
+    \begin{align*}
+        \dsum_{n=1}^\infty \dfrac{1}{2^n} = \dfrac{1}{1-\dfrac{1}{2}} - 1 = 2-1 = 1 \quad \text{and} \quad \dsum_{n=1}^\infty \dfrac{1}{n(n+1)} = 1.
+    \end{align*}
+    So the original series converges to $3\cdot 1 + 1 = 4$.
+\end{ex}
+
+\begin{thm}
+    If $\dsum_{n=1}^\infty a_n$ converges, then $\dlim_{n\to \infty} a_n = 0$.
+\end{thm}
+\begin{proof}
+    By definition, we know if the series converges to some real number $L$, we have
+    \begin{align*}
+        &\dlim_{n\to \infty} S_{N-1} = \dlim_{n\to \infty} S_N = L\\
+        \implies &\dlim_{N\to \infty} a_N = \dlim_{N\to \infty} (S_N - S_{N-1}) = \dlim_{N\to \infty} S_N - \dlim_{n\to \infty} S_{N-1} = L - L = 0.
+    \end{align*}
+\end{proof}
+
+\begin{coro}[The Divergent Test] 
+    If $\dlim_{n \to \infty} a_n \neq 0$, then $\dsum_{n=1}^\infty a_n$ diverges.
+\end{coro}
+
+\begin{rmk}
+    Note that when $\dlim_{n\to\infty} a_n = 0$, there is no conclusion. For example, 
+    \begin{align*}
+        \dlim_{n \to \infty} \dfrac{1}{n(n+1)} &= 0, \text{ we know } \dsum_{n=1}^\infty \dfrac{1}{n(n+1)} = 1.\\
+        \dlim_{n \to \infty} \dfrac{1}{n} &= 0, \text{ but } \hspace{25pt}\dsum_{n=1}^\infty \dfrac{1}{n} \text{ diverges}.
+    \end{align*}
+\end{rmk}
+
+\begin{ex}[The Divergent Test] \leavevmode
+    \begin{enumerate*}
+        \item $\dsum_{n=1}^\infty (-1)^n$.
+        \item $\dsum_{n=1}^\infty \left( 1+\dfrac{1}{n} \right)^n$.
+        \item $\dsum_{n=1}^\infty \dfrac{n}{n+1}$.
+    \end{enumerate*}
+\end{ex}
+
+
+\subsection{The Integral Test and Estimates of Sums} \chcomment{\S11.3}
+\begin{center}
+\begin{tcolorbox}
+    \begin{itemize}
+        \item \textbf{New tool for testing convergence}: 
+        \begin{itemize}
+            \item \textbf{The Integral Test}
+            $f$ positive, continuous, decreasing for $x \geq 1$, and let $a_n = f(n)$. Then:
+            \[\sum_{n=1}^\infty a_n \text{ converges } \iff \int_1^\infty f(x) \dd x \text{ converges.}\]
+            
+            \item \textbf{Error estimate}:
+            \[\int_{N+1}^\infty f(x) \dd x \leq R_N = S - S_N \leq \int_{N}^\infty f(x) \dd x.\]
+        \end{itemize}
+    \end{itemize}
+\end{tcolorbox}
+\end{center}
+
+We have been computing the exact value of a series so far for some special cases. However, in general, this is quite difficult. In those cases, we are interested in finding an estimate.
+
+\subsubsection{The Integral Test}
+\begin{thm}
+    Suppose \begin{enumerate*}[label = \circled{\arabic*}]
+        \item $f(x) > 0$ is a  \item continuous and \item decreasing function for $x \geq 1$, and 
+        \item let $a_n = f(n)$. 
+    \end{enumerate*} Then:
+    \[\sum_{n=1}^\infty a_n \text{ converges } \iff \int_1^\infty f(x) \dd x \text{ converges.}\]
+    
+    Moreover:
+    \[ \sum_{n=1}^\infty a_n \leq a_1 + \int_1^\infty f(x) \dd x.\]
+\end{thm}
+
+The error of this estimate is given by
+    \[R_N = \sum_{n=1}^\infty a_n - \sum_{n=1}^N a_n = \sum_{n=N+1}^\infty a_n.\]
+We have 
+\[\int_{N+1}^\infty f(x) \dd x \leq R_N \leq \int_{N}^\infty f(x) \dd x.\]
+\begin{figure}[h]
+    \centering
+    \resizebox{0.85\textwidth}{!}{
+    \input{images/left Riemann sum.tikz}
+    \quad
+    \input{images/right Riemann sum.tikz}} % Include your TikZ file
+    \label{fig:Riemann sums}
+    \caption{Upper and lower bounds for the Integral Test}
+\end{figure}
+
+
+
+
+
+\begin{ex} $\dsum_{n=1}^\infty \dfrac{1}{n^2}$ converges.
+
+Let $f(x) = \dfrac{1}{x^2}$. For $x \geq 1$, $f(x)$ is continuous, positive, and decreasing. Then $\displaystyle \int_1^\infty \dfrac{1}{x^2} \dd x $ converges implies $\dsum_{n=1}^\infty \dfrac{1}{n^2}$ converges.
+\end{ex}
+
+\begin{ex}
+\begin{align*}
+    \dsum_{n=1}^\infty  \dfrac{1}{n^p} \quad \begin{cases} 
+    \text{converges}  & \text{if } p > 1 \\
+    \text{diverges} & \text{if } p \leq 1.
+\end{cases}
+\end{align*}
+Recall $p > 1$, $\int_1^\infty \dfrac{1}{x^p} \dd x$ converges. For $p \leq 1$, it diverges. Apply the Integral Test.
+\end{ex}
+
+\begin{ex}
+    $\dsum_{n=1}^\infty  \dfrac{1}{n^2+1} $ converges
+\end{ex}
+Let $f(x) = \dfrac{1}{x^2+1}$ > 0. For $x \leq 1$, we check $f$ is continuous and decreasing: 
+\[f'(x) = -(x^2+1)^{-2} \cdot 2x < 0, x \geq 1.\]
+
+Apply the Integral Test as follows:
+\[\int_0^\infty \dfrac{1}{x^2+1} \dd x = \lim_{t \to \infty} \Big(\arctan x |_1^t \Big) = \lim_{t \to \infty} \Big(\arctan t - \dfrac{\pi}{4} \Big) = \dfrac{\pi}{2}- \dfrac{\pi}{4} = \dfrac{\pi}{4} \leq \infty.\]
+So the series converges.
+
+\begin{ex}
+    There is an example in the discussion worksheet regarding the error estimate. See Question 2 in Worksheet w8-2.
+\end{ex}
+
+
+
+\subsection{The Comparison Tests} \chcomment{\S11.4} \chcomment{Week 10}
+\begin{center}
+\begin{tcolorbox}
+    \begin{itemize}
+        \item \textbf{New tools for testing convergence}: 
+        \begin{itemize}
+            \item \textbf{The (Direct) Comparison Test (DCT) for Series}: \begin{enumerate*}[label = \circled{\arabic*}]
+            \item $0\leq a_n \leq b_n$ \item for all $n \geq N$, then
+            \end{enumerate*}
+            \begin{align*}
+                \dsum_{n=N}^\infty b_n \text{ converges } \quad &\implies  \quad \dsum_{n=N}^\infty a_n \text{ converges}, \\
+                \dsum_{n=N}^\infty a_n \text{ diverges } \quad &\implies  \quad \dsum_{n=N}^\infty b_n \text{ diverges}.
+            \end{align*}
+            \item \textbf{The Limit Comparison Test (LCT)}: \begin{enumerate*}[label = \circled{\arabic*}]
+            \item $a_n > 0$ and $b_n > 0$ 
+            \item for all $n \geq N$, and 
+            \item $\dlim_{n \to \infty} \dfrac{a_n}{b_n} = c$, where
+            \item $0 < c < \infty$.
+            \end{enumerate*}
+            Then 
+            \[\dsum_{n=N}^\infty a_n \text{ converges } \quad \iff \quad \dsum_{n=N}^\infty b_n \text{ converges}.\]
+        \end{itemize}
+    \end{itemize}
+\end{tcolorbox}
+\end{center}
+The idea of the Comparison Test for sequences is similar to that for integrals.
+
+\subsubsection{The (Direct) Comparison Test for Series (DCT)}
+\begin{thm}
+    Suppose $\dsum a_n$ and $\dsum b_n$ are series such that \begin{enumerate*}[label = \circled{\arabic*}]
+        \item $0 < a_n \leq b_n$ 
+        \item for all $n \geq N$. 
+    \end{enumerate*}
+    Then:
+    \begin{itemize}
+        \item If $\dsum_{n=N}^\infty b_n$ converges, then $\dsum_{n=N}^\infty a_n$ converges.
+        \item If $\dsum_{n=N}^\infty a_n$ diverges, then $\dsum_{n=N}^\infty b_n$ diverges.
+    \end{itemize}
+\end{thm}
+
+\begin{rmk}
+    Here we can compare the Direct Comparison Test for series with the Comparison Test for integrals:
+    \begin{itemize}
+        \item $a_n$ and $b_n$ play the roles of $f$ and $g$.
+        \item Integrals are replaced by summations.
+        \item The lower bound $x \geq a$ is replaced by $n \geq N$.
+    \end{itemize}
+\end{rmk}
+
+
+\begin{ex} Show that $\dsum_{n=1}^\infty a_n = \dsum_{n=1}^\infty  \dfrac{5}{2n^2+4n+3}$ converges.
+
+\textit{Step 1}. Note that $2n^2+4n+3 \geq 2n^2$ for $n \geq 1$. This implies 
+\[\circled{1}~0 < a_n : = \dfrac{5}{2n^2+4n+3} \leq \dfrac{5}{2n^2} =: b_n \quad \circled{2}~ \text{for } n \geq 1.\]
+\textit{Step 2}. We apply the DCT to conclude that 
+\[\dsum_{n=1}^\infty  \dfrac{5}{2n^2} = \dfrac{5}{2} \dsum_{n=1}^\infty  \dfrac{1}{n^2} < \infty. \quad \implies \quad \dsum_{n=1}^\infty a_n \text{ converges}.\]
+\end{ex}
+
+\begin{ex} Show that $\dsum_{n=1}^\infty b_n = \dsum_{n=1}^\infty  \dfrac{\ln n}{n}$ diverges.
+
+\textit{Step 1}. Note that $\ln n > 1$ for $n > e$. We take $\circled{2}~N=3$, which is the next integer after $e$. This implies 
+\[ \circled{1}~0 < a_n := \dfrac{1}{n} \leq b_n \dfrac{\ln n}{n},\quad \text{when} \quad \circled{2}~n \geq 3.\]
+
+\textit{Step 2}. To show that $\dsum_{n=3}^\infty a_N = \dsum_{n=3}^\infty \dfrac{1}{n}$ diverges, note that 
+\begin{align*}
+    \dsum_{n=3}^\infty \dfrac{1}{n} &=  - \dfrac{1}{1} - \dfrac{1}{2} = \text{harmonic series (divergent)} - \text{ finite number}.
+\end{align*}
+So $\dsum_{n=3}^\infty a_n$ diverges
+
+
+\textit{Step 3}. We apply the DCT to conclude that
+\[\dsum_{n=3}^\infty  \dfrac{1}{n} \text{ diverges}. \quad \implies \quad \dsum_{n=3}^\infty b_n \text{ converges}.\]
+
+
+\textit{Step 4}. To show that $\dsum_{n=1}^\infty b_n$ diverges, note that 
+\begin{align*}
+    \dsum_{n=1}^\infty b_n &= (b_1 + b_2) + \dsum_{n=3}^\infty b_n = \text{finite number } +  \text{ divergent series}.
+\end{align*}
+So $\dsum_{n=1}^\infty b_n$ diverges
+\end{ex}
+
+
+
+\subsubsection{The Limit Comparison Test (LCT)}
+\begin{thm}
+    Suppose $\dsum a_n$ and $\dsum b_n$ are series with \begin{enumerate*}[label = \circled{\arabic*}]
+        \item $a_n > 0$ and $b_n > 0$, and
+        \item $\dlim_{n \to \infty} \dfrac{a_n}{b_n} = c$, where 
+        \item $0 < c < \infty$.
+    \end{enumerate*}
+    Then  
+    \[\dsum_{n=N}^\infty a_n \text{ converges } \quad \iff \quad \dsum_{n=N}^\infty b_n \text{ converges}.\]
+\end{thm}
+
+\begin{rmk}
+    Note that the $\dlim_{n \to \infty} \dfrac{a_n}{b_n} = c$ is saying $a_n$ and $cb_n$ have the same growth rate as $n \to \infty$.
+\end{rmk}
+
+\begin{ex} 
+    Show that $\dsum_{n=1}^\infty a_n = \dsum_{n=1}^\infty  \dfrac{1}{2^n - 1}$ converges.
+
+    Take $b_n = \dfrac{1}{2^n}$. Then
+    \[\lim_{n \to \infty} \dfrac{a_n}{b_n} = \lim_{n \to \infty} \dfrac{\dfrac{1}{2^n - 1}}{\dfrac{1}{2^n}} = \lim_{n \to \infty} \dfrac{2^n}{2^n-1} = \lim_{n \to \infty} \dfrac{1}{1-\dfrac{1}{2^n}} = 1.\]
+    Apply the Limit Comparison Test, we conclude that $\dsum_{n=1}^\infty b_n$ converges implies  $\dsum_{n=1}^\infty \dfrac{1}{2^n - 1}$ converges.
+\end{ex}
+
+\begin{ex} 
+    Show that $\dsum_{n=1}^\infty a_n = \dsum_{n=1}^\infty \dfrac{2n^2 + 3n}{\sqrt{5+n^5}}$ diverges.
+
+    Take $b_n = \dfrac{2n^2}{n^{5/2}} = \dfrac{2}{\sqrt{n}}$ (this is the dominant part). Then
+    \[\lim_{n \to \infty} \dfrac{a_n}{b_n} = \lim_{n \to \infty} \dfrac{\dfrac{2n^2 + 3n}{\sqrt{5+n^5}}}{\dfrac{2}{\sqrt{n}}} = \lim_{n \to \infty} \dfrac{2n^{5/2}+3n^{1/2}}{2\sqrt{5+n^5}} = \lim_{n \to \infty} \dfrac{2+\dfrac{3}{n}}{2\sqrt{\dfrac{5}{n^5}+1}} = \dfrac{2}{2} = 1.\]
+    Apply the Limit Comparison Test, we conclude that $\dsum_{n=1}^\infty b_n$ diverges implies $\dsum_{n=1}^\infty a_n$ diverges.
+\end{ex}
+
+\subsection{Alternating Series} \chcomment{\S11.5}
+\begin{center}
+\begin{tcolorbox}
+    \begin{itemize}
+        \item \textbf{New Concept}: Alternating series
+        \begin{itemize}
+        \item \textbf{The Alternating Series Test}: 
+        
+        $a_n$ \begin{enumerate*}[label = \circled{\arabic*}]
+        \item positive, \item decreasing, \item $\dlim_{n \to \infty} a_n = 0$.
+        \end{enumerate*}
+        $\implies \quad \dsum_{n=0}^\infty (-1)^n a_n$ converges.
+        \item \textbf{Error estimate}: $|R_N| = |S - S_N| \leq a_{n+1}$.
+        \end{itemize}
+        
+        \item \textbf{Example to memorize}: The alternating harmonic series $\dsum \dfrac{(-1)^{n+1}}{n}$ converges.
+    \end{itemize}
+\end{tcolorbox}
+\end{center}
+So far, we have studied series with positive terms. In this section, we will study series whose terms are alternating series, such as
+\begin{itemize}
+    \item $\dsum \dfrac{(-1)^{n+1}}{n}$ (alternating harmonic series).
+    \item $\dsum (-1)^{n} a_n$, where $a_n > 0$ and terms alternate in sign.
+\end{itemize}
+
+\subsubsection{The Alternating Series Test}
+The following theorem tells us how to determine if an alternating series converges or diverges.
+
+\begin{thm}
+    Given an alternating series $\dsum_{n=0}^\infty (-1)^n a_n$, if 
+    
+    \begin{center}
+    \begin{enumerate*}[label = \circled{\arabic*}]
+        \item $a_n > 0$, 
+        \item $a_{n+1} \leq a_n$ for all $n$, and 
+        \item $\lim_{n \to \infty} a_n = 0$,
+    \end{enumerate*}
+    \end{center}
+    
+    then $\dsum_{n=0}^\infty (-1)^n a_n$ converges.
+\end{thm}
+
+\begin{proof}
+    Without loss of generality, we prove this for the series $S = \sum_{n=1}^\infty (-1)^{n+1} a_n$. The other case follows by shifting the sequence or multiplying the series by $-1$.
+
+    Let $S_N = \sum_{n=1}^N (-1)^{n+1} a_n$
+    By \circled{2} we have $a_n - a_{n+1} \geq 0$.
+    \begin{align*}
+        S_2 &= a_1 - a_2 \geq 0\\
+        S_4 &= S_2 + a_3 - a_4 \geq S_2 \quad \text{as} \quad a_3 - a_4 \geq 0\\
+        &\vdots\\
+        S_{2n} &= S_{2n-2} + a_{2n-1} - a_{2n} \geq S_{2n-2} \quad \text{as} \quad a_{2n-1} - a_{2n} \geq 0
+    \end{align*}
+    So, $\{S_{2n}\}$ is an increasing sequence.
+    
+    Note that 
+    \begin{align*}
+        S_{2n} &= a_1 - a_2 + a_3 - a_4 + a_5 - \cdots + a_{2n-1} - a_{2n}\\
+        &= a_1 - (a_2 - a_3) - (a_4 - a_5) + \cdots - (a_{2n-2} - a_{2n-1}) - a_{2n} \\
+        &\leq a_1 
+    \end{align*}
+
+Since each of the quantities in parentheses and $a_{2n}$ are positive. So $\{S_{2n}\}$ is an increasing sequence bounded from above. So the limit exists.
+
+\[\lim_{n \to \infty} S_{2n} = S.\]
+
+We can apply the same procedure to $S_{2n+1}$, and see the limit also exists. Moreover,
+\[\lim_{n \to \infty} S_{2n+1} = \lim_{n \to \infty} (S_{2n} + a_{2n+1}) = \lim_{n \to \infty} S_{2n} + \lim_{n \to \infty} a_{2n+1} = S + 0 = S.\]
+
+So, alternating series is convergent. 
+
+\end{proof}
+\begin{rmk}
+    From the above proof, we see that if $\dlim_{n \to \infty} a_n$ diverges, the series also diverges. So the \textbf{diverges test still holds}.   
+\end{rmk}
+
+\begin{ex}[Alternating Harmonic Series]
+    Show that $\dsum_{n=0}^\infty \dfrac{(-1)^{n+1}}{n}$ converges.
+    
+    We first check that the Alternating Series Test applies: 
+    \begin{enumerate}[label = \circled{\arabic*}]
+        \item $a_n = \dfrac{1}{n} > 0$,
+        \item $a_{n+1} = \dfrac{1}{n+1} < \dfrac{1}{n} = a_n$ for all $n$, and
+        \item $\dlim_{n \to \infty} a_n = 0$.
+    \end{enumerate}
+    By the Alternating Series Test tells us that the series converges. 
+\end{ex}
+
+
+\begin{ex}
+    Show that $\dsum_{n=0}^\infty \dfrac{(-1)^n n^2}{n^3+1}$ converges.
+    
+    We first check that the Alternating Series Test applies: 
+    \begin{enumerate}[label = \circled{\arabic*}]
+        \item $a_n = \dfrac{n^2}{n^3+1} > 0$.
+        
+        \item $a_{n+1} < a_n$ for $n \geq 2$ because the function $f(x) = \dfrac{x^2}{x^3+1}$ is decreasing (not obvious, we compute the derivative):
+        \[f'(x) = \dfrac{x(2-x^3)}{(x^3+1)^2} < 0, \text{ where } x > \sqrt[3]{2}.\]
+        
+        \item $\dlim_{n \to \infty} a_n = \dlim_{n \to \infty} \dfrac{n^2}{n^3+1} = \dlim_{n \to \infty} \dfrac{\dfrac{1}{n}}{1+\dfrac{1}{n^3}} = 0$.
+    \end{enumerate}
+    Apply the Alternating Series Test to $\dsum_{n=2}^\infty (-1)^n a_n$ (because we need $n\geq 2$), we conclude that $\dsum_{n=2}^\infty (-1)^n a_n$ converges. So $\dsum_{n=0}^\infty (-1)^n a_n = a_0 - a_1 + \dsum_{n=2}^\infty (-1)^n a_n$ also converges.
+\end{ex}
+
+\subsubsection{Estimating alternating series}
+\begin{thm}[Alternating series estimation]
+    Given $\dsum_{n=0}^\infty (-1)^n a_n$, $a_n > 0$ satisfying 
+    \begin{center}
+    \begin{enumerate*}[label = \circled{\arabic*}]
+        \item $a_n > 0$.
+        \item $a_{n+1} \leq \dfrac{1}{n} = a_n$ for all $n$.
+        \item $\dlim_{n \to \infty} a_n = 0$.
+    \end{enumerate*}
+    \end{center}
+    Then $|R_N| = |S - S_N| \leq a_{n+1}$.
+\end{thm}
+
+\begin{proof}
+    From the proof of the Alternating Series Test, we know $S$ is in between $S_N$ and $S_{N+1}$ for all $N$. So 
+    \[|R_N| = |S - S_N| \leq |S_{N+1} - S_N| = a_{N+1}.\]
+\end{proof}
+
+
+\newpage
+\subsection{Summary I} 
+So far, we have learned different ways to determine the convergence of a series with positive terms or alternating terms.
+
+\subsubsection{Summary of the Convergence Tests in Previous Sections}
+
+\begin{center}
+\begin{tcolorbox}
+\begin{enumerate}
+    \item \textbf{Definition}: computing $\dlim_{N \to \infty} S_N$
+    
+    \item \textbf{The Divergence Test}: $\dlim_{n \to \infty} a_n \neq 0 \quad \implies \quad \sum_n a_n$ diverges
+\end{enumerate}
+
+\textbf{The following only works for series with positive terms.}
+\begin{enumerate}[resume]
+    \item \textbf{The Integral Test}: 
+    
+    $f(x)$ \begin{enumerate*}[label = \circled{\arabic*}]
+        \item positive, \item continuous, \item decreasing \item for $x \geq N$, and 
+        \item $a_n = f(n)$. 
+    \end{enumerate*} Then:
+    \[\sum_{n=N}^\infty a_n \text{ converges } \iff \int_N^\infty f(x) \dd x \text{ converges.}\]
+    
+    \item \textbf{The Direct Comparison Test}: \begin{enumerate*}[label = \circled{\arabic*}]
+        \item $0 < a_n \leq b_n$ 
+        \item for all $n \geq N$. 
+    \end{enumerate*}
+    Then:
+    \begin{itemize}
+        \item If $\dsum_{n=N}^\infty b_n$ converges, then $\dsum_{n=N}^\infty a_n$ converges.
+        \item If $\dsum_{n=N}^\infty a_n$ diverges, then $\dsum_{n=N}^\infty b_n$ diverges.
+    \end{itemize}
+    
+    \item \textbf{The Limit Comparison Test}: 
+    
+    \begin{enumerate*}[label = \circled{\arabic*}]
+        \item $a_n > 0$ and $b_n > 0$, and
+        \item $\dlim_{n \to \infty} \dfrac{a_n}{b_n} = c$, where 
+        \item $0 < c < \infty$.
+    \end{enumerate*}
+    Then  
+    \[\dsum_{n=N}^\infty a_n \text{ converges } \quad \iff \quad \dsum_{n=N}^\infty b_n \text{ converges}.\]
+\end{enumerate}
+
+\textbf{The following only works for series with alternating terms.}
+\begin{enumerate}[resume]
+    \item \textbf{The Alternating Series Test}: $a_n$ \begin{enumerate*}[label = \circled{\arabic*}]
+        \item positive, \item decreasing, \item $\dlim_{n \to \infty} a_n = 0$.
+        \end{enumerate*}
+        Then $\dsum_{n=0}^\infty (-1)^n a_n$ converges.
+\end{enumerate}
+\end{tcolorbox}
+\end{center}
+
+\subsubsection{Steps to Apply Convergence Tests}
+
+\begin{enumerate}
+    \item Determine the type of the series. (e.g. harmonic, geometric, positive, alternating)
+    \item Decide which test to use. 
+    \\
+    For example, if the series has negative terms, you cannot apply the integral test.  
+    \item Check all the assumptions hold. Be careful with the number $N$. 
+    \item Apply the test to $\dsum_{n=N}^{\infty} b_n$.
+    \\
+    If you are given $\dsum_{n=1}^{\infty} b_n$, $N \neq 1$, then use
+    \[
+    \dsum_{n=1}^{\infty} b_n = \dsum_{n=1}^{N-1} b_n + \dsum_{n=N}^{\infty} b_n = \text{ finite number} + \text{ convergence or divergence series}
+    \]
+    \item Conclusion.
+\end{enumerate}
+
+\subsubsection{Error estimate}
+\begin{center}
+\begin{tcolorbox}
+    $R_N = S - S_N$
+    \begin{enumerate}
+        \item \textbf{The integral test}:
+            \[\int_{N+1}^\infty f(x) \dd x \leq R_N \leq \int_{N}^\infty f(x) \dd x.\]
+        \item \textbf{The Alternating Series Test}: $|R_N| \leq a_{n+1}$.
+    \end{enumerate}
+\end{tcolorbox}
+\end{center}
+
+There are two types of estimation questions we could ask.
+
+\begin{enumerate}
+    \item Given $N$, what is the error bound? For this question, apply the Error estimate directly.
+    \item Given an upper bound $\epsilon$, what is the smallest integer $N$ that makes $|R_N| < \epsilon$? For this question, use $|R_N| < \epsilon$ to give a lower bound for $N$.
+\end{enumerate}
+In the next several sections, we will study convergence tests for more general series.
+
+\subsection{Absolute Convergence and the Ratio and Root Tests} \chcomment{\S11.6} \chcomment{Week 11}
+\begin{center}
+\begin{tcolorbox}
+    \begin{itemize}
+        \item \textbf{New Concept}: absolute convergence and conditional convergence.
+        
+        \item \textbf{New tool for testing convergence}: \textbf{The Ratio/Root Test}: \[L_{ratio} = \lim_{n \to \infty} \left| \dfrac{a_{n+1}}{a_n} \right|, \qquad L_{root} = \lim_{n \to \infty} \sqrt[n]{|a_n|}.\]
+        Then:
+        \begin{itemize}
+            \item If $L < 1$, the series converges absolutely.
+            \item If $L > 1$, the series diverges.
+            \item If $L = 1$, the test is inconclusive.
+        \end{itemize}
+    \end{itemize}
+\end{tcolorbox}
+\end{center}
+\begin{defn}
+    A series $\dsum a_n$ is called \bfemph{absolutely convergent} if the series of absolute values $\dsum |a_n|$ converges. 
+\end{defn}
+
+\begin{defn}
+    A series $\dsum a_n$ is called \bfemph{conditionally convergent} if it converges but is not absolutely convergent.
+\end{defn}
+
+Note that absolute convergence is stronger than convergence
+\[\text{If } \sum |a_n| \text{ converges, then } \sum a_n \text{ converges.}\]
+
+\begin{proof}
+    Observe that:
+    \[-a_n \leq |a_n| \leq a_n \quad \implies \quad  0 \leq a_n + |a_n| \leq 2 |a_n|.\]
+    We call $A_n = a_n + |a_n|$, $B_n = 2 |a_n|$. By the Comparison Test, $\dsum B_n$ converges implies $\dsum |A_n|$ converges. Then 
+    \[\sum a_n = \sum A_n - \sum |a_n| < \infty. \]  
+\end{proof}
+
+
+\subsubsection{Examples}
+\begin{ex}
+    The series $\dsum \dfrac{(-1)^{n+1}}{n}$ is \textbf{conditionally convergent} because:
+    \begin{itemize}
+        \item $\dsum \dfrac{1}{n}$ diverges (harmonic series).
+        \item $\dsum \dfrac{(-1)^{n+1}}{n}$ converges by the Alternating Series Test.
+    \end{itemize}
+\end{ex}
+
+\begin{ex}
+    The series $\dsum \dfrac{(-1)^{n+1}}{n^2}$ is \textbf{absolutely convergent} because:
+    \begin{itemize}
+        \item $\dsum \dfrac{1}{n^2}$ converges by the $p$-series test with $p = 2 > 1$.
+        \item $\dsum \dfrac{(-1)^{n+1}}{n^2}$ converges by the Alternating Series Test.
+    \end{itemize}
+\end{ex}
+
+\subsubsection{The Ratio and Root Tests}
+\begin{thm}[The Ratio Test]
+    Given a series $\dsum a_n$, let:
+    \[L = \lim_{n \to \infty} \left| \dfrac{a_{n+1}}{a_n} \right|.\]
+    Then:
+    \begin{itemize}
+        \item If $L < 1$, the series converges absolutely.
+        \item If $L > 1$, the series diverges.
+        \item If $L = 1$, the test is inconclusive.
+    \end{itemize}
+\end{thm}
+
+
+\begin{thm}[The Root Test]
+    Given a series $\dsum a_n$, let:
+    \[L = \lim_{n \to \infty} \sqrt[n]{|a_n|}.\]
+    Then:
+    \begin{itemize}
+        \item If $L < 1$, the series converges absolutely.
+        \item If $L > 1$, the series diverges.
+        \item If $L = 1$, the test is inconclusive.
+    \end{itemize}
+\end{thm}
+
+\begin{rmk}
+    \begin{enumerate}
+        \item Note that we have \textbf{absolute convergence} when $L<1$. 
+
+        \item We won't have time to prove this in class. If you're interested in seeing the proof, check Paul's online notes:
+        \begin{itemize}
+            \item \href{https://tutorial.math.lamar.edu/Classes/CalcII/RatioTest.aspx#Series_Ratio_Proof}{Ratio Test Proof}
+            \item \href{https://tutorial.math.lamar.edu/classes/calcii/roottest.aspx#Series_Root_Proof}{Root Test Proof}
+        \end{itemize}
+        
+        \item The case when $L = 1$ is more complicated, as there are examples where the series may converge absolutely, converge conditionally, or diverge. Consider the following examples for the Ratio Test:
+        \begin{itemize}
+            \item \textbf{Conditional Convergence}: For the series $\dsum_{n=1}^\infty \dfrac{(-1)^{n+1}}{n}$, we compute the limit:
+            \[\lim_{n\to \infty} \left| \dfrac{\dfrac{(-1)^{n+2}}{n+1}}{\dfrac{(-1)^{n+1}}{n}} \right| = \lim_{n \to \infty} \dfrac{n}{n+1} = 1.\]
+            
+            \item \textbf{Absolute Convergence}: For the series $\dsum_{n=1}^\infty \dfrac{(-1)^{n+1}}{n^2}$, we compute the limit:
+            \[\lim_{n\to \infty} \left| \dfrac{\dfrac{(-1)^{n+2}}{(n+1)^2}}{\dfrac{(-1)^{n+1}}{n^2}} \right| = \lim_{n \to \infty} \dfrac{n^2}{n^2 + 2n + 1} = 1.\]
+    
+            \item \textbf{Divergence}: For the series where $a_n = 1$ for all $n$, we observe divergence.
+    
+        \end{itemize}
+        Try to come up with your own examples for the Root Test.
+        
+
+        \item Prototype for both tests are the geometric series:
+        \begin{itemize}
+            \item $L_{ratio} = \lim_{n\to \infty} \left| \dfrac{r^{n+1}}{r^n}\right| = \lim_{n\to \infty} |r| = |r|$.
+            \item  $L_{root} = \lim_{n\to \infty} \sqrt[n]{|r|^n} = \lim_{n\to \infty} |r| = |r|$.
+        \end{itemize}
+        Recall that $|r| < 1$ corresponds to convergent series; and  that $|r| > 1$ corresponds to divergent series.
+    \end{enumerate}
+\end{rmk}
+
+
+\subsubsection{Examples}
+\begin{ex}
+    $\dsum_{n=2}^\infty \dfrac{n^2}{(2n-1)!}$ 
+    \[ L = \lim_{n\to \infty} \left| \dfrac{\dfrac{(n+1)^2}{(2(n+1)-1)!}}{\dfrac{n^2}{(2n-1)!}}\right| = \lim_{n\to \infty} \dfrac{(n+1)^2}{(2n+1)(2n) n^2} = 0 < 1.\]
+    Hence the series converges absolutely by the Ratio Test. 
+\end{ex}
+
+\begin{ex}
+    $\dsum_{n=2}^\infty \dfrac{(-1)^n}{n^2+1}$ 
+    \[ L = \lim_{n\to \infty} \left| \dfrac{\dfrac{(-1)^{n+1}}{(n+1)^2+1}}{\dfrac{(-1)^n}{n^2+1}}\right| = \lim_{n\to \infty} \dfrac{n^2+1}{2n^2+2n+2} = 1.\]
+    The Ratio Test makes no conclusion. 
+\end{ex}
+
+Instead, one can use the Alternating Series Test to conclude that this series converges and the Comparison Test (with $A_n = \dfrac{1}{n^2+1} \leq B_n = \dfrac{1}{n^2}$) for absolute convergence.
+
+\begin{ex}
+    $\dsum_{n=0}^\infty \left( \dfrac{3n+1}{4-2n} \right)^{2n}$ 
+    \[ L = \lim_{n\to \infty} \left|\sqrt[n]{\left( \dfrac{3n+1}{4-2n} \right)^{2n}}\right| = \lim_{n\to \infty} \left( \dfrac{3n+1}{4-2n} \right)^{2} = \lim_{n\to \infty} \dfrac{9n^2+6n+1}{4n^2-16n+16} = \dfrac{9}{4} > 1.\]
+    Hence the series diverges absolutely by the Root Test. \chcomment{Typo22}
+\end{ex}
+
+
+\begin{ex}
+    $\dsum_{n=4}^\infty \left(1+\dfrac{1}{n} \right)^{-n^2}$ 
+    \[ L = \lim_{n\to \infty} \left| \dfrac{\dfrac{(n+1)^2}{(2(n+1)-1)!}}{\dfrac{n^2}{(2n-1)!}}\right| = \lim_{n\to \infty} \dfrac{(n+1)^2}{(2n+1)(2n) n^2} = 0 < 1.\]
+    Hence the series converges absolutely by the Root Test. 
+\end{ex}
+For strategy of choosing converges tests, see "Supplementary Resources" on course webpage.
+
+
+\subsection{Power Series} \chcomment{\S11.8}
+\begin{center}
+\begin{tcolorbox}
+    \begin{itemize}
+        \item \textbf{New Concept}: 
+        \begin{itemize}
+            \item Power Series Centered at $a$: $\dsum_{n=0}^\infty c_n (x-a)^n$
+            \item Radius of Convergence 
+            \item Interval of Convergence
+        \end{itemize}
+    \end{itemize}
+\end{tcolorbox}
+\end{center}
+\begin{defn}
+    A \bfemph{power series centered at $a$} is a series of the form
+    \[\sum_{n=0}^\infty c_n (x-a)^n = c_0 + c_1 (x-a) + c_2 (x-a)^2 + \dots\]
+    Here, $x$ is a variable, and $c_n$ are coefficients.
+\end{defn}
+
+\begin{ex}
+    Take $a=0$, then 
+    \[\sum_{n=0}^\infty c_n x^n = c_0 + c_1 x + c_2 x^2 + \cdots + c_n x^n + \cdots.\]
+    This is a polynomial of infinite degree.
+    Moreover if $c_n = 1$ for all $n$, then 
+    \[f(x) = 1 + x + x^2 + \cdots = \sum_{n=0}^\infty x^n.\]
+    This is a geometric series, we know it converges when $|x|<1$.
+\end{ex}
+
+The above example shows that a power series may converge for some values of $x$ and diverge for others. We use convergence tests to determine this.
+
+
+\begin{ex}
+    When does $\dsum_{n=0}^\infty \dfrac{(x-3)^n}{n}$ converges?
+
+    Using the Ratio Test:
+    \[ L = \lim_{n\to \infty} \left| \dfrac{\dfrac{(x-3)^{n+1}}{n+1}}{\dfrac{(x-3)^n}{n}}\right| = \lim_{n\to \infty} \dfrac{|x-3|}{1+\dfrac{1}{n}} = |x-3|.\]
+    Hence the series converges absolutely when $|x-3|<1$ (i.e. $2<x<4$) and $|x-3|>1$ (i.e. $x<2$ or $x>4$) diverges by the Ratio Test. 
+    
+    Now we analysis the boundary cases:
+    
+    \begin{itemize}
+        \item When $x=2$, $\sum a_n = \dfrac{(-1)^n}{n}$ converges.
+
+        \item When $x=4$, $\sum a_n = \dfrac{1}{n}$ diverges.
+    \end{itemize}
+
+    Conclusion: the series converges when $x \in [2,4)$.
+\end{ex}
+
+\begin{thm}
+    For a power series $\sum c_n (x-a)^n$, there are three possibilities:
+    \begin{enumerate}
+        \item The series converges only at $x=a$.
+        \item The series converges for all $x$.
+        \item There exists $R > 0$ such that the series converges for $|x-a| < R$ and diverges for $|x-a| > R$.
+    \end{enumerate}
+\end{thm}
+
+\begin{defn}
+    The number $R$ is called the \bfemph{radius of convergence}. The \bfemph{interval of convergence} is the interval that consists of all values of $x$ for which the power series converges.
+\end{defn}
+
+\begin{ex}
+    For the series $\dsum \dfrac{(x-3)^n}{n}$, the radius of convergence is $R = 2$, and the interval of convergence is $[2,4)]$.
+\end{ex}
+
+\begin{ex}
+    Compute the radius of converges and integral of converges for $\dsum_{n=0}^\infty \dfrac{n(x+2)^n}{3^n}$.
+
+    Using the Ratio Test:
+    \[ L = \lim_{n\to \infty} \left| \dfrac{\dfrac{(n+1)(x+2)^{n+1}}{3^{n+1}}}{\dfrac{n(x+2)^n}{3^n}}\right| = \lim_{n\to \infty} \dfrac{|x+3|}{3\left(1+\dfrac{1}{n}\right)} = \dfrac{|x+2|}{3}.\]
+    The series converges when $\dfrac{|x+2|}{3}< 1$, so the radius of converges is $R=3$.
+    
+    Now we analysis the boundary cases:
+    
+    \begin{itemize}
+        \item When $x=-5$, $\dsum_{n=0}^\infty  a_n = \dsum_{n=0}^\infty (-1)^n n$ diverges by the divergence test. (The alternating series test will not work here as the third condition fails.)
+
+        \item When $x=1$, $\dsum_{n=0}^\infty  a_n = \dsum_{n=0}^\infty n$ diverges by the divergence test. 
+    \end{itemize}
+
+    So the interval of convergence is $x \in (-5,1)$.
+\end{ex}
+
+\subsubsection{Steps to Find Radius of Convergence and Interval of Convergence}
+\begin{enumerate}
+    \item \textbf{Identify the power series}: $\dsum_{n=0}^\infty c_n (x - a)^n$.
+
+    \item \textbf{Apply the Ratio/Root Test}:
+    \[
+    L = \lim_{n \to \infty} \left| \dfrac{c_{n+1}(x-a)^{n+1}}{c_n(x-a)^n} \right| = |x-a| \cdot \lim_{n \to \infty} \left| \dfrac{c_{n+1}}{c_n} \right| \quad \text{or}\quad \lim_{n \to \infty} |c_n(x-a)^n|^{1/n} = |x-a| \cdot \lim_{n \to \infty} |c_n|^{1/n}.
+    \]
+    Solve for $L < 1$ and find the radius of convergence $R$.
+Notice that:
+\begin{itemize}
+    \item If $L = \infty$, then $R = 0$ and the interval of convergence $I$ is empty.
+    \item If $L = 0$, then $R = \infty$, and the interval of convergence $I$ is $(-\infty, \infty)$.
+    \item If $L \in (0, \infty)$, then the radius of convergence is given by: $R = \dfrac{1}{L}$.
+\end{itemize}
+\end{enumerate}
+
+If $R \in (0, \infty)$,  we continue:
+\begin{enumerate}[resume]
+    \item The series converges absolutely for $|x - a| < R$, i.e., on the open interval $(a - R, a + R)$.
+
+    \item \textbf{Test the endpoints $x = a \pm R$:} Substitute each endpoint into the original series. Apply appropriate convergence tests (e.g., Alternating Series Test, $p$-series Test, or Comparison Test).
+    
+    \item \textbf{Find the interval of convergence}. It may be one of the following four possibilities: 
+    \[(a - R, a + R), \quad  [a - R, a + R), \quad (a - R, a + R], \quad  [a - R, a + R].\]
+\end{enumerate}
+
+\subsection{Representation of Functions by Power Series} \chcomment{\S11.9}
+
+\begin{center}
+\begin{tcolorbox}
+    \begin{itemize}
+        \item \textbf{Representing functions as power series $\dsum_{n=0}^\infty c_n (x-a)^n$.}
+        \item \textbf{Tools to use}: \begin{itemize}
+            \item Substitution: $\dfrac{1}{1-u(x)} = \sum_{n=0}^\infty u(x)^n$ for $|u(x)| < 1$.
+            \item Term-by-Term Differentiation: $f'(x) = \dsum_{\red{n=1}}^\infty n c_n (x-a)^{n-1}$ for $|x-a| < R$.
+            \item Term-by-Term Integration
+            $\dint f(x) \dd x = C + \dsum_{\red{n=0}}^\infty n c_n \dfrac{(x-a)^{n+1}}{n+1}$ for $|x-a| < R$. 
+        \end{itemize}
+    \end{itemize}
+\end{tcolorbox}
+\end{center}
+
+In this section, we will learn how to represent some functions as power series. An application of this technique is the approximation of certain integrals that do not have elementary antiderivatives.
+
+We start by discussing how to find the power series representation through substitution, integration, and differentiation.
+
+\subsubsection{Deriving Power Series via Substitution}
+Recall we have seen that
+\[\dfrac{1}{1-u} = \sum_{n=0}^\infty u^n, \quad \text{for } |u| < 1.\]
+
+\begin{ex}
+    Find the power series for $\dfrac{1}{1+x^2}$.
+    \[
+    \dfrac{1}{1+x^2} = \dfrac{1}{1-(-x^2)} = \sum_{n=0}^\infty (-x^2)^2 = \sum_{n=0}^\infty (-1)^n x^{2n}, \quad \text{for } |x| < 1.
+    \]
+    Take $u = (-x^2)$, then $|u| = |-x^2| = x^2 < 1$. So we have $|x| < 1$.
+\end{ex}
+
+\begin{ex}
+    Find the power series for $\dfrac{1}{2+x}$.
+    \begin{align*}
+        \dfrac{1}{2+x} &= \dfrac{1}{2} \dfrac{1}{1+\dfrac{x}{2}} = \dfrac{1}{2} \dfrac{1}{1 - \left(-\dfrac{x}{2}\right)}\tag{If $|x|<2$, then $|u| = \left|\dfrac{x}{2}\right|<1$, we may use the Equation of $\dfrac{1}{1-u}$.}\\
+        & = \dfrac{1}{2} \sum_{n=0}^\infty \left(-\dfrac{x}{2}\right)^n = \sum_{n=0}^\infty \dfrac{(-1)^n}{2^{n+1}} (x)^n.
+    \end{align*}
+\end{ex}
+
+\subsubsection{Term-by-Term Differentiation and Integration}
+
+\begin{thm}
+    If $\dsum_{n=0}^\infty c_n (x-a)^n$ has radius of convergence $R>0$, then $f(x) = \dsum_{n=0}^\infty c_n (x-a)^n$ is differentiable within $(a-R, a+R)$.
+    \begin{align*}
+        f'(x) &= \dsum_{\red{n=1}}^\infty n c_n (x-a)^{n-1},\\
+        \int f(x) \dd x &= C + \dsum_{\red{n=0}}^\infty n c_n \dfrac{(x-a)^{n+1}}{n+1}.
+    \end{align*}
+\end{thm}
+\begin{proof}
+    One can prove this by computing the differentiation:
+    \[
+    \dfrac{d}{\dd x} \left( \sum_{n=0}^\infty c_n (x-a)^n \right) = \sum_{n=1}^\infty n c_n (x-a)^{n-1}, \quad \text{for } |x-a| < R.
+    \]
+    and the integration:
+    \[
+    \int \sum_{n=0}^\infty c_n (x-a)^n \dd x = C + \sum_{n=0}^\infty \dfrac{c_n}{n+1} (x-a)^{n+1}, \quad \text{for } |x-a| < R.
+    \]
+\end{proof}
+
+\subsubsection{Examples}
+\begin{ex}
+    \begin{align*}
+        \dfrac{1}{(1-x)^2} = \dfrac{\dd x}{\dd x} \left(\dfrac{1}{1-x} \right) = \dfrac{\dd x}{\dd x} \sum_{n=0}^\infty x^n = \sum_{\red{n=1}}^\infty n x^{n-1} \text{ when } |x| < 1.
+    \end{align*}
+\end{ex}
+
+
+\begin{ex}
+    Recall by the Fundamental Theorem of Calculus, 
+    \[ \ln(1+x) - \ln (1+0) = \int_0^x \dfrac{1}{1+t} \dd t.\] 
+    This implies (note that $\ln (1+0) = 0$) for $|x| < 1$,
+    \begin{align*}
+        \ln(1+x) &= \int_0^x \dfrac{1}{1-(-t)} \dd t = \int_0^x \sum_{n=0}^\infty (-t)^n \dd t \\
+        &= \sum_{n=0}^\infty  \int_0^x (-1)^n t^n \dd t = \sum_{n=0}^\infty (-1)^n \left[ \dfrac{t^{n+1}}{n+1}\right]_{t=0}^x = \sum_{n=0}^\infty (-1)^n  \dfrac{x^{n+1}}{n+1}.
+    \end{align*}
+    Thus:
+    \[\ln(1+x)= \sum_{n=0}^\infty (-1)^n \dfrac{x^{n+1}}{n+1}, \quad \text{for } |x| < 1.\]
+\end{ex}
+
+\begin{ex}
+Another solution for solving $\ln(1+x)$.
+\begin{align*}
+    \ln(1+x) &= \int \sum_{n=0}^{\infty} (-1)^n x^n \dd x \tag{Take $u = -t$, need $|u| = |-t|<1$, i.e. $|t|<1$}\\
+    &=\int \sum_{n=0}^{\infty} (-1)^n x^n \dd x =\sum_{n=0}^{\infty} (-1)^n \int x^n\dd x =\sum_{n=0}^{\infty} (-1)^n \dfrac{x^{n+1}}{n+1} + C, \quad \text{when } |x| < 1.
+\end{align*}
+To determine $C$, take $x = 0$, we have
+\[\ln(1+0) = 0 = C.\]
+\end{ex}
+
+\begin{ex}[$\arctan(x)$]
+the Fundamental Theorem of Calculus, 
+    \[ \arctan(x) - \arctan(0) = \int_0^x \dfrac{1}{1+t^2} \dd t.\] 
+    This implies (note that $\arctan(0) = 0$) for $|x| < 1$,
+    \begin{align*}
+        \arctan(x) &= \int_0^x \dfrac{1}{1+t^2} \dd t = \int_0^x \sum_{n=0}^\infty (-t^2)^n \dd t \\
+        &= \sum_{n=0}^\infty  \int_0^x (-1)^n t^{2n} \dd t = \sum_{n=0}^\infty (-1)^n \left[ \dfrac{t^{2n+1}}{2n+1}\right]_{t=0}^x \\
+        &= \sum_{n=0}^{\infty} (-1)^n \dfrac{x^{2n+1}}{2n+1}, \quad \text{when } |x| < 1.
+    \end{align*}
+    Thus:
+    \[\arctan(x) = \sum_{n=0}^{\infty} (-1)^n \dfrac{x^{2n+1}}{2n+1}, \quad \text{for } |x| < 1.\]
+\end{ex}
+
+\begin{ex}
+Another solution for solving $\arctan(x)$.
+\begin{align*}
+    \arctan(x) &= \int \dfrac{1}{1+x^2} 
+    = \int \sum_{n=0}^{\infty} (-x^2)^n \dd x = \sum_{n=0}^{\infty} (-1)^n \int x^{2n} \dd x\\
+    &= \int \sum_{n=0}^{\infty} (-1)^n \dfrac{x^{2n+1}}{2n+1}\dd x + C, \quad \text{when } |x| < 1.
+\end{align*}
+To determine $C$, take $x = 0$, we have
+\[\arctan(0) = 0 = C.\]
+\end{ex}
+
+\subsection{Taylor and Maclaurin Series} \chcomment{\S11.10}
+\begin{center}
+\begin{tcolorbox}
+    \begin{itemize}
+        \item \textbf{Taylor series}: 
+        \[f(x) = \sum_{n=0}^{\infty} \dfrac{f^{(n)}(a)}{n!}(x-a)^n \quad |x-a| < R. \]
+        \item \textbf{Maclaurin series}: Taylor series centered at 0.
+    \end{itemize}
+\end{tcolorbox}
+\end{center}
+\begin{thm}
+    Suppose the function $f(x)$ has a power series representation at $a$ given by:
+    \[f(x) = \sum_{n=0}^{\infty} \dfrac{f^{(n)}(a)}{n!}(x-a)^n, \quad |x-a| < R.\]
+    Then $c_n = \dfrac{f^{(n)}(a)}{n!}$.
+\end{thm}
+
+\begin{proof}
+    We compute derivatives:
+    \begin{align*}
+        f'(x) &= \sum_{n=1}^{\infty} c_n n (x-a)^{n-1}, \\
+        f''(x) &= \sum_{n=2}^{\infty} c_n n (n-1) (x-a)^{n-2}.
+    \end{align*}
+    Taking $x = a$ yields
+    \begin{align*}
+        f'(a) &= c_1, \tag{$C_1$ is the only non-vanishing term}\\
+        f''(a) &= 2!c_2,\\
+        &\vdots\\
+        f^{(n)}(a) &= n!c_n.
+    \end{align*}
+\end{proof}
+\begin{defn}
+    We define the \bfemph{Taylor series} of $f$ centered at $a$ as:
+    \[T_f(x) = \sum_{n=0}^{\infty} \dfrac{f^{(n)}(a)}{n!}(x-a)^n, \quad |x-a| < R.\]
+
+    When $a=0$, this is called the \bfemph{Maclaurin series}:
+    \[T_f(x) = \sum_{n=0}^{\infty} \dfrac{f^{(n)}(0)}{n!}x^n.\]
+\end{defn}
+
+\subsubsection{Examples of Maclaurin Series}
+\begin{ex}[$f(x) = e^x$ at $a = 0$]
+    The derivatives of $f(x)$ are given by 
+    \[f^{(n)}(x) = e^x \quad \text{for all } n.\]
+    So $e^x = \dsum_{n=0}^{\infty} \dfrac{x^n}{n!}$. We compute the radius of convergence:
+    \[L = \lim_{n\to \infty} \left| \dfrac{\dfrac{x^{n+1}}{(n+1)!}}{\dfrac{x^n}{n!}}\right| = 0 < 1.\]
+    The radius of convergence is $\infty$.
+\end{ex}
+
+\begin{ex}[$f(x) = \sin(x)$ at $a = 0$]
+    The derivatives of $f(x)$ are given by 
+    \[f'(x) = \cos(x), \quad f''(x) = -\sin(x), \quad f'''(x) = -\cos(x), \quad f^{(4)}(x) = \sin(x).\]
+    Higher order derivatives repeat. So 
+    \[\sin(x) = \sum_{n=0}^{\infty} (-1)^n \dfrac{x^{2n+1}}{(2n+1)!}.\]
+    (Note that $\sin$ is an odd function).
+    The radius of convergence $R = \infty$, as
+    \[L = \lim_{n\to \infty} \left| \dfrac{\dfrac{x^{2n+3}}{(2n+3)!}}{\dfrac{x^{2n+1}}{(2n+1)!}}\right| =\lim_{n\to \infty} \left| \dfrac{x^2}{(2n+3)(2n+2)}\right|= 0 < 1.\]
+\end{ex}
+
+\begin{ex}[$f(x) = \cos(x)$ at $a = 0$]    
+    Check that \[f'(x) = -\sin(x), \quad f''(x) = -\cos(x), \quad f'''(x) = \sin(x), \quad f^{(4)}(x) = \cos(x).\]
+    So \[\cos(x) = \sum_{n=0}^{\infty} (-1)^n \dfrac{x^{2n}}{(2n)!}, \quad \text{even function}. \]
+    The radius of convergence is again $R = \infty$.
+\end{ex}
+
+\begin{ex}[$f(x) = x^4 e^{-3x^2}$ about $x = 0$]
+
+    We know the Taylor series expansion of $e^u$ about $u = 0$ is given by $e^u = \sum_{n=0}^{\infty} \dfrac{u^n}{n!}$.
+    
+    Substituting $u = -3x^2$, we obtain:
+    \[
+    e^{-3x^2} = \sum_{n=0}^{\infty} \dfrac{(-3x^2)^n}{n!} = \sum_{n=0}^{\infty} \dfrac{(-3)^n x^{2n}}{n!}.
+    \]
+    
+    Multiplying by $x^4$, we get:
+    \[
+    x^4 e^{-3x^2} = x^4 \sum_{n=0}^{\infty} \dfrac{(-3)^n x^{2n}}{n!} = \sum_{n=0}^{\infty} \dfrac{(-3)^n x^{2n + 4}}{n!}.
+    \]
+    
+    Therefore, 
+    \[f(x) = \sum_{n=0}^{\infty} \dfrac{(-3)^n}{n!} x^{2n + 4}.\]
+\end{ex}
+\subsubsection{Examples of Taylor Series}
+
+\begin{ex}[Taylor Series for $f(x) = \dfrac{1}{x^2}$ about $x = -1$.]
+
+The derivatives of $f(x)$ evaluated at $x = -1$ are given by
+\begin{align*}
+    f(x) &= \dfrac{1}{x^2}, & f^{(0)}(-1) &= \dfrac{1}{(-1)^2} = 1, \\
+    f^{(1)}(x) &= -\dfrac{2}{x^3}, & f^{(1)}(-1) &= -\dfrac{2}{(-1)^3} = 2, \\
+    f^{(2)}(x) &= \dfrac{2 \cdot 3}{x^4}, & f^{(2)}(-1) &= \dfrac{6}{1} = 6, \\
+    f^{(3)}(x) &= -\dfrac{2 \cdot 3 \cdot 4}{x^5}, & f^{(3)}(-1) &= \dfrac{24}{-1} = -24, \\
+    &\vdots \\
+    f^{(n)}(x) &= (-1)^n (n+1)! \, x^{-(n+2)}, & f^{(n)}(-1) &= (-1)^n (n+1)! \cdot (-1)^{-(n+2)} = (n+1)!
+\end{align*}
+
+So the Taylor series for $f(x)$ about $x = -1$ is given by
+\[f(x) = \sum_{n=0}^{\infty} \dfrac{f^{(n)}(-1)}{n!}(x + 1)^n = \sum_{n=0}^{\infty} \dfrac{(n+1)!}{n!}(x + 1)^n = \sum_{n=0}^{\infty} (n+1)(x + 1)^n.\]
+\end{ex}
+\begin{ex}[Taylor Series for $f(x) = 7x^2 - 6x + 1$ about $x = 2$.]
+
+The derivatives of $f(x)$ evaluated at $x = 2$ are given by
+\begin{align*}
+    f(x) &= 7x^2 - 6x + 1, & f(2) &= 28 - 12 + 1 = 17, \\
+    f'(x) &= 14x - 6, & f'(2) &= 28 - 6 = 22, \\
+    f''(x) &= 14, & f''(2) &= 14, \\
+    f^{(n)}(x) &= 0 \quad \text{for } n \geq 3, & f^{(n)}(2) &= 0.
+\end{align*}
+
+The Taylor series is then
+\[ f(x) = \sum_{n=0}^{\infty} \dfrac{f^{(n)}(2)}{n!} (x - 2)^n 
+= 17 + 22(x - 2) + \dfrac{14}{2}(x - 2)^2 
+= 17 + 22(x - 2) + 7(x - 2)^2.\]
+When $f(x)$ is a polynomial of degree $s$, its Taylor series about any point $x=a$ terminates after the $d$th derivative term. 
+\end{ex}
+
+\subsubsection{List of Common Maclaurin Series}
+\begin{center}
+\begin{tcolorbox}
+    \begin{align*}
+        \dfrac{1}{1-x} &= \sum_{n=0}^{\infty} x^n, \quad |x| < 1. \\
+        e^x &= \sum_{n=0}^{\infty} \dfrac{x^n}{n!}, \quad |x| < \infty. \\
+        \sin(x) &= \sum_{n=0}^{\infty} (-1)^n \dfrac{x^{2n+1}}{(2n+1)!}, \quad |x| < \infty. \\
+        \cos(x) &= \sum_{n=0}^{\infty} (-1)^n \dfrac{x^{2n}}{(2n)!}, \quad |x| < \infty. \\
+        \ln(1+x) &= \sum_{n=1}^{\infty} (-1)^{n+1} \dfrac{x^n}{n}, \quad |x| < 1. \\
+        \arctan(x) &= \sum_{n=0}^{\infty} (-1)^n \dfrac{x^{2n+1}}{2n+1}, \quad |x| < 1.
+    \end{align*}
+\end{tcolorbox}
+\end{center}
+
+\subsection{Applications of Taylor Polynomials} \chcomment{\S11.11}
+
+\begin{center}
+\begin{tcolorbox}
+    Let $T_N(x) = \dsum_{n=0}^N \dfrac{f^{(n)}(a)}{n!} (x-a)^n$
+    \begin{itemize}
+        \item \textbf{Estimating Integrals:}  
+        \[\dint_a^b f(x) \dd x \approx \dint_a^b T_N(x) \dd x.\]
+        
+        \item \textbf{Estimating Functions:} 
+        \[f(x) \approx T_N(x).\]
+        
+        \item \textbf{Error bound:} 
+        \[|R_N(x)| = |f(x) - T_N(x)| \leq \dfrac{M}{(N+1)!}|x - a|^{N+1}\]
+        where $M \geq |f^{(N+1)}(\xi)|$ on the interval.
+    \end{itemize}
+\end{tcolorbox}
+\end{center}
+
+
+\subsubsection{Taylor Polynomials}
+The Taylor polynomial provides a powerful method for approximating smooth functions near a given point. Given a function $f(x)$ that is sufficiently differentiable at a point $a$, its degree $N$ Taylor polynomial centered at $a$ is defined as  
+\[
+T_N(x) = \sum_{n=0}^N \frac{f^{(n)}(a)}{n!} (x-a)^n = f(a) + f'(a)(x - a) + \frac{f''(a)}{2!}(x - a)^2 + \cdots + \frac{f^{(N)}(a)}{N!}(x - a)^N.
+\]
+This polynomial approximates the behavior of $f(x)$ near $a$ to order $N$, and forms the foundation for various analytical techniques. In particular, Taylor approximations can be employed to estimate definite integrals, evaluate limits, and simplify complex expressions in both theoretical and applied contexts.
+
+\begin{ex}[Taylor Polynomials of $f(x) = \ln(1 - x)$ about $x = -2$]
+
+We compute the Taylor series of $f(x) = \ln(1 - x)$ centered at $x = -2$.  
+We begin by computing derivatives of $f(x)$ evaluated at $x = -2$:
+
+\begin{alignat*}{2}
+f(x) &= \ln(1 - x),       &\quad f(-2) &= \ln(3), \\
+f'(x) &= -\dfrac{1}{1 - x}, &\quad f'(-2) &= -\dfrac{1}{3}, \\
+f''(x) &= -\dfrac{1}{(1 - x)^2}, &\quad f''(-2) &= -\dfrac{1}{9}, \\
+f^{(3)}(x) &= -\dfrac{2}{(1 - x)^3}, &\quad f^{(3)}(-2) &= -\dfrac{2}{27}, \\
+f^{(4)}(x) &= -\dfrac{6}{(1 - x)^4}, &\quad f^{(4)}(-2) &= -\dfrac{6}{81} = -\dfrac{2}{27}.
+\end{alignat*}
+
+Hence, the Taylor polynomials are:
+
+\[
+\begin{aligned}
+T_2(x) &= \ln(3) - \frac{1}{3}(x + 2) - \frac{1}{18}(x + 2)^2, \\
+T_3(x) &= \ln(3) - \frac{1}{3}(x + 2) - \frac{1}{18}(x + 2)^2 - \frac{1}{81}(x + 2)^3, \\
+T_4(x) &= \ln(3) - \frac{1}{3}(x + 2) - \frac{1}{18}(x + 2)^2 - \frac{1}{81}(x + 2)^3 - \frac{1}{162}(x + 2)^4.
+\end{aligned}
+\]
+\end{ex}
+\begin{figure}[H]
+        \centering
+        \resizebox{\textwidth}{!}{\input{images/Taylor polynomial.tikz}} % Include your TikZ file
+        \caption{Taylor Approximations of $\ln(1 - x)$ at $x = -2$.}
+        \label{fig:Taylor polynomial}
+    \end{figure}
+ 
+
+\subsubsection{Error Bound}
+When approximating function using the Taylor polynomial $T_N(x)$, the error in this approximation is given by:
+\[R_N(x) = f(x) - T_N(x).\]
+\begin{thm}
+    Given that $f$ satisfies the hypotheses of Taylor's theorem, and there exists a real number $M$ such that
+    \[|f^{(N+1)}(x)| \leq M \quad \text{for all} \quad x \in I = [a,b],\]
+    the remainder \( R_N(x) \) satisfies the \textbf{Taylor's inequality} 
+    \[|R_N(x)| \leq \frac{M |x - a|^{N+1}}{(N+1)!}\]
+    on the same interval $I$.
+\end{thm}  
+
+\begin{ex}
+Approximate $f(x) = \sqrt[3]{x}$ using the second-degree Taylor polynomial $T_2(x)$ centered at $x=8$, and find an error bound for $x \in [7,9]$.
+
+We compute:
+\begin{alignat*}{2}
+f(x) &= \sqrt[3]{x}, &\quad f(8) &= 2, \\
+f'(x) &= \dfrac{1}{3}x^{-2/3}, &\quad f'(8) &= \dfrac{1}{12}, \\
+f''(x) &= -\dfrac{2}{9}x^{-5/3}, &\quad f''(8) &= -\dfrac{1}{144}.
+\end{alignat*}
+
+The second-degree Taylor polynomial is:
+\[
+T_2(x) = f(8) + f'(8)(x-8) + \dfrac{f''(8)}{2}(x-8)^2 = 2 + \dfrac{1}{12}(x - 8) - \dfrac{1}{288}(x - 8)^2.
+\]
+
+To estimate the error, we use Taylor's inequality:
+\[
+|R_2(x)| \leq \dfrac{M |x - 8|^3}{3!},
+\]
+where \( M \) is an upper bound for \( |f^{(3)}(x)| = \left| \dfrac{10}{27}x^{-8/3} \right| \) on \( [7,9] \).
+
+Since \( x^{-8/3} \) decreases as \( x \) increases, the maximum occurs at \( x = 7 \). Therefore,
+\[
+M = \dfrac{10}{27} \cdot 7^{-8/3} \approx 0.0104.
+\]
+
+Thus, the error is bounded by:
+\[
+|R_2(x)| \leq \dfrac{0.0104}{6} \cdot |x - 8|^3 \leq \dfrac{0.0104}{6} \cdot 1^3 \approx 0.00173.
+\]
+\end{ex}
+
+
+   
+\subsubsection{Estimating Integrals}
+\begin{ex}
+Estimate \(\displaystyle \int_0^1 e^{-x^2} \dd x\) using the 5th-degree Taylor polynomial \(T_5(x)\) centered at 0. Find an error bound of the estimation using the fact that
+\[|f^{(6)}(x)| \leq 28 \quad \text{for } x \in [0,1].\]
+
+
+\textit{Step 1}. Using substitution $u = -x^2$, the Maclaurin series of \(e^{-x^2}\) is 
+\[
+e^{-x^2} = \sum_{k=0}^{\infty} \frac{(-1)^k x^{2k}}{k!} = 1 - x^2 + \frac{x^4}{2!} - \frac{x^6}{3!} + \cdots, \quad |x| < \infty.
+\]
+Therefore,
+\[
+T_5(x) = 1 + 0 \cdot x - x^2 + 0 \cdot x^3 + \frac{x^4}{2} + 0 \cdot x^5 =  1 - x^2 + \frac{x^4}{2}.
+\]
+\begin{rmk}\leavevmode
+    \begin{enumerate}
+        \item The Taylor polynomial centered at 0 is by definition
+        \[T_5(x) = \sum_{n=0}^{\infty} \frac{f^{(n)} x^n}{n!}.\] 
+        In the Taylor expansion we computed for $e^{-x^2}$, $n = 2k$. 
+        \item Be careful, the solution could ask you to use the first five nonvanishing terms, which corresponds to $T_8(x)$.
+    \end{enumerate}
+\end{rmk}
+
+\textit{Step 2}. We approximate:
+\begin{align*}
+    \int_0^1 e^{-x^2} \dd x &\approx \int_0^1 T_5(x) \dd x = \int_0^1 \left(1 - x^2 + \frac{x^4}{2} \right) \dd x\\
+    &= \left[x - \frac{x^3}{3} + \frac{x^5}{10} \right]_0^1 = 1 - \frac{1}{3} + \frac{1}{10} = \frac{23}{30}.
+\end{align*}
+
+\textit{Step 3. Error bound via Taylor’s theorem.}
+
+Let \(f(x) = e^{-x^2}\), and note that the remainder after degree \(5\) on the interval \([0,1]\) bounded by:
+\[|R_5(x)| \leq \frac{M x^6}{6!}, \text{ with } M = \max_{x\in[0,1]} |f^{(6)}(x)|.\]
+So the error in the integral is bounded by:
+\[\left| \int_0^1 f(x) - T_5(x) \dd x \right| \leq  \int_0^1 |f(x) - T_5(x)| \dd x = \int_0^1 \left| R_5(x) \right| \dd x \leq \frac{M}{6!} \int_0^1  x^6\dd x.\]
+
+\begin{rmk}
+    Note that $(N+1)! = 6!$ in the Taylor inequality.
+\end{rmk}
+Since $|f^{(6)}(x)| \leq 28 \quad \text{for } x \in [0,1]$,
+\[
+\left| \int_0^1 f(x) - T_5(x) \dd x \right| \leq \frac{28}{6!} \int_0^1 x^6 \dd x = \frac{28}{6!} \cdot \frac{1}{7} = \frac{1}{180}.
+\]
+
+\gray{Aside: The maximum value of the function \( f^{(6)}(x) = (-240 + 720x^2 - 480x^4 + 64x^6) e^{-x^2} \) on the interval \([0, 1]\) occurs at approximately \( x = 0.905 \), with a maximum value of approximately 27.72.}
+\end{ex}
+
+\subsubsection{Evaluating Limits}
+We can use the Taylor expansion to evaluate a limit. This approach is similar in spirit to applying L'Hopital's Rule, where we differentiate the numerator and denominator when encountering an indeterminate form, such as $\frac{0}{0}$. By expanding the functions in the limit as Taylor series around the point of interest, we can often simplify the expression and evaluate the limit directly.
+\begin{ex}    
+\[\dlim_{x \to 0} \dfrac{\ln(1+x)- x}{\cos x - (1+x^3)^{-1/2}}\]
+    For $(1+x^3)^{-1/2}$, we have
+    \begin{align*}
+    (1+x^3)^{-1/2} &= \dsum_{n=0}^\infty {-\frac{1}{2} \choose n} x^{3n} = 1 - \dfrac{1}{2} x^3 + \dfrac{-\dfrac{1}{2}(-\dfrac{1}{2}-1)}{2} x^6 + \cdots 
+    \end{align*}
+    We have computed the Maclaurin series of $\ln(1+x)$ and $\cos x$. So the numerator and the denominator are given by
+    \begin{align*}
+    (1+x^3)^{-1/2} &= \dsum_{n=0}^\infty {-\dfrac{1}{2} \choose n} x^{3n} = 1 - \dfrac{1}{2} x^3 + \dfrac{-\dfrac{1}{2}(-\dfrac{1}{2}-1)}{2} x^6 + \cdots \\
+    \ln(1+x) - x &= \left( x - \dfrac{x^2}{2} + \dfrac{x^3}{3} - \dfrac{x^4}{4} + \cdots \right) - x = - \dfrac{x^2}{2} + \dfrac{x^3}{2} + \cdots \\
+    \cos x - (1+x^3)^{-1/2} &= \left( 1 - \dfrac{x^2}{2!} + \dfrac{x^4}{4!} - \cdots \right) - \left( 1 - \dfrac{1}{2} x^3 + \cdots \right) = - \dfrac{x^2}{2} + \dfrac{x^3}{2} + \cdots.        
+    \end{align*}
+    Substitute the above we have
+    \[\dlim_{x \to 0} \dfrac{\ln(1+x) - x}{\cos x - (1+x^3)^{-1/2}} = \dlim_{x \to 0} \dfrac{ - \dfrac{x^2}{2} + \dfrac{x^3}{2} + \cdots}{ - \dfrac{x^2}{2} + \dfrac{x^3}{2} + \cdots} = \dlim_{x \to 0} \dfrac{ - \dfrac{1}{2} + \dfrac{x}{2} + \cdots}{ - \dfrac{1}{2} + \dfrac{x}{2} + \cdots} = \dfrac{ - \dfrac{1}{2}}{ - \dfrac{1}{2}} = 1.\]
+\end{ex}
+\begin{ex}
+    $\dlim_{x \to 0} \dfrac{\arctan(x) - \ln (1+x)}{1 - \cos x}$
+    The Maclaurin series of the numerator is 
+    \begin{align*}
+        \arctan(x) - \ln (1+x) &= \left( x - \dfrac{x^3}{3} + \cdots \right) - \left( x - \dfrac{x^2}{2} + \dfrac{x^3}{3} - \cdots \right) \\
+        &= \dfrac{x^2}{2} - \dfrac{2x^3}{3} + \cdots.
+    \end{align*}
+    Therefore
+    \begin{align*}    
+        \dfrac{\arctan(x) - \ln (1+x)}{1 - \cos x} &= \dfrac{ \dfrac{x^2}{2} - \dfrac{2x^3}{3} + \cdots }{\dfrac{x^2}{2} - \dfrac{x^4}{4!} + \cdots} =  \dfrac{ \dfrac{1}{2} - \dfrac{2x}{3} + \cdots }{\dfrac{1}{2} - \dfrac{x^2}{4!} + \cdots} \\
+        \dlim_{x \to 0} \dfrac{\arctan(x) - \ln (1+x)}{1 - \cos x} &= \dlim_{x \to 0} \dfrac{ \dfrac{1}{2} - \dfrac{2x}{3} + \cdots }{\dfrac{1}{2} - \dfrac{x^2}{4!} + \cdots} = \dfrac{\dfrac{1}{2}}{\dfrac{1}{2}} = 1.
+    \end{align*}
+\end{ex}

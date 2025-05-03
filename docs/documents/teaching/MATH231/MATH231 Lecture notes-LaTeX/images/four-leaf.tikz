@@ -1,0 +1,29 @@
+\usetikzlibrary{patterns.meta}
+
+\newcommand\eq{80*sqrt(2)*cos(2*\x r)}
+
+\begin{tikzpicture}
+  \path
+  coordinate (E) at (0.6,4)
+  coordinate (F) at (7,3)
+  coordinate (P) at (3,3)
+  coordinate (I) at (10,0)
+  coordinate (O) at (0,0);
+  
+  % Shading the region from -\pi/4 to \pi/4
+  \begin{scope}
+    \clip[domain=0:6.28,samples=200,smooth] plot (canvas polar cs:angle=\x r,radius={\eq});
+    \draw[fill=shinbashi, opacity=0.3] (5, 5) -- (5, -5) -- (0, 0) -- cycle; % gray-filled triangle
+
+    \end{scope}
+  
+  \node at (O) [above=1mm] {$O$};   % nodes also accept distance for labels
+  \node at (E) [right] {$r=4\sqrt{2}\cos{2\theta}$};
+  
+  % Plot the curve
+  \draw[thick ,domain=0:6.28,samples=200,smooth] plot (canvas polar cs:angle=\x r,radius={\eq});
+  
+  % Draw x and y axes
+  \draw[->] (-5,0) -- (5,0) node[right] {$x$};
+  \draw[->] (0,-5) -- (0,5) node[above] {$y$};
+\end{tikzpicture}
