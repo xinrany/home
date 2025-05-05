@@ -333,10 +333,10 @@ Note that if the convergent condition fails, the equality could also fail. For e
         \begin{itemize}
             \item \textbf{The Integral Test}
             $f$ positive, continuous, decreasing for $x \geq 1$, and let $a_n = f(n)$. Then:
-            \[\sum_{n=1}^\infty a_n \text{ converges } \iff \int_1^\infty f(x) \dd x \text{ converges.}\]
+            \[\dsum_{n=1}^\infty a_n \text{ converges } \iff \dint_1^\infty f(x) \dd x \text{ converges.}\]
             
-            \item \textbf{Error estimate}:
-            \[\int_{N+1}^\infty f(x) \dd x \leq R_N = S - S_N \leq \int_{N}^\infty f(x) \dd x.\]
+            \item \textbf{Error estimate}: 
+            \[\dint_{N+1}^\infty f(x) \dd x \leq R_N = S - S_N \leq \dint_{N}^\infty f(x) \dd x.\]
         \end{itemize}
     \end{itemize}
 \end{tcolorbox}
@@ -349,16 +349,13 @@ We have been computing the exact value of a series so far for some special cases
     Suppose \begin{enumerate*}[label = \circled{\arabic*}]
         \item $f(x) > 0$ is a  \item continuous and \item decreasing function for $x \geq 1$, and 
         \item let $a_n = f(n)$. 
-    \end{enumerate*} Then:
-    \[\sum_{n=1}^\infty a_n \text{ converges } \iff \int_1^\infty f(x) \dd x \text{ converges.}\]
-    
-    Moreover:
-    \[ \sum_{n=1}^\infty a_n \leq a_1 + \int_1^\infty f(x) \dd x.\]
+    \end{enumerate*} Then: 
+    \[\dsum_{n=1}^\infty a_n \text{ converges } \iff \dint_1^\infty f(x) \dd x \text{ converges.}\]
+    Moreover,
+    \[\dsum_{n=k+1}^\infty a_n \leq \dint_k^\infty f(x) \dd x \leq \dsum_{n=k}^\infty a_n.\]
 \end{thm}
 
-The error of this estimate is given by
-    \[R_N = \sum_{n=1}^\infty a_n - \sum_{n=1}^N a_n = \sum_{n=N+1}^\infty a_n.\]
-We have 
+The error of this estimate is given by $R_N = \dsum_{n=1}^\infty a_n - \dsum_{n=1}^N a_n = \dsum_{n=N+1}^\infty a_n$. We have 
 \[\int_{N+1}^\infty f(x) \dd x \leq R_N \leq \int_{N}^\infty f(x) \dd x.\]
 \begin{figure}[h]
     \centering
@@ -369,8 +366,11 @@ We have
     \label{fig:Riemann sums}
     \caption{Upper and lower bounds for the Integral Test}
 \end{figure}
-
-
+\begin{proof}
+    Since $f$ is decreasing, we know from the Riemann sum (see the picture above)
+    \[ \sum_{n=k+1}^\infty a_n = \sum_{n=k}^\infty a_{n+1} \leq \int_k^\infty f(x) \dd x \leq \sum_{n=k}^\infty a_n.\]
+    The left inequality with $k=N$ gives $R_N \leq \dint_N^\infty f(x) \dd x$; the right inequality with $k=N+1$ gives $R_N \leq \dint_{N+1}^\infty f(x) \dd x$. 
+\end{proof}
 
 
 
@@ -643,7 +643,7 @@ So, alternating series is convergent.
 
 
 \newpage
-\subsection{Summary I} 
+\subsection{Summary} 
 So far, we have learned different ways to determine the convergence of a series with positive terms or alternating terms.
 
 \subsubsection{Summary of the Convergence Tests in Previous Sections}
@@ -871,10 +871,10 @@ Instead, one can use the Alternating Series Test to conclude that this series co
     \[ L = \lim_{n\to \infty} \left| \dfrac{\dfrac{(n+1)^2}{(2(n+1)-1)!}}{\dfrac{n^2}{(2n-1)!}}\right| = \lim_{n\to \infty} \dfrac{(n+1)^2}{(2n+1)(2n) n^2} = 0 < 1.\]
     Hence the series converges absolutely by the Root Test. 
 \end{ex}
-For strategy of choosing converges tests, see "Supplementary Resources" on course webpage.
+For strategy of choosing convergence tests, see "Supplementary Resources" on course webpage.
 
 
-\subsection{Power Series} \chcomment{\S11.8}
+\subsection{Power Series} \chcomment{\S11.8} \chcomment{Week 12}
 \begin{center}
 \begin{tcolorbox}
     \begin{itemize}
@@ -940,7 +940,7 @@ The above example shows that a power series may converge for some values of $x$ 
     For the series $\dsum \dfrac{(x-3)^n}{n}$, the radius of convergence is $R = 2$, and the interval of convergence is $[2,4)]$.
 \end{ex}
 
-\begin{ex}
+\begin{ex}  \chcomment{Week 13}
     Compute the radius of converges and integral of converges for $\dsum_{n=0}^\infty \dfrac{n(x+2)^n}{3^n}$.
 
     Using the Ratio Test:
@@ -1095,11 +1095,11 @@ Another solution for solving $\arctan(x)$.
     = \int \sum_{n=0}^{\infty} (-x^2)^n \dd x = \sum_{n=0}^{\infty} (-1)^n \int x^{2n} \dd x\\
     &= \int \sum_{n=0}^{\infty} (-1)^n \dfrac{x^{2n+1}}{2n+1}\dd x + C, \quad \text{when } |x| < 1.
 \end{align*}
-To determine $C$, take $x = 0$, we have
+To determine $C$, take $x = 0$. We have
 \[\arctan(0) = 0 = C.\]
 \end{ex}
 
-\subsection{Taylor and Maclaurin Series} \chcomment{\S11.10}
+\subsection{Taylor and Maclaurin Series} \chcomment{\S11.10} \chcomment{Week 14}
 \begin{center}
 \begin{tcolorbox}
     \begin{itemize}
@@ -1377,8 +1377,8 @@ Since $|f^{(6)}(x)| \leq 28 \quad \text{for } x \in [0,1]$,
 \gray{Aside: The maximum value of the function \( f^{(6)}(x) = (-240 + 720x^2 - 480x^4 + 64x^6) e^{-x^2} \) on the interval \([0, 1]\) occurs at approximately \( x = 0.905 \), with a maximum value of approximately 27.72.}
 \end{ex}
 
-\subsubsection{Evaluating Limits}
-We can use the Taylor expansion to evaluate a limit. This approach is similar in spirit to applying L'Hopital's Rule, where we differentiate the numerator and denominator when encountering an indeterminate form, such as $\frac{0}{0}$. By expanding the functions in the limit as Taylor series around the point of interest, we can often simplify the expression and evaluate the limit directly.
+\subsubsection{Evaluating Limits}  \chcomment{Week 15}
+We can use the Taylor expansion to evaluate a limit. This approach is similar in spirit to applying L'Hôpital's Rule, where we differentiate the numerator and denominator when encountering an indeterminate form, such as $\frac{0}{0}$. By expanding the functions in the limit as Taylor series around the point of interest, we can often simplify the expression and evaluate the limit directly.
 \begin{ex}    
 \[\dlim_{x \to 0} \dfrac{\ln(1+x)- x}{\cos x - (1+x^3)^{-1/2}}\]
     For $(1+x^3)^{-1/2}$, we have
