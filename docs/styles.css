@@ -147,11 +147,50 @@ nav a.active {
   border-radius: .5rem;
 }
 
-@media (max-width: 768px) {
-  nav { text-align: left; padding: 10px; }
-  .nav-left { gap: 5px; }
-  nav a { display: block; padding: 10px; margin: 5px 0; }
+
+
+@media (max-width: 480px) {
+  nav {
+    height: 45px;              
+    padding: 0 8px;
+    display: flex;
+    align-items: center;       /* centers children vertically */
+  }
+
+  .nav-left {
+    gap: 6px;
+    display: flex;
+    align-items: center;       /* makes sure links align */
+  }
+
+  nav a {
+    font-size: 0.65rem;
+    line-height: 45px;         /* match nav height for perfect vertical centering */
+    padding: 0;                /* remove extra padding */
+    display: inline-block;     /* ensures line-height applies */
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;       /* centers span + toggle */
+  }
+
+  .nav-right span {
+    font-size: 0.65rem;
+    margin-right: 4px;
+    line-height: 45px;         /* align with nav height */
+  }
+
+  #theme-toggle {
+    font-size: 0.65rem;
+    padding: .2rem .35rem;
+    line-height: 1;            /* so the button doesn’t stretch */
+  }
 }
+
+
+
+
 
 
 /* =======================
@@ -342,7 +381,7 @@ h1, h2 { color: var(--fg); }
 /* =======================
    RESPONSIVE BODY
    ======================= */
-@media (max-width: 768px) {
+@media (max-width: 931px) {        /*vertical align*/
   body { flex-direction: column; }
 
   .left-panel {
