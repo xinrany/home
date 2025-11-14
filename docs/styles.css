@@ -1,30 +1,32 @@
 /* =======================
  THEME TOKENS + MODES
  ======================= */
- :root {
- color-scheme: light dark; /* theme-aware form controls */
- 
- /* Light defaults (mapped to your palette) */
- --bg: #f4f4f4; /* body, portrait/left panels */
- --fg: #333333; /* body text */
- --muted: #8a8a8a; /* nav link default */
- --ink-strong: #000000; /* hover/active black accents */
- 
- --link: #3a8fb7; /* anchor color */
- 
- --nav-bg: #ffffff; /* fixed nav bar */
- --card: #fafafa; /* .section, cards, gallery item */
- --card-2: #ffffff; /* table odd rows, gallery bg etc. */
- 
- --border: #dddddd; /* light borders (h2 underline, table borders) */
- --border-soft: #cccccc;
- --shadow-rgb: 0 0 0; /* for box-shadows */
- 
- /* Tables */
- --table-th: #b3d8ff;
- --table-odd: #ffffff;
- --table-even: #f0f8ff;
- }
+:root {
+  /* colors */
+  --bg: #f4f4f4;
+  --fg: #333333;
+  --muted: #8a8a8a;
+  --ink-strong: #000;
+  --link: #3a8fb7;
+
+  --nav-bg: #ffffff;
+  --card: #fafafa;
+  --card-2: #ffffff;
+
+  --border: #dddddd;
+  --border-soft: #cccccc;
+  --shadow-rgb: 0 0 0;
+
+  /* table */
+  --table-th: #b3d8ff;
+  --table-odd: #ffffff;
+  --table-even: #f0f8ff;
+
+  /* NEW: border radius tokens */
+  --radius: 20px;
+  --radius-large: 25px;
+  --radius-small: 8px;  /* optional, useful for inputs/buttons */
+}
  
  
  #theme-toggle {
@@ -214,7 +216,7 @@
  width: 70%;
  height: calc(40vh - 0.5rem);
  overflow: hidden;
- border-radius: 20px;
+ border-radius: var(--radius);
  background: var(--card);
  box-shadow: 0 1px 3px rgba(var(--shadow-rgb) / 0.05);
  border: 1px solid var(--border);
@@ -225,7 +227,7 @@
  object-position: 30% 30%;
  transform: scale(1.4);
  transform-origin: 30% 30%;
- border-radius: 20px;
+ border-radius: var(--radius);
  }
  
  @media (max-width: 931px) {
@@ -272,7 +274,7 @@
  max-width: 350px;
  aspect-ratio: 7 / 13;
  object-fit: cover;
- border-radius: 20px;
+ border-radius: var(--radius);
  }
  
  .right-panel {
@@ -295,7 +297,7 @@
  width: 100%;
  margin: calc(var(--nav-height)) auto 10px; /* Top margin = nav height buffer */
  padding: 20px;
- border-radius: 20px;
+ border-radius: var(--radius);
  }
  
  
@@ -314,7 +316,7 @@
  margin-bottom: 40px;
  padding: 20px;
  background-color: var(--card);
- border-radius: 20px;;
+ border-radius: var(--radius);
  box-shadow: 0 1px 3px rgba(var(--shadow-rgb) / 0.05);
  border: 1px solid var(--border);
  }
@@ -334,27 +336,57 @@
  /* =======================
  TABLES
  ======================= */
- .table-container { overflow-x: auto; }
- 
-.table {
-  border-collapse: separate;   /* important */
-  border-spacing: 0;           /* removes gaps */
-  border-radius: 8px;          /* your rounded corners */
-  overflow: hidden;            /* ensures corners render */
+.table-container {
+  overflow-x: auto;
 }
 
- 
- .table th, .table td {
- border: 1px solid var(--border);
- padding: 10px;
- text-align: left;
- }
- .table th {
- background-color: var(--table-th);
- font-weight: bold;
- }
- .table tr:nth-child(odd) { background-color: var(--table-odd); }
- .table tr:nth-child(even) { background-color: var(--table-even); }
+/* OUTER TABLE WRAPPER */
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: var(--radius);
+  overflow: hidden;                  /* clips inner backgrounds */
+  border: 1px solid var(--border);   /* outer border only */
+}
+
+/* HEADER CELLS */
+.table th {
+  padding: 12px;
+  background: var(--table-th);           /* ← header color restored */
+  border-bottom: 1px solid var(--border-soft);
+  border-right: 1px solid var(--border-soft);
+  font-weight: bold;
+}
+
+/* BODY CELLS */
+.table td {
+  padding: 12px;
+  background: var(--card-2);             /* temporary, overwritten by zebra */
+  border-bottom: 1px solid var(--border-soft);
+  border-right: 1px solid var(--border-soft);
+}
+
+/* ALTERNATING ROW COLORS (body only) */
+.table tbody tr:nth-child(odd) td {
+  background: var(--table-odd);
+}
+.table tbody tr:nth-child(even) td {
+  background: var(--table-even);
+}
+
+/* Remove bottom border on last row */
+.table tr:last-child th,
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Remove right border on last column (prevents doubling) */
+.table th:last-child,
+.table td:last-child {
+  border-right: none;
+}
+
  
  
  /* =======================
@@ -368,11 +400,17 @@
  }
  .preprint-images img {
  max-width: 100%;
- width: 48%;
  height: auto;
- border-radius: 20px;;
+ border-radius: var(--radius);
  }
  
+/* Mobile override */
+@media (max-width: 600px) {
+  .preprint-images img {
+    border-radius: var(--radius-small);  /* e.g., smaller corners */
+  }
+}
+
  
  /* =======================
  CV / PDF
@@ -389,7 +427,7 @@
  height: 80vh;
  margin: 20px auto;
  border: 1px solid var(--border-soft);
- border-radius: 20px;;
+ border-radius: var(--radius);
  box-shadow: 2px 2px 10px rgba(var(--shadow-rgb) / 0.10);
  overflow: hidden;
  }
@@ -416,7 +454,9 @@
  
  .section { padding: 15px; }
  .section h2 { font-size: 1.4rem; }
- }
+
+}
+
  
  
  /* =======================
@@ -429,7 +469,7 @@
  }
  .gallery-item {
  break-inside: avoid;
- border-radius: 20px;;
+ border-radius: var(--radius);
  overflow: hidden;
  background: var(--card-2);
  display: inline-block;
@@ -438,7 +478,7 @@
  border: 1px solid var(--border);
  }
  .gallery-item img {
- width: 100%; height: auto; display: block; border-radius: 20px;;
+ width: 100%; height: auto; display: block; border-radius: var(--radius);
  }
  @media (max-width: 900px) { .gallery { column-count: 2; } }
  @media (max-width: 600px) { .gallery { column-count: 1; } }
