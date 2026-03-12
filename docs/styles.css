@@ -375,6 +375,19 @@ ABOUT / SECTION
 
 
 /* =======================
+REFERENCE / LONG LINK WRAP
+======================= */
+.section a,
+.section li {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.section {
+  overflow-x: hidden;
+}
+
+/* =======================
 TABLES
 ======================= */
 .table-container { overflow-x: auto; }
